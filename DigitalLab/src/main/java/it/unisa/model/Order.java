@@ -8,9 +8,10 @@ public class Order
 	private int code;
 	private String status;
 	private double totalAmount;
-	private Date paymentDate;
 	private String paymentMethod;
+	private Date paymentDate;
 	private Customer customer;
+	private ShippingAddress shippingAddress;
 	
 	
 	// Costruttori
@@ -58,6 +59,11 @@ public class Order
 		return customer;
 	}
 	
+	public ShippingAddress getShippingAddress()
+	{
+		return shippingAddress;
+	}
+	
 	
 	// Metodi di modifica
 	
@@ -89,5 +95,10 @@ public class Order
 	public void setCustomer(Customer newCustomer)
 	{
 		customer = newCustomer;
+	}
+	
+	public void setShippingAddress(ShippingAddress newShippingAddress)
+	{
+		shippingAddress = newShippingAddress;
 	}
 }

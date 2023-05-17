@@ -1,6 +1,6 @@
 package it.unisa.model;
 
-public class InsertsInto 
+public class Contains 
 {
 	// Variabili di istanza
 	private Product product;
@@ -9,7 +9,7 @@ public class InsertsInto
 	
 	// Costruttori
 	
-	public InsertsInto()
+	public Contains()
 	{
 		product = null;
 		shoppingCart = null;

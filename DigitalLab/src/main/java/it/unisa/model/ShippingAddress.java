@@ -3,12 +3,12 @@ package it.unisa.model;
 public class ShippingAddress 
 {
 	// Variabili di istanza
-	private Customer customer;
 	private int id;
 	private String province;
 	private String street;
 	private String city;
 	private String zip;
+	private Customer customer;
 	
 	
 	// Costruttori

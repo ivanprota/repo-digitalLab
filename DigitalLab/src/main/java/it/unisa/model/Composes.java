@@ -1,6 +1,6 @@
 package it.unisa.model;
 
-public class IsAbout 
+public class Composes 
 {
 	// Variabili di istanza
 	private Order order;
@@ -9,7 +9,7 @@ public class IsAbout
 	
 	// Costruttori
 	
-	public IsAbout()
+	public Composes()
 	{
 		order = null;
 		product = null;
