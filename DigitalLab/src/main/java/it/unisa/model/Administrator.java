@@ -2,14 +2,14 @@ package it.unisa.model;
 
 public class Administrator 
 {
-	// Variabili di istanza
+	// Instance variables
 	private String username;
 	private String name;
 	private String surname;
 	private String password;
 	
 	
-	// Costruttori
+	// Constructors
 	
 	public Administrator()
 	{
@@ -20,7 +20,7 @@ public class Administrator
 	}
 	
 	
-	// Metodi di accesso
+	// Get methods
 	
 	public String getUsername()
 	{
@@ -43,7 +43,7 @@ public class Administrator
 	}
 	
 	
-	// Metodi di modifica
+	// Set methods
 	
 	public void setUsername(String newUsername)
 	{

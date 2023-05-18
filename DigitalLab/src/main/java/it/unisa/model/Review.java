@@ -2,13 +2,13 @@ package it.unisa.model;
 
 public class Review 
 {
-	// Variabili di istanza
+	// Instance variables
 	private Product product;
 	private String description;
 	private int assessment;
 	
 	
-	// Costruttori
+	// Constructors
 	
 	public Review()
 	{
@@ -18,7 +18,7 @@ public class Review
 	}
 	
 	
-	// Metodi di accesso
+	// Get methods
 	
 	public Product getProduct()
 	{
@@ -36,7 +36,7 @@ public class Review
 	}
 	
 	
-	// Metodi di modifica
+	// Set methods
 	
 	public void setProduct(Product newProduct)
 	{

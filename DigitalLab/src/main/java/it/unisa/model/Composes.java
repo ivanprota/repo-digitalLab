@@ -2,12 +2,12 @@ package it.unisa.model;
 
 public class Composes 
 {
-	// Variabili di istanza
+	// Instance variables
 	private Order order;
 	private Product product;
 	
 	
-	// Costruttori
+	// Constructors
 	
 	public Composes()
 	{
@@ -16,7 +16,7 @@ public class Composes
 	}
 	
 	
-	// Metodi di accesso
+	// Get methods
 	
 	public Order gerOrder()
 	{
@@ -29,7 +29,7 @@ public class Composes
 	}
 	
 	
-	// Metodi di modifica
+	// Set methods
 	
 	public void setOrder(Order newOrder)
 	{

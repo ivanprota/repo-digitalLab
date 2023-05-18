@@ -2,7 +2,7 @@ package it.unisa.model;
 
 public class ShippingAddress 
 {
-	// Variabili di istanza
+	// Instance variables
 	private int id;
 	private String province;
 	private String street;
@@ -11,7 +11,7 @@ public class ShippingAddress
 	private Customer customer;
 	
 	
-	// Costruttori
+	// Constructors
 	
 	public ShippingAddress()
 	{
@@ -24,7 +24,7 @@ public class ShippingAddress
 	}
 	
 	
-	// Metodi di accesso
+	// Get methods
 	
 	public Customer getCustomer()
 	{
@@ -57,7 +57,7 @@ public class ShippingAddress
 	}
 	
 	
-	// Metodi di modifica
+	// Set methods
 	
 	public void setCustomer(Customer newCustomer)
 	{

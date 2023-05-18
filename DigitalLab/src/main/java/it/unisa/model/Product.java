@@ -2,7 +2,7 @@ package it.unisa.model;
 
 public class Product 
 {
-	// Variabili di istanza
+	// Instance variables
 	private int code;
 	private int quantity;
 	private String description;
@@ -12,7 +12,7 @@ public class Product
 	private String category;
 	
 	
-	// Costruttori
+	// Constructors
 	
 	public Product()
 	{
@@ -26,7 +26,7 @@ public class Product
 	}
 	
 	
-	// Metodi di accesso
+	// Get methods
 	
 	public int getCode()
 	{
@@ -64,7 +64,7 @@ public class Product
 	}
 	
 	
-	// Metodi di modifica
+	// Set methods
 	
 	public void setCode(int newCode)
 	{

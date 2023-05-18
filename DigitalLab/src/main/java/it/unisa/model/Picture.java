@@ -2,12 +2,12 @@ package it.unisa.model;
 
 public class Picture 
 {
-	// Variabili di istanza
+	// Instance variables
 	private Product product;
 	private byte[] image;
 	
 	
-	// Costruttori
+	// Constructors
 	
 	public Picture()
 	{
@@ -16,7 +16,7 @@ public class Picture
 	}
 	
 	
-	// Metodi di accesso
+	// Get methods
 	
 	public Product getProduct()
 	{
@@ -29,7 +29,7 @@ public class Picture
 	}
 	
 	
-	// Metodi di modifica
+	// Set methods
 	
 	public void setProduct(Product newProduct)
 	{

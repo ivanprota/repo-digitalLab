@@ -2,7 +2,7 @@ package it.unisa.model;
 
 public class Customer 
 {
-	// Variabili di istanza
+	// Instance variables
 	private String username;
 	private String email;
 	private String password;
@@ -11,7 +11,7 @@ public class Customer
 	private String phone;
 	
 	
-	// Costruttori
+	// Constructors
 	
 	public Customer()
 	{
@@ -24,7 +24,7 @@ public class Customer
 	}
 	
 	
-	// Metodi di accesso
+	// Get methods
 	
 	public String getUsername()
 	{
@@ -57,7 +57,7 @@ public class Customer
 	}
 	
 	
-	// Metodi di modifica
+	// Set methods
 	
 	public void setUsername(String newUsername)
 	{

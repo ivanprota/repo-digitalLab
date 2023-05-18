@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Order 
 {
-	// Variabili di istanza
+	// Instance variables
 	private int code;
 	private String status;
 	private double totalAmount;
@@ -14,7 +14,7 @@ public class Order
 	private ShippingAddress shippingAddress;
 	
 	
-	// Costruttori
+	// Constructors
 	
 	public Order()
 	{
@@ -27,7 +27,7 @@ public class Order
 	}
 	
 	
-	// Metodi di accesso
+	// Get methods
 	
 	public int getCode()
 	{
@@ -65,7 +65,7 @@ public class Order
 	}
 	
 	
-	// Metodi di modifica
+	// Set methods
 	
 	public void setCode(int newCode)
 	{

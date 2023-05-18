@@ -2,12 +2,12 @@ package it.unisa.model;
 
 public class Contains 
 {
-	// Variabili di istanza
+	// Instance variables
 	private Product product;
 	private ShoppingCart shoppingCart;
 	
 	
-	// Costruttori
+	// Constructors
 	
 	public Contains()
 	{
@@ -16,7 +16,7 @@ public class Contains
 	}
 	
 	
-	// Metodi di accesso
+	// Get methods
 	
 	public Product getProduct()
 	{
@@ -29,7 +29,7 @@ public class Contains
 	}
 	
 	
-	// Metodi di modifica
+	// Set methods
 	
 	public void setProduct(Product newProduct)
 	{

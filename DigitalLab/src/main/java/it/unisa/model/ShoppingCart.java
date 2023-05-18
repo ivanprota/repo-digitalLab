@@ -2,12 +2,12 @@ package it.unisa.model;
 
 public class ShoppingCart 
 {
-	// Variabili di istanza
+	// Instance variables
 	private Customer customer;
 	private int size;
 	
 	
-	// Costruttori
+	// Constructors
 	
 	public ShoppingCart()
 	{
@@ -16,7 +16,7 @@ public class ShoppingCart
 	}
 	
 	
-	// Metodi di accesso
+	// Get methods
 	
 	public Customer getCustomer()
 	{
@@ -29,7 +29,7 @@ public class ShoppingCart
 	}
 	
 	
-	// Metodi di modifica
+	// Set methods
 	
 	public void setCustomer(Customer newCustomer)
 	{
