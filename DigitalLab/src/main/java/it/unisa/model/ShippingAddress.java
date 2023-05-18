@@ -8,6 +8,7 @@ public class ShippingAddress
 	private String street;
 	private String city;
 	private String zip;
+	private int streetNumber;
 	private Customer customer;
 	
 	
@@ -15,21 +16,17 @@ public class ShippingAddress
 	
 	public ShippingAddress()
 	{
-		customer = null;
 		id = -1;
 		province = null;
 		street = null;
 		city = null;
 		zip = null;
+		streetNumber = -1;
+		customer = null;
 	}
 	
 	
 	// Get methods
-	
-	public Customer getCustomer()
-	{
-		return customer;
-	}
 	
 	public int getId()
 	{
@@ -56,13 +53,17 @@ public class ShippingAddress
 		return zip;
 	}
 	
+	public int getStreetNumber()
+	{
+		return streetNumber;
+	}
+	
+	public Customer getCustomer()
+	{
+		return customer;
+	}
 	
 	// Set methods
-	
-	public void setCustomer(Customer newCustomer)
-	{
-		customer = newCustomer;
-	}
 	
 	public void setId(int newId)
 	{
@@ -87,5 +88,15 @@ public class ShippingAddress
 	public void setZip(String newZip)
 	{
 		zip = newZip;
+	}
+	
+	public void setStreetNumber(int newStreetNumber)
+	{
+		streetNumber = newStreetNumber;
+	}
+	
+	public void setCustomer(Customer newCustomer)
+	{
+		customer = newCustomer;
 	}
 }
