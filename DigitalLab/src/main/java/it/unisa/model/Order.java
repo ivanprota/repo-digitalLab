@@ -8,10 +8,10 @@ public class Order
 	private int code;
 	private String status;
 	private double totalAmount;
-	private String paymentMethod;
 	private Date paymentDate;
 	private Customer customer;
 	private ShippingAddress shippingAddress;
+	private PaymentMethod paymentMethod;
 	
 	
 	// Constructors
@@ -22,8 +22,8 @@ public class Order
 		status = null;
 		totalAmount = -1;
 		paymentDate = null;
-		paymentMethod = null;
 		customer = null;
+		paymentMethod = null;
 	}
 	
 	
@@ -49,11 +49,6 @@ public class Order
 		return paymentDate;
 	}
 	
-	public String getPaymentMethod()
-	{
-		return paymentMethod;
-	}
-	
 	public Customer getCustomer()
 	{
 		return customer;
@@ -62,6 +57,11 @@ public class Order
 	public ShippingAddress getShippingAddress()
 	{
 		return shippingAddress;
+	}
+	
+	public PaymentMethod getPaymentMethod()
+	{
+		return paymentMethod;
 	}
 	
 	
@@ -87,11 +87,6 @@ public class Order
 		paymentDate = newPaymentDate;
 	}
 	
-	public void setPaymentMethod(String newPaymentMethod)
-	{
-		paymentMethod = newPaymentMethod;
-	}
-	
 	public void setCustomer(Customer newCustomer)
 	{
 		customer = newCustomer;
@@ -100,5 +95,10 @@ public class Order
 	public void setShippingAddress(ShippingAddress newShippingAddress)
 	{
 		shippingAddress = newShippingAddress;
+	}
+	
+	public void setPaymentMethod(PaymentMethod newPaymentMethod)
+	{
+		paymentMethod = newPaymentMethod;
 	}
 }
