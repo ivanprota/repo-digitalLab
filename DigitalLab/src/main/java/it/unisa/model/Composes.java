@@ -18,7 +18,7 @@ public class Composes
 	
 	// Get methods
 	
-	public Order gerOrder()
+	public Order getOrder()
 	{
 		return order;
 	}
