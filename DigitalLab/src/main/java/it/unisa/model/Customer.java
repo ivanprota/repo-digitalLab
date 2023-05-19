@@ -88,4 +88,18 @@ public class Customer
 	{
 		phone = newPhone;
 	}
+	
+	
+	// Overriding from Object Class
+	
+	@Override
+	public String toString()
+	{
+		return "" +username+
+			   ", " +email+
+			   ", " +password+
+			   ", " +name+
+			   ", " +surname+
+			   ", " +phone;
+	}
 }

@@ -41,7 +41,7 @@ public class ProductDAO
 			preparedStatement.setString(7, product.getCategory());
 			
 			preparedStatement.executeUpdate();
-			connection.commit();
+			//connection.commit();
 		}
 		finally
 		{
@@ -73,7 +73,7 @@ public class ProductDAO
 			preparedStatement.setInt(1, code);
 			
 			result = preparedStatement.executeUpdate();
-			connection.commit();
+			//connection.commit();
 		}
 		finally
 		{
@@ -109,7 +109,7 @@ public class ProductDAO
 			ResultSet rs = preparedStatement.executeQuery();
 			rs.next();
 			product.setCode(rs.getInt("product_code"));
-			product.setQuantity(rs.getInt("product_quantityt"));
+			product.setQuantity(rs.getInt("product_quantity"));
 			product.setDescription(rs.getString("product_description"));
 			product.setPrice(rs.getDouble("product_price"));
 			product.setBrand(rs.getString("product_brand"));
@@ -154,7 +154,7 @@ public class ProductDAO
 			{
 				Product product = new Product();
 				product.setCode(rs.getInt("product_code"));
-				product.setQuantity(rs.getInt("product_quantityt"));
+				product.setQuantity(rs.getInt("product_quantity"));
 				product.setDescription(rs.getString("product_description"));
 				product.setPrice(rs.getDouble("product_price"));
 				product.setBrand(rs.getString("product_brand"));

@@ -40,7 +40,7 @@ public class PaymentMethodDAO
 			preparedStatement.setString(5, paymentMethod.getCustomer().getUsername());
 			
 			preparedStatement.executeUpdate();
-			connection.commit();
+			//connection.commit();
 		}
 		finally
 		{
@@ -72,7 +72,7 @@ public class PaymentMethodDAO
 			preparedStatement.setString(1, pan);
 			
 			result = preparedStatement.executeUpdate();
-			connection.commit();
+			//connection.commit();
 		}
 		finally
 		{

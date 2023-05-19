@@ -40,4 +40,14 @@ public class Composes
 	{
 		product = newProduct;
 	}
+	
+	
+	// Overriding from Object class
+	
+	@Override
+	public String toString()
+	{
+		return "" +order.toString()+
+			   ", " +product.toString();
+	}
 }

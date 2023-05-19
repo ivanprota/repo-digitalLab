@@ -38,7 +38,7 @@ public class ReviewDAO
 			preparedStatement.setInt(3, review.getAssessment());
 			
 			preparedStatement.executeUpdate();
-			connection.commit();
+			//connection.commit();
 		}
 		finally
 		{
@@ -70,7 +70,7 @@ public class ReviewDAO
 			preparedStatement.setInt(1, code);
 			
 			result = preparedStatement.executeUpdate();
-			connection.commit();
+			//connection.commit();
 		}
 		finally
 		{

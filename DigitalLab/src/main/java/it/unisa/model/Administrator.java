@@ -64,4 +64,16 @@ public class Administrator
 	{
 		password = newPassword;
 	}
+	
+	
+	// Overriding from Object class
+	
+	@Override
+	public String toString()
+	{
+		return "" +username+
+			   ", " +name+
+			   ", " +surname+
+			   ", " +password;
+	}
 }

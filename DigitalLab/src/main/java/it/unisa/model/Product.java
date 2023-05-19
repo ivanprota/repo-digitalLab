@@ -100,4 +100,19 @@ public class Product
 	{
 		category = newCategory;
 	}
+	
+	
+	// Overriding from Object class
+	
+	@Override
+	public String toString()
+	{
+		return "" +code+
+			   ", " +quantity+
+			   ", " +description+
+			   ", " +price+
+			   ", " +brand+
+			   ", " +model+
+			   ", " +category;
+	}
 }

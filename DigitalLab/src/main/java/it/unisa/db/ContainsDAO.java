@@ -38,7 +38,7 @@ public class ContainsDAO
 			preparedStatement.setInt(2, contains.getProduct().getCode());
 			
 			preparedStatement.executeUpdate();
-			connection.commit();
+			//connection.commit();
 		}
 		finally
 		{
@@ -72,7 +72,7 @@ public class ContainsDAO
 			preparedStatement.setInt(2, code);
 			
 			result = preparedStatement.executeUpdate();
-			connection.commit();
+			//connection.commit();
 		}
 		finally
 		{

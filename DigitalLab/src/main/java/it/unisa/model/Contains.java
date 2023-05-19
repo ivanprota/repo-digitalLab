@@ -40,4 +40,14 @@ public class Contains
 	{
 		shoppingCart = newShoppingCart;
 	}
+	
+	
+	// Overriding from Object class
+	
+	@Override
+	public String toString()
+	{
+		return "" +product.toString()+
+			   ", " +shoppingCart.toString();
+	}
 }

@@ -37,7 +37,7 @@ public class PictureDAO
 			preparedStatement.setBytes(2, picture.getImage());
 			
 			preparedStatement.executeUpdate();
-			connection.commit();
+			//connection.commit();
 		}
 		finally
 		{
@@ -69,7 +69,7 @@ public class PictureDAO
 			preparedStatement.setInt(1, code);
 			
 			result = preparedStatement.executeUpdate();
-			connection.commit();
+			//connection.commit();
 		}
 		finally
 		{

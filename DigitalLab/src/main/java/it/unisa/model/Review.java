@@ -52,4 +52,15 @@ public class Review
 	{
 		assessment = newAssessment;
 	}
+	
+	
+	// Overriding from Object class
+	
+	@Override
+	public String toString()
+	{
+		return "" +product.toString()+
+			   ", " +description+
+			   ", " +assessment;
+	}
 }

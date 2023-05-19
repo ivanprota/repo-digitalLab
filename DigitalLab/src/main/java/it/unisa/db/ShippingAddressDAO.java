@@ -42,7 +42,7 @@ public class ShippingAddressDAO
 			preparedStatement.setString(7, shippingAddress.getCustomer().getUsername());
 			
 			preparedStatement.executeUpdate();
-			connection.commit();
+			//connection.commit();
 		}
 		finally
 		{
@@ -74,7 +74,7 @@ public class ShippingAddressDAO
 			preparedStatement.setInt(1, id);
 			
 			result = preparedStatement.executeUpdate();
-			connection.commit();
+			//connection.commit();
 		}
 		finally
 		{
@@ -118,7 +118,7 @@ public class ShippingAddressDAO
 			
 			Customer customer;
 			CustomerDAO dao = new CustomerDAO(ds);
-			String customerUsername = rs.getString("shipping_address_username");
+			String customerUsername = rs.getString("shipping_address_customer_username");
 			customer = dao.doRetrieveByKey(customerUsername);
 			
 			shippingAddress.setCustomer(customer);
@@ -169,7 +169,7 @@ public class ShippingAddressDAO
 				
 				Customer customer;
 				CustomerDAO dao = new CustomerDAO(ds);
-				String customerUsername = rs.getString("shipping_address_username");
+				String customerUsername = rs.getString("shipping_address_customer_username");
 				customer = dao.doRetrieveByKey(customerUsername);
 				
 				shippingAddress.setCustomer(customer);

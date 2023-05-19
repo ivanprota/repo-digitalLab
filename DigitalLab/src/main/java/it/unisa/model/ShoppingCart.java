@@ -40,4 +40,14 @@ public class ShoppingCart
 	{
 		size = newSize;
 	}
+	
+	
+	// Overriding from Object class
+	
+	@Override
+	public String toString()
+	{
+		return "" +customer.toString()+
+			   ", " +size;
+	}
 }

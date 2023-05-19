@@ -101,4 +101,19 @@ public class Order
 	{
 		paymentMethod = newPaymentMethod;
 	}
+	
+	
+	// Overriding from Object class
+	
+	@Override
+	public String toString()
+	{
+		return "" +code+
+			   ", " +status+
+			   ", " +totalAmount+
+			   ", " +paymentDate+
+			   ", " +customer.toString()+
+			   ", " +shippingAddress.toString()+
+			   ", " +paymentMethod.toString();
+	}
 }

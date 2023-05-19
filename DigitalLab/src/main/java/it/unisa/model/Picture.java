@@ -40,4 +40,14 @@ public class Picture
 	{
 		image = newImage;
 	}
+	
+	
+	// Overriding from Object class
+	
+	@Override
+	public String toString()
+	{
+		return "" +product.toString()+
+			   ", " +image;
+	}
 }

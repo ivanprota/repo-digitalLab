@@ -78,4 +78,17 @@ public class PaymentMethod
 	{
 		customer = newCustomer;
 	}
+	
+	
+	// Overriding from Object class
+	
+	@Override
+	public String toString()
+	{
+		return "" +pan+
+			   ", " +owner+
+			   ", " +cvv+
+			   ", " +expirationDate+
+			   ", " +customer.toString();
+	}
 }

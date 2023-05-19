@@ -37,7 +37,7 @@ public class ShoppingCartDAO
 			preparedStatement.setInt(2, cart.getSize());
 			
 			preparedStatement.executeUpdate();
-			connection.commit();
+			//connection.commit();
 		}
 		finally
 		{
@@ -69,7 +69,7 @@ public class ShoppingCartDAO
 			preparedStatement.setString(1, username);
 			
 			result = preparedStatement.executeUpdate();
-			connection.commit();
+			//connection.commit();
 		}
 		finally
 		{

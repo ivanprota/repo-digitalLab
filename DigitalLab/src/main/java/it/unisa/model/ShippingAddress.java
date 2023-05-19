@@ -63,6 +63,7 @@ public class ShippingAddress
 		return customer;
 	}
 	
+	
 	// Set methods
 	
 	public void setId(int newId)
@@ -98,5 +99,20 @@ public class ShippingAddress
 	public void setCustomer(Customer newCustomer)
 	{
 		customer = newCustomer;
+	}
+	
+	
+	// Overriding from Object class
+	
+	@Override
+	public String toString()
+	{
+		return "" +id+
+			   ", " +province+
+			   ", " +street+
+			   ", " +city+
+			   ", " +zip+
+			   ", " +streetNumber+
+			   ", " +customer.toString();
 	}
 }
