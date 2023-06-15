@@ -1,0 +1,106 @@
+@charset "ISO-8859-1";
+
+div#confSideContainer {
+	width: 80%;
+	margin: 0 auto;
+	background-color: #131522;
+	display: flex;
+	border-radius: 10px;
+}
+
+
+div#confSideContainer div#buttonContainer {
+	width: 40%;
+	text-align: center;
+	background-color: #131522;
+	margin-top: 12%;
+	margin-left: 5%;
+}
+
+div#confSideContainer div#buttonContainer h1 {
+	color: white;
+	font-style: italic;
+}
+
+div#confSideContainer div#confSideImageContainer {
+	background-color: #131522;
+	width: 60%;
+	display: flex;
+	border-radius: 10px;
+}
+
+div#confSideContainer div#confSideImageContainer a img {
+	width: 100%;
+	border-radius: 10px;	
+}
+
+
+#confButton {
+  align-items: center;
+  background-color: #fff;
+  border: 2px solid #000;
+  box-sizing: border-box;
+  color: #000;
+  cursor: pointer;
+  display: inline-flex;
+  fill: #000;
+  font-family: Inter,sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  height: 48px;
+  justify-content: center;
+  letter-spacing: -.8px;
+  line-height: 24px;
+  min-width: 140px;
+  outline: 0;
+  padding: 0 17px;
+  text-align: center;
+  text-decoration: none;
+  transition: all .3s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+#confButton:focus {
+  color: #171e29;
+}
+
+#confButton:hover {
+  border-color: #fba304;
+  color: #fba304;
+  fill: #fba304;
+}
+
+#confButton:active {
+  border-color: #fba304;
+  color: #fba304;
+  fill: #fba304;
+}
+
+
+
+
+/* RESPONSIVE */
+@media screen and (max-width: 1400px)
+{
+	div#confSideContainer div#buttonContainer h1 {
+		font-size: 25px;
+	}
+}
+
+@media screen and (max-width: 700px)
+{
+	div#confSideContainer {
+		width: 100%;
+	}
+	
+	div#confSideContainer div#buttonContainer h1 {
+		font-size: 18px;
+	}
+	
+	div#confSideContainer div#buttonContainer button#confButton {
+		width: 50%;
+		font-size: 12px;
+	}
+}

@@ -136,6 +136,56 @@ public class PaymentMethodDAO
 		return paymentMethod;
 	}
 	
+	public synchronized Collection<PaymentMethod> doRetrieveByCustomerUsername(String username) throws SQLException
+	{
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		Collection<PaymentMethod> paymentMethods = new LinkedList<PaymentMethod>();
+		String selectSQL = "SELECT * FROM " +Constants.PAYMENT_METHOD_TABLE_NAME+ " WHERE payment_method_customer_username = ?";
+		
+		try
+		{
+			connection = ds.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+			preparedStatement.setString(1, username);
+			
+			ResultSet rs = preparedStatement.executeQuery();
+			while (rs.next())
+			{
+				PaymentMethod paymentMethod = new PaymentMethod();
+				paymentMethod.setPan(rs.getString("payment_method_pan"));
+				paymentMethod.setOwner(rs.getString("payment_method_owner"));
+				paymentMethod.setCvv(rs.getString("payment_method_cvv"));
+				paymentMethod.setExpirationDate(rs.getDate("payment_method_expiration_date"));
+				
+				Customer customer;
+				CustomerDAO dao = new CustomerDAO(ds);
+				String customerUsername = rs.getString("payment_method_customer_username");
+				customer = dao.doRetrieveByKey(customerUsername);
+				
+				paymentMethod.setCustomer(customer);
+				
+				paymentMethods.add(paymentMethod);				
+			}
+		}
+		finally
+		{
+			try
+			{
+				if (preparedStatement != null)
+					preparedStatement.close();
+			}
+			finally
+			{
+				if (connection != null)
+					connection.close();
+			}				
+		}
+		
+		return paymentMethods;
+	}
+	
 	public synchronized Collection<PaymentMethod> doRetrieveAll(String order) throws SQLException
 	{
 		Connection connection = null;

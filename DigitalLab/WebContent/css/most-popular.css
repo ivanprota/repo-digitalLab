@@ -1,0 +1,92 @@
+@charset "ISO-8859-1";
+
+div#mostPopularContainer {
+	background-color: #1a1a1a;
+	width: 80%;
+	margin: 0 auto;
+	margin-bottom: 10px;
+	border-radius: 10px;
+}
+
+div#mostPopularContainer h1 {
+	color: white;
+	font-size: 180%;
+	text-align: center;
+	padding: 8px;
+	margin: 0;
+	font-family: Verdana, Arial, Tahoma, Serif;
+	font-style: italic;
+}
+
+div#mostPopularContainer div#pcContainer {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+
+div#mostPopularContainer div#pcContainer div.mostPopular {
+	display: table-cell;
+	width: 17%;
+	text-align: center;
+	padding: 20px;
+}
+
+div#mostPopularContainer div#pcContainer div.mostPopular a {
+	text-decoration: none;
+	font-size: 150%;
+	font-style: italic;
+	color: #fba304;
+}
+
+div#mostPopularContainer div#pcContainer div.mostPopular a img {
+	width: 100%;
+	margin-bottom: 20px;
+}
+
+div#mostPopularContainer div#pcContainer div.mostPopular:nth-child(2) {
+	margin: 0 15% 0 15%;
+	width: 20%;
+}
+
+div#mostPopularContainer div#pcContainer div.mostPopular:nth-child(2) a img {
+	padding-top: 56px;
+}
+
+div#mostPopularContainer div#pcContainer div.mostPopular:nth-child(3) a img {
+	padding-top: 75px;
+}
+
+
+
+
+/* RESPONSIVE */
+@media screen and (max-width: 700px)
+{
+	div#mostPopularContainer {
+		width: 100%;
+		border-radius: 0;
+	}
+	
+	div#mostPopularContainer div#pcContainer {
+		display: block;
+	}
+	
+	div#mostPopularContainer div#pcContainer div.mostPopular {
+		display: block;
+	}
+	
+	div#mostPopularContainer div#pcContainer div.mostPopular:nth-child(1) {
+		width: 20%;
+		margin: 0 auto;
+	}
+	
+	div#mostPopularContainer div#pcContainer div.mostPopular:nth-child(2) {
+		width: 30%;
+		margin: 0 auto;
+	}
+	
+	div#mostPopularContainer div#pcContainer div.mostPopular:nth-child(3) {
+		width: 30%;
+		margin: 0 auto;
+	}	
+}

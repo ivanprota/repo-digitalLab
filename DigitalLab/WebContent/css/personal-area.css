@@ -1,0 +1,426 @@
+@charset "ISO-8859-1";
+
+div#personalAreaContainer {
+	background-color: #f2f2f2;
+	display: flex;
+	font-style: italic;
+}
+
+/* INIZIO SEZIONE DI SINISTRA */
+div#personalAreaLeftContainer {
+	width: 25%;
+	border-right: solid thin black;
+}
+
+div#personalDataLeftContainer {
+	width: 80%;
+	margin: 0 auto;
+	margin-top: 50px;
+	text-align: center;
+}
+
+div#personalDataLeftImageContainer {
+	background-color: black;
+	width: 70%;
+	margin: 0 auto;
+	border-radius: 200px;
+}
+
+div#personalDataLeftImageContainer img {
+	width: 100%;
+}
+
+div#personalDataLeftContainer h1 {
+	color: #fba304;
+	font-size: 40px;
+	font-style: italic;
+	margin-bottom: 10px;
+	margin-top: 20px;
+}
+
+div#personalDataLeftContainer p {
+	margin: 0;
+	font-size: 18px;
+	font-style: italic;
+	color: #fba304;
+}
+
+div#personalSectionContainer {
+	margin-top: 150px;
+	text-align: center;
+}
+
+div#personalSectionContainer ul {
+	list-style-type: none;
+	padding: 0;
+}
+
+div#personalSectionContainer ul li {
+	padding: 20px;
+	border-top: solid thin black;
+	border-bottom: solid thin black;
+}
+
+div#personalSectionContainer ul li a {
+	text-decoration: none;
+	color: black;
+	font-size: 25px;
+	font-style: italic;
+	padding: 15px 130px 15px 130px;
+	cursor: pointer;
+}
+
+div#personalSectionContainer ul li:first-child a {
+	padding-left: 165px;
+	padding-right: 165px;
+}
+/* FINE SEZIONE DI SINISTRA */
+
+
+
+
+/* INIZIO SEZIONE DI DESTRA */
+div#personalAreaRightContainer {
+	width: 75%;
+	display: block;
+}
+
+/* INIZIO DATI PERSONALI */
+div#personalDataRightContainer {
+	display: none;
+	padding-left: 20px;
+	padding-bottom: 20px;
+	border-bottom: solid thin black;
+}
+
+div#personalDataRightContainer h1 {
+	font-style: italic;
+	font-weight: normal;
+}
+
+div#nameSurnameContainer {
+	display: flex;
+	width: 40%;
+	margin-top: 30px;
+}
+
+div.personalData {
+	width: 50%;
+	margin-top: 20px;
+}
+
+div.personalData label {
+	display: block;
+	margin-bottom: 6px;
+}
+
+div.personalData input {
+	height: 25px;
+	width: 76.5%;
+	font-size: 15px;
+	font-style: italic;
+}
+
+div#nameSurnameContainer div.personalData:first-child input {
+	height: 25px;
+	width: 90%;
+	font-size: 15px;
+	font-style: italic;
+}
+
+div#nameSurnameContainer div.personalData:nth-child(2) input {
+	height: 25px;
+	width: 90%;
+	font-size: 15px;
+	font-style: italic;
+}
+
+div#personalDataRightContainer button {
+	margin-top: 30px;
+	font-size: 20px;
+	font-style: italic;
+}
+/* FINE DATI PERSONALI */
+
+
+
+
+/* INIZIO INDIRIZZI DI SPEDIZIONE */
+div#shippingAddressContainer {
+	display: none;
+	padding-left: 20px;
+	padding-bottom: 20px;
+	border-bottom: solid thin black;
+}
+
+div#shippingAddressContainer h1 {
+	font-style: italic;
+	font-weight: normal;
+	margin-bottom: 50px;
+}
+
+div#shippingAddressBoxContainer {
+	display: flex;
+}
+
+div.shippingAddressBox {
+	width: 20%;
+	border-radius: 20px;
+	margin-left: 20px;
+	border: solid thin black;
+}
+
+div.shippingAddressBox:first-child {
+	margin-left: 0;
+}
+
+div#shippingAddressContainer div.shippingAddressBox h1 {
+	font-size: 20px;
+	padding: 10px;
+	border-bottom: solid thin black;
+	margin-bottom: 15px;
+}
+
+div.shippingAddressBox p {
+	margin: 0;
+	margin-top: 5px;
+	padding-left: 10px;
+}
+
+div.shippingAddressBox p:nth-child(2) {
+	font-weight: bold;
+}
+
+div.shippingAddressBox p:nth-child(6) {
+	margin-bottom: 30px;
+}
+
+div.shippingAddressBottomBox a {
+	text-decoration: none;
+	padding-left: 10px;
+}
+
+div.shippingAddressBottomBox a:hover {
+	text-decoration: underline;
+}
+
+div#shippingAddressAddBox {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 20%;
+	border-radius: 20px;
+	margin-left: 20px;
+	border: dotted thin black;
+}
+
+div#shippingAddressAddBox a {
+	cursor: pointer;
+	color: blue;
+}
+
+div#shippingAddressAddBox a:hover {
+	text-decoration: underline;
+}
+
+div#shippingAddressForm {
+	display: none;
+	margin-top: 20px;
+}
+
+div#shippingAddressForm h1 {
+	margin-bottom: 10px;
+	font-size: 25px;
+}
+
+div.shippingAddressInput {
+	margin-top: 5px;
+}
+
+div.shippingAddressInput label {
+	display: block;
+	margin-bottom: 6px;
+}
+
+div.shippingAddressInput input {
+	height: 25px;
+	width: 37%;
+	font-size: 15px;
+	font-style: italic;
+}
+
+div#shippingAddressForm button {
+	width: 10%;
+	margin-top: 20px;
+}
+/*FINE INDIRIZZI DI SPEDIZIONE */
+
+
+
+
+/* INIZIO METODI DI PAGAMENTO */
+div#paymentMethodContainer {
+	display: none;
+	padding-left: 20px;
+	padding-bottom: 20px;
+	margin-bottom: 100px;
+}
+
+div#paymentMethodContainer h1 {
+	font-style: italic;
+	font-weight: normal;
+	margin-bottom: 50px;
+}
+
+div#paymentMethodBoxConatiner {
+	display: flex;
+}
+
+div.paymentMethodBox {
+	width: 20%;
+	border-radius: 20px;
+	margin-left: 20px;
+	border: solid thin black;
+}
+
+div.paymentMethodBox:first-child {
+	margin-left: 0;
+}
+
+div.paymentMethodBox h1 {
+	font-size: 20px;
+	padding: 10px;
+	border-bottom: solid thin black;
+	margin-bottom: 15px;
+}
+
+div.paymentMethodBox p {
+	margin: 0;
+	margin-top: 5px;
+	padding-left: 10px;
+}
+
+div.paymentMethodBox p:nth-child(2) {
+	font-weight: bold;
+}
+
+div.paymentMethodBox p:nth-child(4) {
+	margin-bottom: 30px;
+}
+
+div#paymentMethodAddBox {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 20%;
+	border-radius: 20px;
+	margin-left: 20px;
+	border: dotted thin black;
+}
+
+div#paymentMethodBoxConatiner div#paymentMethodAddBox a {
+	text-decoration: none;
+	cursor: pointer;
+	color: blue;
+}
+
+div#paymentMethodAddBox a:hover {
+	text-decoration: underline;
+}
+
+div#paymentMethodForm {
+	display: none;
+	margin-top: 20px;
+}
+
+div#paymentMethodForm h1 {
+	margin-bottom: 10px;
+	font-size: 25px;
+}
+
+div.paymentMethodInput {
+	margin-top: 5px;
+}
+
+div.paymentMethodInput label {
+	display: block;
+	margin-bottom: 6px;
+}
+
+div.paymentMethodInput input {
+	height: 25px;
+	width: 37%;
+	font-size: 15px;
+	font-style: italic;
+}
+
+div#paymentMethodForm button {
+	width: 10%;
+	margin-top: 20px;
+}
+/* FINE METODI DI PAGAMENTO */
+
+
+
+
+/* INIZIO I MIEI ORDINI */
+div#orderContainer {
+	display: none;
+}
+
+div#orderContainer > h1 {
+	font-style: italic;
+	font-weight: normal;
+	padding-left: 20px;
+}
+
+div#orderBoxContainer {
+
+}
+
+div.orderBox {
+	border-top: solid thin black;
+	border-bottom: solid thin black;
+}
+
+div.orderBoxHeader {
+	display: flex;
+	padding: 10px 15px 10px 15px;
+	border-bottom: solid thin black;
+}
+
+div.orderBoxHeader h1 {
+	font-size: 15px;
+	margin: 0;
+}
+
+div.orderBoxHeader p {
+	margin: 0;
+}
+
+div.orderBoxHeaderPaymentDate {
+	width: 13%;
+}
+
+div.orderBoxHeaderTotalAmount {
+	margin-left: 20px;
+}
+
+div.orderBoxHeaderStatus {
+	margin-left: 30px;
+}
+
+div.orderBoxHeaderShippingAddress {
+	margin-left: 30px;
+}
+
+div.orderBoxHeaderPaymentMethod {
+	margin-left: 30px;
+}
+
+div.productContainer {
+	
+	display: flex;
+}
+/* FINE I MIEI ORDINI */
+/* FINE SEZIONE DI DESTRA */

@@ -1,5 +1,7 @@
 package it.unisa.db;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -53,6 +55,47 @@ public class PictureDAO
 			}				
 		}
 	}
+	
+	public synchronized void doUpdatePhoto(int productCode, InputStream photo) throws SQLException 
+	{
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		String updateSQL = "INSERT INTO " +Constants.PICTURE_TABLE_NAME+ " VALUES (?, ?)";
+		
+		try 
+		{
+			connection = ds.getConnection();
+			preparedStatement = connection.prepareStatement(updateSQL);
+			try 
+			{
+				preparedStatement.setInt(1, productCode);
+				preparedStatement.setBinaryStream(2, photo, photo.available());
+				preparedStatement.executeUpdate();
+			} 
+			catch (IOException e) 
+			{
+				System.out.println(e);
+			}
+		} 
+		finally 
+		{
+			try 
+			{
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} 
+			catch (SQLException sqlException) 
+			{
+				System.out.println(sqlException);
+			} 
+			finally 
+			{
+				if (connection != null)
+					connection.close();
+			}
+		}
+	}	
 	
 	public synchronized boolean doDelete(int code) throws SQLException
 	{

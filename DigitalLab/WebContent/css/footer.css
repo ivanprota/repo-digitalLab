@@ -1,0 +1,137 @@
+@charset "ISO-8859-1";
+
+footer {
+	background-color: #1a1a1a;
+	color: white;
+}
+
+footer div#topFooter {
+	padding: 20px;
+	display: flex;
+}
+
+footer div#topFooter div#leftTopFooter {
+	width: 50%;
+}
+
+footer div#topFooter div#leftTopFooter img {
+	width: 20%;
+}
+
+footer div#topFooter div#leftTopFooter p {
+	line-height: 25px;
+	font-style: italic;
+}
+
+footer div#topFooter div#leftTopFooter h1 {
+	font-size: 20px;
+	font-style: italic;
+	padding: 0;
+	margin: 0;
+}
+
+footer div#topFooter div#leftTopFooter p:last-child {
+	margin: 0;
+	margin-top: 10px;
+	padding: 0;
+	font-size: 25px;
+	color: #fba304;
+}
+
+footer div#topFooter div#rightTopFooter {
+	width: 50%;
+	line-height: 40px;
+	display: flex;
+	justify-content: center;
+}
+
+footer div#topFooter div#rightTopFooter div.generalInfo {
+	width: 33%;
+	border-left: solid thin white;
+}
+
+footer div#topFooter div#rightTopFooter div.generalInfo ul {
+	list-style-type: none;
+}
+
+footer div#topFooter div#rightTopFooter div.generalInfo ul li a {
+	text-decoration: none;
+	color: white;
+}
+
+footer div#topFooter div#rightTopFooter div.generalInfo ul li a:hover {
+	text-decoration: underline;
+}
+
+footer div#bottomFooter {
+	display: flex;
+	padding: 30px;
+	background-color: #fba304;
+}
+
+footer div#bottomFooter div#leftBottomFooter {
+	width: 50%;
+}
+
+footer div#bottomFooter div#leftBottomFooter p {
+	text-align: center;
+}
+
+footer div#bottomFooter div#rightBottomFooter {
+	display: flex;
+	text-align: center;
+	align-items: center;
+	width: 50%;
+}
+
+footer div#bottomFooter div#rightBottomFooter div.socialFooter {
+	width: 20%;
+	margin-right: 2px;
+}
+
+footer div#bottomFooter div#rightBottomFooter div.socialFooter img {
+	width: 20%;
+	vertical-align: middle;
+	border: solid thin #fba304;
+}
+
+footer div#bottomFooter div#rightBottomFooter div.socialFooter:last-child {
+	width: 26%;
+}
+
+footer div#bottomFooter div#rightBottomFooter div.socialFooter img:last-child {
+	width: 20%;
+}
+
+
+
+
+/* RESPONSIVE */
+@media screen and (max-width: 1400px)
+{
+	footer div#topFooter div#rightTopFooter div.generalInfo ul {
+		margin: 0;
+		margin-left: 4px;
+		padding: 0;
+	}
+	
+	footer div#topFooter div#rightTopFooter div.generalInfo ul li {
+		font-size: 15px;
+	}
+}
+
+@media screen and (max-width: 700px)
+{
+	footer div#topFooter {
+		display: block;
+	}
+	
+	footer div#topFooter div#leftTopFooter {
+		width: 100%;
+		margin-bottom: 30px;
+	}
+	
+	footer div#topFooter div#rightTopFooter {
+		width: 100%;
+	}
+}

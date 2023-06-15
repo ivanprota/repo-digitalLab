@@ -1,0 +1,97 @@
+@charset "ISO-8859-1";
+
+div#bestSellingContainer {
+	background-color: #fba304;
+	width: 80%;
+	margin: 0 auto;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	padding-bottom: 10px;
+	border-radius: 10px;
+}
+
+div#bestSellingContainer h1 {
+	font-size: 180%;
+	text-align: center;
+	padding: 8px;
+	margin: 0;
+	font-family: Verdana, Arial, Tahoma, Serif;
+	font-style: italic;
+}
+
+div#itemsContainer {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+
+div#itemsContainer div.bestSelling {
+	background-color: white;
+	display: table-cell;
+	width: 17%;
+	text-align: center;
+	padding: 20px;
+	border: solid thin black;
+}
+
+div#itemsContainer div.bestSelling a {
+	text-decoration: none;
+}
+
+div#itemsContainer div.bestSelling a img {
+	width: 100%;
+	margin-bottom: 20px;
+}
+
+div#itemsContainer div.bestSelling:nth-child(2) a img {
+	width: 76%;
+}
+
+div#itemsContainer div.bestSelling:nth-child(3) a img {
+	padding-top: 34px;
+}
+
+div#itemsContainer div.bestSelling:nth-child(4) a img {
+	padding-top: 14px;
+}
+
+div#itemsContainer div.bestSelling:nth-child(5) a img {
+	padding-top: 55px;
+	margin-bottom: 22px;
+}
+
+
+
+
+
+/* RESPONSIVE */
+@media screen and (max-width: 1800px)
+{
+	div#itemsContainer div.bestSelling {
+		width: 15%;
+	}
+}
+
+@media screen and (max-width: 700px)
+{
+	div#bestSellingContainer {
+		width: 100%;
+		border-radius: 0;
+	}
+	
+	div#bestSellingContainer h1 {
+		font-size: 120%;
+	}
+	
+	div#itemsContainer div.bestSelling {
+		width: 18%;
+	}
+	
+	div#itemsContainer div.bestSelling a {
+		font-size: 80%;
+	}
+	
+	div#itemsContainer div.bestSelling:nth-child(4) {
+		display: none;
+	}
+}

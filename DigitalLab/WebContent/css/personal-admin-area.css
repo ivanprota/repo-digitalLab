@@ -1,0 +1,173 @@
+@charset "ISO-8859-1";
+
+/* INIZIO SEZIONE DI SINISTRA */
+div#personalAreaLeftContainer {
+	margin: 0;
+	padding: 0;
+}
+
+div#personalDataLeftContainer {
+	margin: 0;
+	width: 100%;
+}
+
+div#personalDataLeftImageContainer {
+	margin: 0 auto;
+	margin-top: 70px;
+	width: 65%;
+}
+
+div#personalSectionContainer ul li a {
+	padding: 18px 90px 18px 90px;
+}
+
+div#personalSectionContainer ul li:first-child a{
+	padding: 18px 90px 18px 90px;
+}
+/* FINE SEZIONE DI SINISTRA */
+
+
+
+
+/* INIZIO SEZIONE DI DESTRA */
+/* INIZIO SEZIONE PRODOTTI */
+div#opOnProductContainer {
+	padding: 20px 0px 0px 20px;	
+	display: none;
+}
+
+div#opOnProductContainer h1 {
+	font-weight: normal;
+	margin-bottom: 50px;
+}
+
+div.fieldsetOp {
+	width: 60%;
+	margin-bottom: 80px;
+}
+
+div#uploadImagePreview {
+	margin-bottom: 50px;
+}
+
+div.fieldsetOp label {
+	display: block;
+	margin-top: 10px;
+	margin-bottom: 5px;
+}
+
+div.fieldsetOp input {
+	width: 35%;
+	height: 25px;
+	font-size: 15px;
+}
+
+div.fieldsetOp select {
+	width: 36%;
+	height: 25px;
+}
+
+div.fieldsetOp textarea {
+	width: 36%;
+}
+
+div.fieldsetOp button {
+	margin-top: 40px;
+	margin-bottom: 20px;
+}
+
+button#loadProductDataButton {
+	margin-top: 15px;
+}
+
+form#loadForm {
+	border-bottom: solid thin black;
+	margin-bottom: 50px;
+}
+/* FINE SEZIONE PRODOTTI */
+
+
+
+
+/* INIZIO SEZIONE ORDINI */
+div#orderFormContainer {
+	padding: 20px;
+}
+
+div#orderFormContainer h1 {
+	font-weight: normal;
+	margin-bottom: 5px;
+}
+
+div#orderFormContainer ul {
+	margin-bottom: 30px;
+}
+
+div.orderData label {
+	display: block;
+	margin-top: 10px;
+	margin-bottom: 5px;
+}
+
+div.orderData input[type="text"] {
+	width: 35%;
+	height: 25px;
+	font-size: 15px;
+}
+
+div.orderData input[type="date"] {
+	width: 20%;
+	height: 25px;
+}
+
+div#orderFormContainer button {
+	margin-top: 30px;
+	width: 15%;
+	height: 30px;
+}
+
+div#orderViewContainer {
+	max-height: 400px;
+	width: 65%;
+	overflow: scroll;
+	overflow-x: hidden;
+	margin: 20px;
+	border-left: solid thin black;
+	border-right: solid thin black;
+}
+
+div.orderView {
+	display: flex;
+	padding: 20px;
+	border-top: solid thin black;
+	border-bottom: solid thin black;
+}
+
+div.orderView h1 {
+	font-size: 15px;
+}
+
+div.orderStatus {
+	margin-left: 70px;
+}
+
+div.orderTotal {
+	margin-left: 70px;
+}
+
+div.orderPaymentDate {
+	margin-left: 70px;
+}
+
+div.orderDetails {
+	margin-left: 70px;
+	display: flex;
+	justify-content: flex-end;
+	align-items: flex-end;
+}
+
+div.orderDetails a {
+	margin-bottom: 20px;
+}
+/* FINE SEZIONE ORDINI */
+/* FINE SEZIONE DI DESTRA */

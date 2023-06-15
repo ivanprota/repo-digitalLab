@@ -92,6 +92,78 @@ public class ProductDAO
 		return (result != 0);
 	}
 	
+	public synchronized boolean doUpdate(int code, String columnName, String columnValue) throws SQLException
+	{
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		int result = 0;
+		String updateSQL = "";
+		
+		try
+		{
+			connection = ds.getConnection();
+			
+			if (columnName.equals("product_quantity"))
+			{
+				int quantity = Integer.parseInt(columnValue);
+				updateSQL += "UPDATE " +Constants.PRODUCT_TABLE_NAME+ " SET product_quantity = ? WHERE product_code = ?";
+				preparedStatement = connection.prepareStatement(updateSQL);
+				preparedStatement.setInt(1, quantity);
+			}
+			else if (columnName.equals("product_description"))
+			{
+				updateSQL += "UPDATE " +Constants.PRODUCT_TABLE_NAME+ " SET product_description = ? WHERE product_code = ?";
+				preparedStatement = connection.prepareStatement(updateSQL);
+				preparedStatement.setString(1, columnValue);
+			}
+			else if (columnName.equals("product_price"))
+			{
+				double price = Double.parseDouble(columnValue);
+				updateSQL += "UPDATE " +Constants.PRODUCT_TABLE_NAME+ " SET product_price = ? WHERE product_code = ?";
+				preparedStatement = connection.prepareStatement(updateSQL);
+				preparedStatement.setDouble(1, price);
+			}
+			else if (columnName.equals("product_brand"))
+			{
+				updateSQL += "UPDATE " +Constants.PRODUCT_TABLE_NAME+ " SET product_brand = ? WHERE product_code = ?";
+				preparedStatement = connection.prepareStatement(updateSQL);
+				preparedStatement.setString(1, columnValue);
+			}
+			else if (columnName.equals("product_model"))
+			{
+				updateSQL += "UPDATE " +Constants.PRODUCT_TABLE_NAME+ " SET product_model = ? WHERE product_code = ?";
+				preparedStatement = connection.prepareStatement(updateSQL);
+				preparedStatement.setString(1, columnValue);
+			}
+			else if (columnName.equals("product_category"))
+			{
+				updateSQL += "UPDATE " +Constants.PRODUCT_TABLE_NAME+ " SET product_category = ? WHERE product_code = ?";
+				preparedStatement = connection.prepareStatement(updateSQL);
+				preparedStatement.setString(1, columnValue);
+			}
+			else return false;
+			
+			preparedStatement.setInt(2, code);
+			result = preparedStatement.executeUpdate();
+		}
+		finally
+		{
+			try
+			{
+				if (preparedStatement != null)
+					preparedStatement.close();
+			}
+			finally
+			{
+				if (connection != null)
+					connection.close();
+			}
+		}
+		
+		return (result != 0);
+	}
+	
 	public synchronized Product doRetrieveByKey(int code) throws SQLException
 	{
 		Connection connection = null;

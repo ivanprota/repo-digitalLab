@@ -89,6 +89,49 @@ public class AdministratorDAO
 		return (result != 0);
 	}
 	
+	public synchronized boolean doUpdate(String username, String columnName, String columnValue) throws SQLException
+	{
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		String updateSQL = "";
+		if (columnName.equals("administrator_username"))
+			updateSQL += "UPDATE " +Constants.ADMINISTRATOR_TABLE_NAME+ " SET administrator_username = ? WHERE administrator_username = ?";
+		else if (columnName.equals("administrator_name"))
+			updateSQL += "UPDATE " +Constants.ADMINISTRATOR_TABLE_NAME+ " SET administrator_name = ? WHERE administrator_username = ?";
+		else if (columnName.equals("administrator_surname"))
+			updateSQL += "UPDATE " +Constants.ADMINISTRATOR_TABLE_NAME+ " SET administrator_surname = ? WHERE administrator_username = ?";
+		else if (columnName.equals("administrator_password"))
+			updateSQL += "UPDATE " +Constants.ADMINISTRATOR_TABLE_NAME+ " SET administrator_password = ? WHERE administrator_username = ?";
+		
+		int result = 0;
+		
+		try
+		{
+			connection = ds.getConnection();
+			preparedStatement = connection.prepareStatement(updateSQL);
+			preparedStatement.setString(1, columnValue);
+			preparedStatement.setString(2, username);
+			
+			result = preparedStatement.executeUpdate();
+		}
+		finally
+		{
+			try
+			{
+				if (preparedStatement != null)
+					preparedStatement.close();
+			}
+			finally
+			{
+				if (connection != null)
+					connection.close();
+			}			
+		}
+		
+		return (result!=0);
+	}
+	
 	public synchronized Administrator doRetrieveByKey(String username) throws SQLException
 	{
 		Connection connection = null;
@@ -121,7 +164,7 @@ public class AdministratorDAO
 			{
 				if (connection != null)
 					connection.close();
-			}			
+			}
 		}
 		
 		return admin;

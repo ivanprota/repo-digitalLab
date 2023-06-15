@@ -91,6 +91,53 @@ public class CustomerDAO
 		return (result != 0);
 	}
 	
+	public synchronized boolean doUpdate(String username, String columnName, String columnValue) throws SQLException
+	{
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		String updateSQL = "";
+		if (columnName.equals("customer_username"))
+			updateSQL += "UPDATE " +Constants.CUSTOMER_TABLE_NAME+ " SET customer_username = ? WHERE customer_username = ?";
+		else if (columnName.equals("customer_email"))
+			updateSQL += "UPDATE " +Constants.CUSTOMER_TABLE_NAME+ " SET customer_email = ? WHERE customer_username = ?";
+		else if (columnName.equals("customer_password"))
+			updateSQL += "UPDATE " +Constants.CUSTOMER_TABLE_NAME+ " SET customer_password = ? WHERE customer_username = ?";
+		else if (columnName.equals("customer_name"))
+			updateSQL += "UPDATE " +Constants.CUSTOMER_TABLE_NAME+ " SET customer_name = ? WHERE customer_username = ?";
+		else if (columnName.equals("customer_surname"))
+			updateSQL += "UPDATE " +Constants.CUSTOMER_TABLE_NAME+ " SET customer_surname = ? WHERE customer_username = ?";
+		else if (columnName.equals("customer_phone"))
+			updateSQL += "UPDATE " +Constants.CUSTOMER_TABLE_NAME+ " SET customer_phone = ? WHERE customer_username = ?";
+		
+		int result = 0;
+		
+		try
+		{
+			connection = ds.getConnection();
+			preparedStatement = connection.prepareStatement(updateSQL);
+			preparedStatement.setString(1, columnValue);
+			preparedStatement.setString(2, username);
+			
+			result = preparedStatement.executeUpdate();
+		}
+		finally
+		{
+			try
+			{
+				if (preparedStatement != null)
+					preparedStatement.close();
+			}
+			finally
+			{
+				if (connection != null)
+					connection.close();
+			}				
+		}
+		
+		return (result!=0);
+	}
+	
 	public synchronized Customer doRetrieveByKey(String username) throws SQLException
 	{
 		Connection connection = null;

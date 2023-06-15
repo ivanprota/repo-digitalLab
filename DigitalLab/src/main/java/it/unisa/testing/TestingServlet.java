@@ -46,7 +46,7 @@ public class TestingServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 		DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
-		
+
 		// Testing sui metodi di AdministratorDAO
 		Administrator admin = new Administrator();
 		admin.setUsername("admin");
@@ -57,10 +57,10 @@ public class TestingServlet extends HttpServlet {
 		/*AdministratorDAO adminDAO = new AdministratorDAO(ds);
 		try
 		{
-			adminDAO.doSave(admin);
-			adminDAO.doDelete(admin.getUsername());
-			System.out.println(adminDAO.doRetrieveByKey(admin.getUsername()));
-			Collection<Administrator> admins = adminDAO.doRetrieveAll(null);
+			/*adminDAO.doSave(admin);
+			adminDAO.doDelete(admin.getUsername());*/
+			/*System.out.println(adminDAO.doRetrieveByKey(admin.getUsername()));*/
+			/*Collection<Administrator> admins = adminDAO.doRetrieveAll(null);
 			Iterator<Administrator> it = admins.iterator();
 			while (it.hasNext())
 			{

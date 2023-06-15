@@ -137,6 +137,46 @@ public class ComposesDAO
 		return composes;
 	}
 	
+	public synchronized Collection<Product> doRetrieveProductByOrderCode(int orderCode) throws SQLException
+	{
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		Collection<Product> orderProducts = new LinkedList<Product>();
+		String selectSQL = "SELECT * FROM " +Constants.COMPOSES_TABLE_NAME+ " WHERE composes_order_code = ?";
+		
+		try
+		{
+			connection = ds.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+			preparedStatement.setInt(1, orderCode);
+			
+			ResultSet rs = preparedStatement.executeQuery();
+			while(rs.next())
+			{
+				int productCode = rs.getInt("composes_product_code");
+				ProductDAO dao = new ProductDAO(ds);
+				Product product = dao.doRetrieveByKey(productCode);
+				orderProducts.add(product);
+			}
+		}
+		finally
+		{
+			try
+			{
+				if (preparedStatement != null)
+					preparedStatement.close();
+			}
+			finally
+			{
+				if (connection != null)
+					connection.close();
+			}				
+		}
+		
+		return orderProducts;
+	}
+	
 	public synchronized Collection<Composes> doRetrieveAll(String order) throws SQLException
 	{
 		Connection connection = null;

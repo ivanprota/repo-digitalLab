@@ -1,6 +1,7 @@
 package it.unisa.db;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -149,6 +150,129 @@ public class OrderDAO
 		}
 		
 		return order;
+	}
+	
+	public synchronized Collection<Order> doRetrieveByCustomerUsername(String username) throws SQLException
+	{
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		Collection<Order> orders = new LinkedList<Order>();
+		String selectSQL = "SELECT * FROM " +Constants.ORDER_TABLE_NAME+ " WHERE customer_order_customer_username = ?";
+		
+		try
+		{
+			connection = ds.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+			preparedStatement.setString(1, username);
+			
+			ResultSet rs = preparedStatement.executeQuery();
+			while (rs.next())
+			{
+				Order customerOrder = new Order();
+				customerOrder.setCode(rs.getInt("customer_order_code"));
+				customerOrder.setStatus(rs.getString("customer_order_status"));
+				customerOrder.setTotalAmount(rs.getDouble("customer_order_total_amount"));
+				customerOrder.setPaymentDate(rs.getDate("customer_order_payment_date"));
+				
+				Customer customer;
+				CustomerDAO dao1 = new CustomerDAO(ds);
+				String customerUsername = rs.getString("customer_order_customer_username");
+				customer = dao1.doRetrieveByKey(customerUsername);
+				customerOrder.setCustomer(customer);
+				
+				ShippingAddress address;
+				ShippingAddressDAO dao2 = new ShippingAddressDAO(ds);
+				int addressId = rs.getInt("customer_order_shipping_address_id");
+				address = dao2.doRetrieveByKey(addressId);
+				customerOrder.setShippingAddress(address);
+				
+				PaymentMethod paymentMethod;
+				PaymentMethodDAO dao3 = new PaymentMethodDAO(ds);
+				String paymentMethodPan = rs.getString("customer_order_payment_method_pan");
+				paymentMethod = dao3.doRetrieveByKey(paymentMethodPan);
+				customerOrder.setPaymentMethod(paymentMethod);
+				
+				orders.add(customerOrder);
+			}
+		}
+		finally
+		{
+			try
+			{
+				if (preparedStatement != null)
+					preparedStatement.close();
+			}
+			finally
+			{
+				if (connection != null)
+					connection.close();
+			}		
+		}
+		
+		return orders;
+	}
+	
+	public synchronized Collection<Order> doRetrieveByDateRange(Date startDate, Date endDate) throws SQLException
+	{
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		Collection<Order> orders = new LinkedList<Order>();
+		String selectSQL = "SELECT * FROM " +Constants.ORDER_TABLE_NAME+ " WHERE (customer_order_payment_date BETWEEN ? AND ?)";
+		
+		try
+		{
+			connection = ds.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+			preparedStatement.setDate(1, startDate);
+			preparedStatement.setDate(2, endDate);
+			
+			ResultSet rs = preparedStatement.executeQuery();
+			while (rs.next())
+			{
+				Order customerOrder = new Order();
+				customerOrder.setCode(rs.getInt("customer_order_code"));
+				customerOrder.setStatus(rs.getString("customer_order_status"));
+				customerOrder.setTotalAmount(rs.getDouble("customer_order_total_amount"));
+				customerOrder.setPaymentDate(rs.getDate("customer_order_payment_date"));
+				
+				Customer customer;
+				CustomerDAO dao1 = new CustomerDAO(ds);
+				String customerUsername = rs.getString("customer_order_customer_username");
+				customer = dao1.doRetrieveByKey(customerUsername);
+				customerOrder.setCustomer(customer);
+				
+				ShippingAddress address;
+				ShippingAddressDAO dao2 = new ShippingAddressDAO(ds);
+				int addressId = rs.getInt("customer_order_shipping_address_id");
+				address = dao2.doRetrieveByKey(addressId);
+				customerOrder.setShippingAddress(address);
+				
+				PaymentMethod paymentMethod;
+				PaymentMethodDAO dao3 = new PaymentMethodDAO(ds);
+				String paymentMethodPan = rs.getString("customer_order_payment_method_pan");
+				paymentMethod = dao3.doRetrieveByKey(paymentMethodPan);
+				customerOrder.setPaymentMethod(paymentMethod);
+				
+				orders.add(customerOrder);	
+			}
+		}
+		finally
+		{
+			try
+			{
+				if (preparedStatement != null)
+					preparedStatement.close();
+			}
+			finally
+			{
+				if (connection != null)
+					connection.close();
+			}				
+		}
+		
+		return orders;
 	}
 	
 	public synchronized Collection<Order> doRetrieveAll(String order) throws SQLException
