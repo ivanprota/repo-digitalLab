@@ -50,6 +50,8 @@
 		
 		<link type="text/css" rel="stylesheet" href="<%= request.getContextPath()%>/css/personal-area.css">
 		
+		<script type="text/javascript" src="<%= request.getContextPath()%>/scripts/jquery-3.7.0.min.js"></script>
+		<script type="text/javascript" src="<%= request.getContextPath()%>/scripts/customer.js"></script>
 		<script type="text/javascript" src="<%= request.getContextPath()%>/scripts/common.js"></script>
 
 	</head>
@@ -66,10 +68,10 @@
 					<div id="personalDataLeftImageContainer">
 						<img src="<%= request.getContextPath()%>/imgs/user.png">
 					</div>
-					<h1>
+					<h1 id="leftCustomerData">
 						<%= customer.getName()%> <%= customer.getSurname()%>
 					</h1>
-					<p>
+					<p id="leftCustomerEmail">
 						<%= customer.getEmail()%>
 					</p>
 				</div>
@@ -100,15 +102,15 @@
 				<!-- Inizio dati personali -->
 				<div id="personalDataRightContainer">
 					<h1>Profilo</h1>
-					<form action="<%= request.getContextPath()%>/UpdatePersonalDataServlet" method="POST">
+					<form action="javascript:void(0)" method="POST">
 						<div id="nameSurnameContainer">
 							<div class="personalData">
 								<label for="name">Nome:</label>
-								<input type="text" name="name" value="<%= customer.getName()%>">
+								<input type="text" id="updateCustomerNameInput" name="name" value="<%= customer.getName()%>">
 							</div>
 							<div class="personalData">
 								<label for="surname">Cognome:</label>
-								<input type="text" name="surname" value="<%= customer.getSurname()%>">
+								<input type="text" id="updateCustomerSurnameInput" name="surname" value="<%= customer.getSurname()%>">
 							</div>
 						</div>
 						<div class="personalData">
@@ -118,21 +120,21 @@
 								if (customer.getPhone() != null)
 									phone += customer.getPhone();
 							%>
-							<input type="tel" name="phone" value="<%= phone%>">
+							<input type="tel" id="updateCustomerPhoneInput" name="phone" value="<%= phone%>">
 						</div>
 						<div class="personalData">
 							<label for="email">E-mail:</label>
-							<input type="text" name="email" value="<%= customer.getEmail()%>">
+							<input type="text" id="updateCustomerEmailInput" name="email" value="<%= customer.getEmail()%>">
 						</div>
 						<div class="personalData">
 							<label for="username">Username:</label>
-							<input type="text" name="username" value="<%= customer.getUsername()%>">
+							<input type="text" id="updateCustomerUsernameInput" name="username" value="<%= customer.getUsername()%>">
 						</div>
 						<div class="personalData">
 							<label for="password">Password:</label>
-							<input type="password" name="password" value="<%= customer.getPassword()%>">
+							<input type="password" id="updateCustomerPasswordInput" name="password" value="<%= customer.getPassword()%>">
 						</div>
-						<button type="submit">Salva cambiamenti</button>
+						<button type="submit" id="uploadCustomerDataButton">Salva cambiamenti</button>
 					</form>
 				</div>
 				<!-- Fine dati personali -->
@@ -157,7 +159,7 @@
 							<p><%= shippingAddress.getProvince()%>,</p>
 							<p><%= shippingAddress.getZip()%></p>
 							<div class="shippingAddressBottomBox">
-								<a href="<%= request.getContextPath()%>/DeleteCustomerDataServlet?shippingAddressId=<%= shippingAddress.getId()%>">
+								<a  id="deleteShippingAddressAnchor" href="<%= request.getContextPath()%>/DeleteCustomerDataServlet?shippingAddressId=<%= shippingAddress.getId()%>">
 									Elimina
 								</a>
 							</div>

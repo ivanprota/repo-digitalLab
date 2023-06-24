@@ -164,16 +164,3 @@ function imagePreview()
 		}	
 	}
 }
-
-
-
-
-/* Setta il valore di deafult della select */
-function setSelectValue(element)
-{
-	if (element != null)
-	{
-		let select = document.getElementById("categorySelect");
-		select.value = element;
-	}
-}

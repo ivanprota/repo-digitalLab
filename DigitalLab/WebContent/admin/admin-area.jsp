@@ -25,7 +25,9 @@
 		<link type="text/css" rel="stylesheet" href="<%= request.getContextPath()%>/css/personal-area.css">
 		<link type="text/css" rel="stylesheet" href="<%= request.getContextPath()%>/css/personal-admin-area.css">
 		
+		<script type="text/javascript" src="<%= request.getContextPath()%>/scripts/jquery-3.7.0.min.js"></script>
 		<script type="text/javascript" src="<%= request.getContextPath()%>/scripts/common.js"></script>
+		<script type="text/javascript" src="<%= request.getContextPath()%>/scripts/admin.js"></script>
 
 		<title>Area Amministrativa</title>
 
@@ -43,7 +45,7 @@
 					<div id="personalDataLeftImageContainer">
 						<img src="<%= request.getContextPath()%>/imgs/user.png">
 					</div>
-					<h1>
+					<h1 id="leftAdminData">
 						<%= admin.getName()%> <%= admin.getSurname()%>
 					</h1>
 					<p>
@@ -82,24 +84,24 @@
 				<!-- Inizio dati personali -->
 				<div id="personalDataRightContainer">
 					<h1>Profilo</h1>
-					<form action="<%= request.getContextPath()%>/UpdatePersonalDataServlet" method="POST">
+					<form action="javascript:void(0)" method="POST">
 						<div class="personalData">
 							<label for="name">Nome:</label>
-							<input type="text" name="name" value="<%= admin.getName()%>">
+							<input type="text" name="name" id="adminNameInput" value="<%= admin.getName()%>">
 						</div>
 						<div class="personalData">
 							<label for="surname">Cognome:</label>
-							<input type="text" name="surname" value="<%= admin.getSurname()%>">
+							<input type="text" name="surname" id="adminSurnameInput" value="<%= admin.getSurname()%>">
 						</div>
 						<div class="personalData">
 							<label for="username">Username:</label>
-							<input type="text" name="username" value="<%= admin.getUsername()%>">
+							<input type="text" name="username" id="adminUsernameInput" value="<%= admin.getUsername()%>">
 						</div>
 						<div class="personalData">
 							<label for="password">Password:</label>
-							<input type="password" name="password" value="<%= admin.getPassword()%>">
+							<input type="password" name="password" id="adminPasswordInput" value="<%= admin.getPassword()%>">
 						</div>
-						<button>Salva cambiamenti</button>						
+						<button id="personalUpdateButton">Salva cambiamenti</button>						
 					</form>
 				</div>
 				<!-- Fine dati personali -->
@@ -149,7 +151,7 @@
 								</div>
 								<div class="productOpData">
 									<label for="price">Prezzo:</label>
-									<input type="number" name="price" placeholder="Prezzo">
+									<input type="number" name="price" placeholder="Prezzo" step="0.01">
 								</div>
 								<div class="productOpData">
 									<label for="quantity">Quantità:</label>
@@ -166,66 +168,29 @@
 					<div class="fieldsetOp">
 						<fieldset>
 							<legend>Modifica un prodotto:</legend>
-							<form id="loadForm" action="<%= request.getContextPath()%>/AdminProductControlServlet?action=select" method="POST">
+							<form id="loadForm" action="javascript:void(0)" method="POST">
 								<div class="productOpData">
 									<label for="code">Codice Prodotto:</label>
-									<input type="number" name="code" placeholder="Codice">
+									<input type="number" id="productCodeInput" name="code" placeholder="Codice">
 								</div>
 								<button id="loadProductDataButton">Carica informazioni sul prodotto</button>
 							</form>
-							<form action="<%= request.getContextPath()%>/AdminProductControlServlet?action=update" method="POST">
-							<%
-								Product product = (Product) request.getAttribute("product");
-							%>
+							<form action="javascript:void(0)" method="POST">
 								<div class="productOpData">
-								<% 
-									int code;
-									if (product != null)
-										code = product.getCode();
-									else code = -1;
-								%>
 									<label for="code">Codice Prodotto:</label>
-									<input type="number" name="code" readonly
-									<% 
-										if(code == -1) 
-										{
-									%> 		value="" 
-									<%  }
-										else 
-										{
-									%>		value="<%= code%>" 
-									<% 	}
-									%>>
+									<input type="number" id="updateProductCodeInput" name="code" readonly>
 								</div>
 								<div class="productOpData">
-								<%
-									String brand;
-									if (product != null)
-										brand = product.getBrand();
-									else brand = "";
-								%>
 									<label for="brand">Brand:</label>
-									<input type="text" name="brand" value="<%= brand%>">
+									<input type="text" id="updateProductBrandInput" name="brand">
 								</div>
 								<div class="productOpData">
-								<%
-									String model;
-									if (product != null)
-										model = product.getModel();
-									else model = "";
-								%>
 									<label for="model">Modello:</label>
-									<input type="text" name="model" value="<%= model%>">
+									<input type="text" id="updateProductModelInput" name="model">
 								</div>
 								<div class="productOpData">
-								<%
-									String category;
-									if (product != null)
-										category = product.getCategory();
-									else category = null;
-								%>
 									<label for="category">Categoria:</label>
-									<select id="categorySelect" name="category">
+									<select id="updateProductCategoryInput" name="category">
 										<option value="Tutte le categorie">Tutte le categorie</option>
 										<option value="Case">Case</option>
 										<option value="Schede Madri">Schede madri</option>
@@ -239,72 +204,32 @@
 										<option value="Sistemi Operativi">Sistemi Operativi</option>
 										<option value="Accessori">Accessori</option>
 									</select>
-									<script>setSelectValue("<%=category%>")</script>
 								</div>
 								<div class="productOpData">
-								<%
-									double price;
-									if (product != null)
-										price = product.getPrice();
-									else price = -1;
-								%>
 									<label for="price">Prezzo:</label>
-									<input type="number" name="price"
-									<% 
-										if(price == -1) 
-										{
-									%> 		value="" 
-									<%  }
-										else 
-										{
-									%>		value="<%= price%>" 
-									<% 	}
-									%>>
+									<input type="number" id="updateProductPriceInput" name="price" step="0.01">
 								</div>
 								<div class="productOpData">
-								<%
-									int quantity;
-									if (product != null)
-										quantity = product.getQuantity();
-									else quantity = -1;
-								%>
 									<label for="quantity">Quantità:</label>
-									<input type="number" name="quantity"
-									<% 
-										if(quantity == -1) 
-										{
-									%> 		value="" 
-									<%  }
-										else 
-										{
-									%>		value="<%= quantity%>" 
-									<% 	}
-									%>>
+									<input type="number" id="updateProductQuantityInput" name="quantity">
 								</div>
 								<div class="productOpData">
-								<%
-									String description;
-									if (product != null)
-										description = product.getDescription();
-									else description = "";
-								%>
 									<label for="description">Descrizione:</label>
-									<textarea name="description" rows="7" cols="36"><%= description%></textarea>
+									<textarea name="description" rows="7" cols="36" id="updateProductDescriptionInput"></textarea>
 								</div>
-								<button>Modifica</button>
+								<button id="updateProductDataButton">Modifica</button>
 							</form>
-							<script>setAdminOpSectionOnScreen()</script>
 						</fieldset>
 					</div>
 					<div class="fieldsetOp">
 						<fieldset>
 							<legend>Elimina un prodotto</legend>
-							<form action="<%= request.getContextPath()%>/AdminProductControlServlet?action=delete" method="POST">
+							<form action="javascript:void(0)" method="POST" id="deleteProductForm">
 								<div class="productOpData">
 									<label for="code">Codice Prodotto:</label>
-									<input type="number" name="code" placeholder="Codice">
+									<input type="number" id="deleteProductCodeInput" name="code" placeholder="Codice">
 								</div>
-								<button>Elimina</button>	
+								<button id="deleteProductButton">Elimina</button>	
 							</form>
 						</fieldset>
 					</div>

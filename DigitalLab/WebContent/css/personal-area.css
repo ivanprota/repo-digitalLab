@@ -87,7 +87,6 @@ div#personalAreaRightContainer {
 
 /* INIZIO DATI PERSONALI */
 div#personalDataRightContainer {
-	display: none;
 	padding-left: 20px;
 	padding-bottom: 20px;
 	border-bottom: solid thin black;
@@ -147,7 +146,6 @@ div#personalDataRightContainer button {
 
 /* INIZIO INDIRIZZI DI SPEDIZIONE */
 div#shippingAddressContainer {
-	display: none;
 	padding-left: 20px;
 	padding-bottom: 20px;
 	border-bottom: solid thin black;
@@ -193,6 +191,10 @@ div.shippingAddressBox p:nth-child(2) {
 
 div.shippingAddressBox p:nth-child(6) {
 	margin-bottom: 30px;
+}
+
+div.shippingAddressBottomBox {
+	margin-bottom: 20px;
 }
 
 div.shippingAddressBottomBox a {
@@ -260,7 +262,6 @@ div#shippingAddressForm button {
 
 /* INIZIO METODI DI PAGAMENTO */
 div#paymentMethodContainer {
-	display: none;
 	padding-left: 20px;
 	padding-bottom: 20px;
 	margin-bottom: 100px;
@@ -306,6 +307,19 @@ div.paymentMethodBox p:nth-child(2) {
 
 div.paymentMethodBox p:nth-child(4) {
 	margin-bottom: 30px;
+}
+
+div#paymentMethodBottomBox {
+	margin-bottom: 20px;
+	margin-left: 8px;
+}
+
+div#paymentMethodBottomBox a {
+	text-decoration: none;
+}
+
+div#paymentMethodBottomBox a:hover {
+	text-decoration: underline;
 }
 
 div#paymentMethodAddBox {

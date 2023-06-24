@@ -7,6 +7,7 @@
 package it.unisa.servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
@@ -18,6 +19,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import javax.sql.DataSource;
+
+import org.json.JSONObject;
 
 import it.unisa.db.PictureDAO;
 import it.unisa.db.ProductDAO;
@@ -107,10 +110,17 @@ public class AdminProductControlServlet extends HttpServlet
 				return;
 			}
 			
-			request.setAttribute("product", product);
-			
-			RequestDispatcher dispatcher = request.getRequestDispatcher("admin/admin-area.jsp");
-			dispatcher.forward(request, response);
+			JSONObject json = new JSONObject();
+			PrintWriter out = response.getWriter();
+			response.setContentType("application/json");
+			json.put("code", product.getCode());
+			json.put("brand", product.getBrand());
+			json.put("model", product.getModel());
+			json.put("category", product.getCategory());
+			json.put("price", product.getPrice());
+			json.put("quantity", product.getQuantity());
+			json.put("description", product.getDescription());
+			out.print(json.toString());
 		}
 		else if (action.equals("update"))
 		{
@@ -158,31 +168,40 @@ public class AdminProductControlServlet extends HttpServlet
 			}
 			int quantity = Integer.parseInt(quantityString);
 			
+			JSONObject json = new JSONObject();
+			PrintWriter out = response.getWriter();
+			response.setContentType("application/json");
 			try
 			{
 				if (!(product.getBrand().equals(brand)))
 				{
 					dao.doUpdate(code, "product_brand", brand);
+					json.put("brand", brand);
 				}
 				if (!(product.getModel().equals(model)))
 				{
 					dao.doUpdate(code, "product_model", model);
+					json.put("model", model);
 				}
 				if (!(product.getCategory().equals(category)))
 				{
 					dao.doUpdate(code, "product_category", category);
+					json.put("category", category);
 				}
 				if (!(product.getDescription().equals(description)))
 				{
 					dao.doUpdate(code, "product_description", description);
+					json.put("description", description);
 				}
 				if (product.getPrice() != price)
 				{
 					dao.doUpdate(code, "product_price", priceString);
+					json.put("price", price);
 				}
 				if (product.getQuantity() != quantity)
 				{
 					dao.doUpdate(code, "product_quantity", quantityString);
+					json.put("quantity", quantity);
 				}
 			}
 			catch (SQLException e)
@@ -191,10 +210,8 @@ public class AdminProductControlServlet extends HttpServlet
 				response.sendRedirect(request.getContextPath() + "/admin/admin-area.jsp");
 				return;				
 			}
-			
-			response.sendRedirect(request.getContextPath() + "/admin/admin-area.jsp");
-			return;	
 				
+			out.print(json.toString());
 		}
 		else if (action.equals("delete"))
 		{
@@ -211,9 +228,6 @@ public class AdminProductControlServlet extends HttpServlet
 				response.sendRedirect(request.getContextPath() + "/admin/admin-area.jsp");
 				return;			
 			}
-			
-			RequestDispatcher dispatcher = request.getRequestDispatcher("admin/admin-area.jsp");
-			dispatcher.forward(request, response);
 		}
 	}
 

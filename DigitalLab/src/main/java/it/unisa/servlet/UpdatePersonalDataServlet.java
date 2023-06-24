@@ -7,6 +7,7 @@
 package it.unisa.servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 
 import javax.servlet.ServletException;
@@ -16,6 +17,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
+
+import org.json.JSONObject;
 
 import it.unisa.db.AdministratorDAO;
 import it.unisa.db.CustomerDAO;
@@ -42,10 +45,10 @@ public class UpdatePersonalDataServlet extends HttpServlet
 		if (admin != null)
 		{
 			admin = (Administrator) session.getAttribute("admin");
-			String name =  request.getParameter("name");
-			String surname = request.getParameter("surname");
-			String username = request.getParameter("username");
-			String password = request.getParameter("password");
+			String name = request.getParameter("adminName");
+			String surname = request.getParameter("adminSurname");
+			String username = request.getParameter("adminUsername");
+			String password = request.getParameter("adminPassword");
 			
 			String key = admin.getUsername();
 			
@@ -82,18 +85,25 @@ public class UpdatePersonalDataServlet extends HttpServlet
 				return;
 			}
 			
-			response.sendRedirect(request.getContextPath() + "/admin/admin-area.jsp");
-			return;
+			response.setContentType("application/json");
+			PrintWriter out = response.getWriter();
+			JSONObject json = new JSONObject();
+			json.put("adminName", admin.getName());
+			json.put("adminSurname", admin.getSurname());
+			json.put("adminUsername", admin.getUsername());
+			json.put("adminPassword", admin.getPassword());
+			out.print(json.toString());
+	
 		}
 		else
 		{
 			customer = (Customer) session.getAttribute("customer");
-			String name = request.getParameter("name");
-			String surname = request.getParameter("surname");
-			String phone = request.getParameter("phone");
-			String email = request.getParameter("email");
-			String username = request.getParameter("username");
-			String password = request.getParameter("password");
+			String name = request.getParameter("customerName");
+			String surname = request.getParameter("customerSurname");
+			String phone = request.getParameter("customerPhone");
+			String email = request.getParameter("customerEmail");
+			String username = request.getParameter("customerUsername");
+			String password = request.getParameter("customerPassword");
 			
 			String key = customer.getUsername();
 			
@@ -149,8 +159,16 @@ public class UpdatePersonalDataServlet extends HttpServlet
 				return;
 			}
 			
-			response.sendRedirect(request.getContextPath() + "/common/user-area.jsp");
-			return;
+			JSONObject json = new JSONObject();
+			PrintWriter out = response.getWriter();
+			response.setContentType("application/json");
+			json.put("name", customer.getName());
+			json.put("surname", customer.getSurname());
+			json.put("phone", customer.getPhone());
+			json.put("email", customer.getEmail());
+			json.put("username", customer.getUsername());
+			json.put("password", customer.getPassword());
+			out.print(json.toString());
 		}	
 	}
 
