@@ -101,7 +101,9 @@
 							<label for="password">Password:</label>
 							<input type="password" name="password" id="adminPasswordInput" value="<%= admin.getPassword()%>">
 						</div>
-						<button id="personalUpdateButton">Salva cambiamenti</button>						
+						<div id="personalUpdateButtonContainer">
+							<button id="personalUpdateButton">Salva cambiamenti</button>
+						</div>					
 					</form>
 				</div>
 				<!-- Fine dati personali -->
@@ -261,7 +263,9 @@
 							<label for="endDate">Al:</label>
 							<input type="date" name="endDate">
 						</div>
-						<button>Cerca</button>
+						<div id="searchOrderButtonContainer">
+							<button>Cerca</button>
+						</div>
 					</form>
 				</div>
 				<%

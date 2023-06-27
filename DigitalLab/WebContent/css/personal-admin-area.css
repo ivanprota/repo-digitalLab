@@ -128,7 +128,8 @@ div#orderFormContainer button {
 
 div#orderViewContainer {
 	max-height: 400px;
-	width: 65%;
+	/*width: 65%;*/
+	width: 800px;
 	overflow: scroll;
 	overflow-x: hidden;
 	margin: 20px;
@@ -171,3 +172,105 @@ div.orderDetails a {
 }
 /* FINE SEZIONE ORDINI */
 /* FINE SEZIONE DI DESTRA */
+
+
+
+
+/* INIZIO RESPONSIVE */
+@media screen and (max-width: 700px)
+{
+	div#personalDataLeftImageContainer {
+		width: 40%;
+		margin-top: 0;
+	}
+	
+	div#personalSectionContainer {
+		margin-top: 50px;
+	}
+	
+	div#personalUpdateButtonContainer {
+		width: 40%;
+		margin: 0 auto;
+	}
+	
+	div#personalUpdateButtonContainer button {
+		width: 98%;
+	}
+	
+	div#opOnProductContainer h1 {
+		text-align: center;
+	}
+	
+	div.fieldsetOp {
+		width: 80%;
+		margin: 0 auto;
+		margin-bottom: 20px;
+	}
+	
+	div.productOpImageContainer input[type="file"] {
+		width: 50%;
+	}
+	
+	div.productOpData input {
+		width: 50%;
+	}
+	
+	div.productOpData select {
+		width: 52%;
+	}
+	
+	div.productOpData textarea {
+		width: 70%;
+	}
+	
+	div#orderFormContainer h1 {
+		text-align: center;
+	}
+	
+	div#orderFormContainer p {
+		text-align: center;
+	}
+	
+	div#orderFormContainer ul {
+		margin: 0 auto;
+		width: 25%;
+		margin-bottom: 40px;
+	}
+	
+	div.orderData {
+		text-align: center;
+	}
+	
+	div#searchOrderButtonContainer {
+		width: 30%;
+		margin: 0 auto;
+	}
+	
+	div#searchOrderButtonContainer button {
+		width: 98%;
+	}
+	
+	div#orderViewContainer {
+		width: 95%;
+	}
+	
+	div.orderStatus {
+		margin-left: 30px;
+	}
+	
+	div.orderTotal {
+		margin-left: 30px;
+	}
+	
+	div.orderPaymentDate {
+		margin-left: 30px;
+	}
+	
+	div.orderDetails {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin-left: 30px;
+	}
+}
+/* FINE RESPONSIVE */

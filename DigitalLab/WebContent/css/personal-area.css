@@ -388,10 +388,6 @@ div#orderContainer > h1 {
 	padding-left: 20px;
 }
 
-div#orderBoxContainer {
-
-}
-
 div.orderBox {
 	border-top: solid thin black;
 	border-bottom: solid thin black;
@@ -417,24 +413,219 @@ div.orderBoxHeaderPaymentDate {
 }
 
 div.orderBoxHeaderTotalAmount {
-	margin-left: 20px;
+	margin-left: 40px;
 }
 
 div.orderBoxHeaderStatus {
-	margin-left: 30px;
+	margin-left: 40px;
 }
 
 div.orderBoxHeaderShippingAddress {
-	margin-left: 30px;
+	margin-left: 40px;
 }
 
 div.orderBoxHeaderPaymentMethod {
-	margin-left: 30px;
+	margin-left: 40px;
+}
+
+div.orderBoxHeaderDetails {
+	display: flex;
+	margin-left: 40px;
+	justify-content: center;
+	align-items: center;
 }
 
 div.productContainer {
-	
 	display: flex;
 }
 /* FINE I MIEI ORDINI */
 /* FINE SEZIONE DI DESTRA */
+
+
+
+
+/* INIZIO RESPONSIVE */
+@media screen and (max-width: 1700px)
+{
+	div#personalSectionContainer ul li a {
+		padding-left: 60px;
+		padding-right: 60px;
+	}
+	
+	div#personalSectionContainer ul li:nth-child(1) a {
+		padding-left: 50px;
+		padding-right: 50px;
+	}
+}
+
+@media screen and (max-width: 1400px)
+{
+	div.shippingAddressBox p {
+		font-size: 15px;
+	}
+	
+	div.paymentMethodBox p {
+		font-size: 14px;
+	}
+	
+	div.paymentMethodBox h1 {
+		font-size: 15px;
+	}
+	
+	div.orderBoxHeader p {
+		font-size: 12px;
+	}
+	
+	div.orderBoxHeader h1 {
+		font-size: 14px;
+	}
+}
+
+@media screen and (max-width: 1300px)
+{
+	div#personalSectionContainer ul li:nth-child(2) a {
+		padding-left: 20px;
+		padding-right: 20px;
+	}
+}
+
+@media screen and (max-width: 700px)
+{		
+	div#personalAreaContainer {
+		display: block;
+	}
+	
+	div#personalAreaLeftContainer {
+		width: 100%;
+		border-right: none;
+	}
+	
+	div#personalDataLeftContainer {
+		margin-top: 0;
+	}
+	
+	div#personalDataLeftImageContainer {
+		width: 50%;
+		margin-top: 20px;
+	}
+	
+	div#personalSectionContainer {
+		margin-top: 80px;
+	}
+	
+	div#personalAreaRightContainer {
+		width: 100%;
+	}
+	
+	div#personalDataRightContainer h1 {
+		text-align: center;
+	}
+	
+	div#nameSurnameContainer {
+		margin: 0 auto;
+		width: 60%;
+	}
+	
+	div.personalData {
+		margin: auto;
+		width: 60%;
+		margin-top: 20px;
+	}
+	
+	div.personalData input {
+		width: 96%;
+	}
+	
+	div#customerDataButtonContainer {
+		width: 31.5%;
+		margin: 0 auto;
+	}
+	
+	div#shippingAddressContainer h1 {
+		text-align: center;
+	}
+	
+	div#shippingAddressBoxContainer {
+		display: block;
+		width: 50%;
+		margin: 0 auto;
+	}
+	
+	div.shippingAddressBox {
+		width: 98%;
+		margin-left: 0;
+		margin-bottom: 20px;
+	}
+	
+	div#shippingAddressAddBox {
+		width: 98%;
+		margin-left: 0;
+	}
+	
+	div#shippingAddressForm {
+		margin-top: 50px;
+	}
+	
+	div.shippingAddressInput {
+		margin: 0 auto;
+		width: 54%;
+	}
+	
+	div.shippingAddressInput input {
+		width: 90%;
+	}
+	
+	div#shippingAddressAddButtonContainer {
+		width: 30%;
+		margin: 0 auto;
+	}
+	
+	div#shippingAddressAddButtonContainer button {
+		width: 98%;
+	}
+	
+	div#paymentMethodContainer h1 {
+		text-align: center;
+	}
+	
+	div#paymentMethodBoxConatiner {
+		margin: 0 auto;
+		display: block;
+		width: 50%;
+	}
+	
+	div.paymentMethodBox {
+		margin-left: 0;
+		margin-bottom: 20px;
+		width: 98%;
+	}
+	
+	div#paymentMethodAddBox {
+		margin-left: 0;
+		width: 98%;
+	}
+	
+	div#paymentMethodForm {
+		margin-top: 50px;
+	}
+	
+	div.paymentMethodInput {
+		margin: 0 auto;
+		width: 54%;
+		margin-top: 15px;
+	}
+	
+	div.paymentMethodInput input {
+		width: 90%;
+	}
+	
+	div#paymentMethodFormButtonContainer {
+		width: 30%;
+		margin: 0 auto;
+	}
+	
+	div#paymentMethodFormButtonContainer button {
+		width: 98%;
+	}
+}
+/* FINE RESPONSIVE */

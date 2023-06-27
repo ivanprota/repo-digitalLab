@@ -134,7 +134,9 @@
 							<label for="password">Password:</label>
 							<input type="password" id="updateCustomerPasswordInput" name="password" value="<%= customer.getPassword()%>">
 						</div>
-						<button type="submit" id="uploadCustomerDataButton">Salva cambiamenti</button>
+						<div id="customerDataButtonContainer">
+							<button type="submit" id="uploadCustomerDataButton">Salva cambiamenti</button>
+						</div>
 					</form>
 				</div>
 				<!-- Fine dati personali -->
@@ -159,7 +161,7 @@
 							<p><%= shippingAddress.getProvince()%>,</p>
 							<p><%= shippingAddress.getZip()%></p>
 							<div class="shippingAddressBottomBox">
-								<a  id="deleteShippingAddressAnchor" href="<%= request.getContextPath()%>/DeleteCustomerDataServlet?shippingAddressId=<%= shippingAddress.getId()%>">
+								<a id="deleteShippingAddressAnchor" href="<%= request.getContextPath()%>/DeleteCustomerDataServlet?shippingAddressId=<%= shippingAddress.getId()%>">
 									Elimina
 								</a>
 							</div>
@@ -197,7 +199,9 @@
 								<label for="zip">CAP:</label>
 								<input type="text" name="zip" placeholder="CAP" required>
 							</div>
-							<button>Salva</button>
+							<div id="shippingAddressAddButtonContainer">
+								<button>Salva</button>
+							</div>
 						</form>
 					</div>
 				</div>
@@ -255,7 +259,9 @@
 								<label for="expirationDate">Data di scadenza:</label>
 								<input type="text" name="expirationDate" placeholder="Data di scadenza" required>
 							</div>
-							<button>Salva</button>
+							<div id="paymentMethodFormButtonContainer">
+								<button>Salva</button>
+							</div>
 						</form>
 					</div>
 					<!-- Fine form nuovo metodo di pagamento -->
@@ -305,38 +311,9 @@
 									<h1>Pagamento:</h1>
 									<p><%= orderPaymentMethod.getPan()%></p>
 								</div>
-							</div>
-							<div class="orderBoxBody">
-								<%
-									Iterator<?> it2 = orderProducts.iterator();
-									while(it2.hasNext())
-									{
-										Collection<?> products = (Collection<?>) it2.next();
-										Iterator<?> it3 = products.iterator();
-										while(it3.hasNext())
-										{
-											Product product = (Product) it3.next();
-								%>
-									<div class="productContainer">
-										<div class="productImageContainer">
-											<!-- <img src="<%= request.getContextPath()%>/GetPictureServlet?productCode=<%= product.getCode()%>"> -->
-											<img src="C:/Users/IVAN/Desktop/iphone.jpeg">
-										</div>
-										<div class="productNameContainer">
-											<p>
-												<%= product.getCategory()%>
-												<%= product.getBrand()%>
-												<%= product.getModel()%>
-											</p>
-											<div class="productPriceContainer">
-												<p><%= product.getPrice()%></p>										
-											</div>
-										</div>
-									</div>
-								<%
-										}
-									}
-								%>
+								<div class="orderBoxHeaderDetails">
+									<a href="">Dettagli</a>
+								</div>
 							</div>
 						</div>
 						<%
