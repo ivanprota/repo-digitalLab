@@ -164,7 +164,7 @@
 				<button id="confButton">CONFIGURA ORA!</button>
 			</div>
 			<div id="confSideImageContainer">
-				<a href="">
+				<a href="<%=request.getContextPath()%>/common/catalogue.jsp">
 					<img src="imgs/configpc2.jpg">
 				</a>
 			</div>

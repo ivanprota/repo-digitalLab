@@ -1,0 +1,158 @@
+@charset "ISO-8859-1";
+
+#catalogueBody {
+	background-color: #f2f2f2;
+	margin: 0px;
+	padding: 0px;
+	display: flex;
+	justify-content: space-between;
+	
+}
+
+/* INIZIO STILE FILTRI */
+#bodyContainer{
+	width: 20%;
+	background-color: #f2f2f2;
+  	padding: 20px;
+}
+
+#catalogueFilters {
+	width: 100%;
+	padding: 20px;
+	padding-right: 8px;
+	border-right: solid thin #a2a2a2;
+}
+
+/* FILTRO PREZZO */
+#cataloguePriceFilter h1 {
+	font-size: 16px;
+	font-style: italic;
+	margin-bottom: 5px;
+}
+#cataloguePriceFilter ul {
+	margin-top: 0px;
+	padding-left: 0px;
+	list-style-type: none;
+}
+#cataloguePriceFilter ul li a{
+	text-decoration: none;
+	color: #171717;
+	
+}
+#cataloguePriceFilter ul li a:hover{
+	color: #d68c03;
+}
+#cataloguePriceFilterInputContainer{
+	display: flex;
+	width: 80%;
+}
+.cataloguePriceFilterInput {
+	width: 35%;
+}
+.cataloguePriceFilterInput input {
+	width: 85%;
+	height: 20px;
+	border-radius: 10px;
+}
+.cataloguePriceFilterInput input:first-child {
+	margin-right:5px;
+}
+#cataloguePriceFilterButton {
+	width: 30%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+#cataloguePriceFilterButton button{
+	height: 24px;
+}
+
+/* FILTRO BRAND */
+#catalogueBrandFilter h1{
+	font-size: 16px;
+	font-style: italic;
+	margin-bottom: 5px;
+	margin-top: 20px;
+}
+.catalogueBrandFilterContainer{
+	color: #171717;
+}
+
+/* FILTRO RECENSIONI */
+#catalogueReviewFilter h1{
+	font-size: 16px;
+	font-style: italic;
+	margin-bottom: 5px;
+	margin-top: 20px;
+}
+.reviewStarContainer{
+	width: 100%;
+}
+.reviewStarContainer img{
+	width: 40%;
+	margin-right: 3%;
+}
+.reviewStarContainer a{
+	text-decoration: none;
+	color: #171717;
+}
+.reviewStarContainer a:hover{
+	color: #d68c03;
+}
+
+/* FINE STILE FILTRI */
+
+/* INIZIO STILE PRODOTTI CATALOGO */
+
+h1 {
+	margin-top: 0px;
+	padding-top: 0px;
+}
+
+/* Stile per il contenitore principale dei prodotti */
+.product-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  width: 100%;
+  
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Stile per ogni prodotto */
+.product {
+  width: 300px;
+  margin: 20px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: center;
+}
+
+/* Stile per l'immagine del prodotto */
+.product-image img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+/* Stile per il nome del prodotto */
+.product-name {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+/* Stile per il prezzo del prodotto */
+.product-price {
+  font-size: 14px;
+  color: #888;
+  margin-bottom: 10px;
+}
+
+/* Stile per la descrizione del prodotto */
+.product-description {
+  font-size: 14px;
+  margin-bottom: 10px;
+}

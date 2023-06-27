@@ -1,0 +1,73 @@
+@charset "ISO-8859-1";
+
+#supportBody {
+	font-family: Arial, sans-serif;
+	margin: 0;
+	padding: 0;
+	background-color: #f2f2f2;
+}
+
+#supportBodyContainer {
+	padding-top: 10px;
+}
+
+h1 {
+	margin-top: 0px;
+	padding-top: 0px;
+	color: black;
+	text-align: center;
+}
+
+form {
+  max-width: 45%;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  background-color: #f7f7f7;
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+  width: 97%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+input[type="submit"] {
+  display: block;
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #ff9900;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+input[type="submit"]:hover {
+  background-color: #ffbb33;
+}
+
+#phoneContainer{
+	display: flex;
+	margin-bottom: 10px;
+}
+
+#checkboxPhoneContainer checkbox{
+	padding:0px;
+}
+
+#labelPhoneContainer label{
+	padding:0px;
+	margin: 0px;
+	
+}

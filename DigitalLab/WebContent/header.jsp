@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    
 <!DOCTYPE html>
 <html>
 
@@ -59,7 +60,7 @@
 			
 			<!-- Inizio link di supporto -->
 			<div class="helpContainer">
-				<a href="">Assistenza</a>
+				<a href="<%=request.getContextPath()%>/common/support.jsp">Assistenza</a>
 				<a href="">Contatti</a>
 			</div>
 			<!-- Fine link di supporto -->
@@ -68,7 +69,7 @@
 			<div id="userArea">
 			
 				<div id="cartContainer">
-					<a href="" onmouseover="borderItem(this)" onmouseout="deleteBorderItem(this)">
+					<a href="<%=request.getContextPath()%>/common/cart.jsp" onmouseover="borderItem(this)" onmouseout="deleteBorderItem(this)">
 						<img id="cartImage" src="<%=request.getContextPath()+"/imgs/cart.png"%>">
 					</a>
 				</div>
