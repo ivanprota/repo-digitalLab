@@ -55,6 +55,11 @@ public class Catalogue extends HttpServlet {
     			String[] brands = request.getParameterValues("brands");
     			products = dao.doRetrieveByFiler(brands);
     		}
+    		else if (filter.equals("category"))
+    		{
+    			String category = request.getParameter("categoryName");
+    			products = dao.doRetrieveByFilter(category);
+    		}
     	}
     	catch(SQLException e)
     	{

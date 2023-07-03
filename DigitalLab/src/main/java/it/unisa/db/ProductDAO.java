@@ -345,6 +345,52 @@ public class ProductDAO
 		return products;
 	}
 	
+	public synchronized Collection<Product> doRetrieveByFilter(String category) throws SQLException
+	{
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		Collection<Product> products = new LinkedList<Product>();
+		String selectSQL = "SELECT * FROM " +Constants.PRODUCT_TABLE_NAME+ " WHERE product_category = ?";
+		
+		try
+		{
+			connection = ds.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+			preparedStatement.setString(1, category);
+			
+			ResultSet rs = preparedStatement.executeQuery();
+			while (rs.next())
+			{
+				Product product = new Product();
+				product.setCode(rs.getInt("product_code"));
+				product.setQuantity(rs.getInt("product_quantity"));
+				product.setDescription(rs.getString("product_description"));
+				product.setPrice(rs.getDouble("product_price"));
+				product.setBrand(rs.getString("product_brand"));
+				product.setModel(rs.getString("product_model"));
+				product.setCategory(rs.getString("product_category"));	
+				
+				products.add(product);				
+			}
+		}
+		finally
+		{
+			try
+			{
+				if (preparedStatement != null)
+					preparedStatement.close();
+			}
+			finally
+			{
+				if (connection != null)
+					connection.close();
+			}				
+		}
+		
+		return products;
+	}
+	
 	public synchronized Collection<Product> doRetrieveAll(String order) throws SQLException
 	{
 		Connection connection = null;
