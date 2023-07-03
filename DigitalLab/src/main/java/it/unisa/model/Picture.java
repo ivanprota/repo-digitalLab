@@ -5,6 +5,7 @@ public class Picture
 	// Instance variables
 	private Product product;
 	private byte[] image;
+	private String imageFileName;
 	
 	
 	// Constructors
@@ -13,6 +14,7 @@ public class Picture
 	{
 		product = null;
 		image = null;
+		imageFileName = null;
 	}
 	
 	
@@ -28,6 +30,11 @@ public class Picture
 		return image;
 	}
 	
+	public String getImageFileName()
+	{
+		return imageFileName;
+	}
+	
 	
 	// Set methods
 	
@@ -41,6 +48,11 @@ public class Picture
 		image = newImage;
 	}
 	
+	public void setImageFileName(String newImageFileName)
+	{
+		imageFileName = newImageFileName;
+	}
+	
 	
 	// Overriding from Object class
 	
@@ -48,6 +60,7 @@ public class Picture
 	public String toString()
 	{
 		return "" +product.toString()+
-			   ", " +image;
+			   ", " +image+
+			   ", " +imageFileName;
 	}
 }

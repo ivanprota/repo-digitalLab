@@ -18,6 +18,7 @@
 
 #catalogueFilters {
 	width: 100%;
+	min-height: 1200px;
 	padding: 20px;
 	padding-right: 8px;
 	border-right: solid thin #a2a2a2;
@@ -45,6 +46,9 @@
 #cataloguePriceFilterInputContainer{
 	display: flex;
 	width: 80%;
+}
+#cataloguePriceFilterInputContainer form {
+	display: flex;
 }
 .cataloguePriceFilterInput {
 	width: 35%;
@@ -76,6 +80,9 @@
 }
 .catalogueBrandFilterContainer{
 	color: #171717;
+}
+#catalogueBrandFilterButtonContainer {
+	margin-top: 10px;
 }
 
 /* FILTRO RECENSIONI */
@@ -155,4 +162,15 @@ h1 {
 .product-description {
   font-size: 14px;
   margin-bottom: 10px;
+}
+
+
+
+
+/* RESONSIVE */	
+@media screen and (max-width: 700px)
+{
+	div#catalogueFilters {
+		display: none;
+	}
 }

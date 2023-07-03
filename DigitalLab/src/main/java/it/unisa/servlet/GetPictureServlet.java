@@ -7,9 +7,12 @@ package it.unisa.servlet;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.LinkedList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -26,37 +29,26 @@ public class GetPictureServlet extends HttpServlet
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
-		String productCodeString = request.getParameter("productCode");
-		if (productCodeString != null)
+		DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
+		PictureDAO dao = new PictureDAO(ds);
+		Collection<Picture> pictures = new LinkedList<Picture>();
+		try
 		{
-			int productCode = Integer.parseInt(productCodeString);
-			DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
-			PictureDAO dao = new PictureDAO(ds);
-			Picture picture = null;
-			try
-			{
-				picture = dao.doRetrieveByKey(productCode);
-			}
-			catch (SQLException e)
-			{
-				System.out.println(e);
-				response.sendRedirect(request.getContextPath());
-				request.getSession().invalidate();
-				return;
-			}
-			
-			ServletOutputStream out = response.getOutputStream();
-			byte[] bt = picture.getImage();
-			out.write(bt);
-			response.setContentType("image/jpeg");
-			out.close();	
+			for (int code=1; code<=22; code++)
+				pictures.add(dao.doRetrieveByKey(code));
 		}
-		else
+		catch (SQLException e)
 		{
+			System.out.println(e);
 			response.sendRedirect(request.getContextPath());
 			request.getSession().invalidate();
 			return;
 		}
+		
+		request.setAttribute("pictures", pictures);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/common/catalogue.jsp");
+		dispatcher.forward(request, response);
+		return;
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 

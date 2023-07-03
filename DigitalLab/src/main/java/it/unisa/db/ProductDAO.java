@@ -205,6 +205,146 @@ public class ProductDAO
 		return product;
 	}
 	
+	public synchronized Collection<Product> doRetrieveByFilter(String priceRange1, String priceRange2) throws SQLException
+	{
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		Collection<Product> products = new LinkedList<Product>();
+		String selectSQL = "";
+		
+		boolean isMoreThanOrLessThan = false;
+		
+		if (priceRange2 == null)
+		{
+			if (priceRange1 != null)
+			{
+				selectSQL += "SELECT * FROM " +Constants.PRODUCT_TABLE_NAME+ " WHERE product_price >= ?";
+				isMoreThanOrLessThan = true;
+			}
+		}
+		else if (priceRange1 == null)
+		{
+			if (priceRange2 != null)
+			{
+				selectSQL += "SELECT * FROM " +Constants.PRODUCT_TABLE_NAME+ " WHERE product_price <= ?";
+				isMoreThanOrLessThan = true;
+			}
+		}
+		else if (priceRange1 != null && priceRange2 != null)
+			selectSQL += "SELECT * FROM " +Constants.PRODUCT_TABLE_NAME+ " WHERE product_price BETWEEN ? AND ?";
+		
+		try
+		{
+			connection = ds.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+			
+			if (isMoreThanOrLessThan)
+			{
+				if (priceRange1 != null)
+				{
+					double price = Double.parseDouble(priceRange1);
+					preparedStatement.setDouble(1, price);
+				}
+				else
+				{
+					double price = Double.parseDouble(priceRange2);
+					preparedStatement.setDouble(1, price);
+				}
+			}
+			else
+			{
+				double price1 = Double.parseDouble(priceRange1);
+				double price2 = Double.parseDouble(priceRange2);
+				preparedStatement.setDouble(1, price1);
+				preparedStatement.setDouble(2, price2);
+			}
+			
+			ResultSet rs = preparedStatement.executeQuery();
+			while (rs.next())
+			{
+				Product product = new Product();
+				product.setCode(rs.getInt("product_code"));
+				product.setQuantity(rs.getInt("product_quantity"));
+				product.setDescription(rs.getString("product_description"));
+				product.setPrice(rs.getDouble("product_price"));
+				product.setBrand(rs.getString("product_brand"));
+				product.setModel(rs.getString("product_model"));
+				product.setCategory(rs.getString("product_category"));	
+				
+				products.add(product);
+			}
+		}
+		finally
+		{
+			try
+			{
+				if (preparedStatement != null)
+					preparedStatement.close();
+			}
+			finally
+			{
+				if (connection != null)
+					connection.close();
+			}
+		}
+		
+		return products;
+	}
+	
+	public synchronized Collection<Product> doRetrieveByFiler(String[] brands) throws SQLException
+	{
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		Collection<Product> products = new LinkedList<Product>();
+		String selectSQL = "SELECT * FROM " +Constants.PRODUCT_TABLE_NAME+ " WHERE product_brand = ?";
+		for (int i=1; i<brands.length; i++)
+			selectSQL += " OR product_brand = ?";
+		
+		try
+		{
+			connection = ds.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+			
+			for (int i=0, pos=1, brandsIndex=0; i<selectSQL.length(); i++)
+			{
+				if (selectSQL.charAt(i) == '?')
+					preparedStatement.setString(pos++, brands[brandsIndex++]);
+			}
+			
+			ResultSet rs = preparedStatement.executeQuery();
+			while (rs.next())
+			{
+				Product product = new Product();
+				product.setCode(rs.getInt("product_code"));
+				product.setQuantity(rs.getInt("product_quantity"));
+				product.setDescription(rs.getString("product_description"));
+				product.setPrice(rs.getDouble("product_price"));
+				product.setBrand(rs.getString("product_brand"));
+				product.setModel(rs.getString("product_model"));
+				product.setCategory(rs.getString("product_category"));	
+				
+				products.add(product);
+			}
+		}
+		finally
+		{
+			try
+			{
+				if (preparedStatement != null)
+					preparedStatement.close();
+			}
+			finally
+			{
+				if (connection != null)
+					connection.close();
+			}			
+		}
+		
+		return products;
+	}
+	
 	public synchronized Collection<Product> doRetrieveAll(String order) throws SQLException
 	{
 		Connection connection = null;

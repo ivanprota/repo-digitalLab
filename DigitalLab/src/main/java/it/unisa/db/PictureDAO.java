@@ -1,11 +1,14 @@
 package it.unisa.db;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Base64;
 import java.util.Collection;
 import java.util.LinkedList;
 
@@ -153,6 +156,7 @@ public class PictureDAO
 			product = dao.doRetrieveByKey(productCode);
 			picture.setProduct(product);
 			picture.setImage(rs.getBytes("picture_image"));
+			picture.setImageFileName(rs.getString("picture_file_name"));
 		}
 		finally
 		{
@@ -171,7 +175,42 @@ public class PictureDAO
 		return picture;
 	}
 	
-	public synchronized Collection<Picture> doRetrieveAll(String order) throws SQLException
+	public synchronized byte[] doRetrievePictureByKey(int code) throws SQLException
+	{
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		byte[] bt = null;
+		String selectSQL = "SELECT * FROM " +Constants.PICTURE_TABLE_NAME+ " WHERE picture_product_code = ?";
+		
+		try
+		{
+			connection = ds.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+			preparedStatement.setInt(1, code);
+			
+			ResultSet rs = preparedStatement.executeQuery();
+			rs.next();
+			bt = rs.getBytes("picture_image");
+		}
+		finally
+		{
+			try
+			{
+				if (preparedStatement != null)
+					preparedStatement.close();
+			}
+			finally
+			{
+				if (connection != null)
+					connection.close();
+			}
+		}
+		
+		return bt;
+	}
+	
+	public synchronized Collection<Picture> doRetrieveAll(String order) throws SQLException, IOException
 	{
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
