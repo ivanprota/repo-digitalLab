@@ -30,7 +30,7 @@
 			
 			<!-- Inizio link di supporto -->
 			<div class="helpContainer" id="confLinkContainer">
-				<a href="">Configura ora!</a>
+				<a href="<%=request.getContextPath()%>/common/catalogue.jsp">Catalogo!</a>
 			</div>
 			<!-- Fine link di supporto -->
 			

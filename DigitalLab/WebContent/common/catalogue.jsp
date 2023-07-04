@@ -113,19 +113,29 @@
 				<div id="catalogueReviewFilter">
 					<h1>Recensioni</h1>
 					<div class="reviewStarContainer">
-						<a href=""><img src="<%=request.getContextPath()%>/imgs/5stars.png"></a>
+						<a href="<%= request.getContextPath()%>/Catalogue?filter=assessment&stars=5">
+							<img src="<%=request.getContextPath()%>/imgs/5stars.png">
+						</a>
 					</div>
 					<div class="reviewStarContainer">
-						<a href=""><img src="<%=request.getContextPath()%>/imgs/4stars.png">e più</a>
+						<a href="<%= request.getContextPath()%>/Catalogue?filter=assessment&stars=4">
+							<img src="<%=request.getContextPath()%>/imgs/4stars.png">e più
+						</a>
 					</div>
 					<div class="reviewStarContainer">
-						<a href=""><img src="<%=request.getContextPath()%>/imgs/3stars.png">e più</a>
+						<a href="<%= request.getContextPath()%>/Catalogue?filter=assessment&stars=3">
+							<img src="<%=request.getContextPath()%>/imgs/3stars.png">e più
+						</a>
 					</div>
 					<div class="reviewStarContainer">
-						<a href=""><img src="<%=request.getContextPath()%>/imgs/2stars.png">e più</a>
+						<a href="<%= request.getContextPath()%>/Catalogue?filter=assessment&stars=2">
+							<img src="<%=request.getContextPath()%>/imgs/2stars.png">e più
+						</a>
 					</div>
 					<div class="reviewStarContainer">
-						<a href=""><img src="<%=request.getContextPath()%>/imgs/1star.png">e più</a>
+						<a href="<%= request.getContextPath()%>/Catalogue?filter=assessment&stars=1">
+							<img src="<%=request.getContextPath()%>/imgs/1star.png">e più
+						</a>
 					</div>
 				</div>
 			</div>

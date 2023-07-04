@@ -3,6 +3,7 @@ package it.unisa.servlet;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Collection;
+import java.util.Iterator;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -16,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
 import it.unisa.db.ProductDAO;
+import it.unisa.db.ReviewDAO;
 import it.unisa.model.Product;
 
 @WebServlet("/Catalogue")
@@ -59,6 +61,15 @@ public class Catalogue extends HttpServlet {
     		{
     			String category = request.getParameter("categoryName");
     			products = dao.doRetrieveByFilter(category);
+    		}
+    		else if (filter.equals("assessment"))
+    		{
+    			String starsString = request.getParameter("stars");
+    			int stars = -1;
+    			if (starsString != null)
+    				stars = Integer.parseInt(starsString);
+    			
+    			products = dao.doRetrieveByFilter(stars);
     		}
     	}
     	catch(SQLException e)
