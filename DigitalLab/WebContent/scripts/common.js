@@ -12,6 +12,13 @@ function deleteBorderItem(element)
 	item.style.borderColor = "";
 }
 
+/* Inserisce il bordo al dato item */
+function borderItem2(element)
+{
+	let item = element.firstElementChild;
+	item.style.borderColor = "black";
+}
+
 
 
 

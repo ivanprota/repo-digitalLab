@@ -7,6 +7,7 @@
     <link type="text/css" rel="stylesheet" href="<%= request.getContextPath()%>/css/support.css">
     <!-- [JQUERY] Comparsa del menu quando lo la dimensione della pagina è abbastanza piccola -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" src="<%= request.getContextPath()%>/scripts/common.js"></script>
 	<script>
 			$(document).ready(function() {
 				$("#phoneButton").click(function() {

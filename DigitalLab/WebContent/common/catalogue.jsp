@@ -146,7 +146,7 @@
 			%>
 			<div class="product">
 			    <div class="product-image">
-			        <a href="<%=request.getContextPath()%>/common/product.jsp?productCode=<%= product.getCode() %>">
+			        <a href="<%=request.getContextPath()%>/common/product.jsp?productCode=<%= product.getCode()%>">
 			            <img src="<%= request.getContextPath()%>/imgs/products/<%= picture.getImageFileName()%>">
 			        </a>
 			    </div>
