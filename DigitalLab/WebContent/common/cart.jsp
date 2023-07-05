@@ -38,7 +38,7 @@
 
 <%@ include file="../header.jsp" %>
 
-<div id="cartContainer">
+<div id="cartBodyContainer">
     <h1>Carrello</h1>
     
     <div id="cartItems">

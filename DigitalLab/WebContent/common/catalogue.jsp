@@ -2,6 +2,7 @@
 <%@ page import="it.unisa.model.Picture" %>
 <%@ page import="java.util.Collection" %>
 <%@ page import="java.util.Iterator" %>
+<%@ page import="java.text.DecimalFormat" %>
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="UTF-8" %>
 
@@ -164,7 +165,12 @@
 			        <%= product.getBrand() + " " + product.getModel() %>
 			    </div>
 			    <div class="product-price">
-			        <%= product.getPrice() + " $" %>
+			    
+			    	<%
+					    DecimalFormat decimalFormat = new DecimalFormat("#0.00");
+					    String formattedPrice = decimalFormat.format(product.getPrice());
+					%>
+			        <%= formattedPrice %> &euro;
 			    </div>
 			</div>
 			<%

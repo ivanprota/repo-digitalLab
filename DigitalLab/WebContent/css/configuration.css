@@ -1,0 +1,47 @@
+#progressBar {
+  width: 100%;
+  height: 30px;
+  background-color: #1a1a1a;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+#progressBar span {
+  display: block;
+  height: 100%;
+  background-color: #fba304;
+  width: 0;
+  transition: width 0.5s;
+}
+
+#progressBar.complete span {
+  background-color: #3498db;
+}
+
+#progressBar .step {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 100px;
+  height: 100%;
+  text-align: center;
+  padding-left: 7%;
+  line-height: 30px;
+  color: white;
+  font-weight: bold;
+}
+
+#progressButton {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  background-color: #fba304;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+#progressButton:hover {
+  background-color: #e69500;
+}

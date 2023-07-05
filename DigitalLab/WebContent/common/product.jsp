@@ -7,6 +7,8 @@
 <%@ page import="javax.sql.DataSource" %>
 <%@ page import="java.sql.SQLException" %>
 <%@ page import="it.unisa.model.Picture" %>
+<%@ page import="it.unisa.servlet.AddItemToCart" %>
+<%@ page import="java.text.DecimalFormat" %>
 
 <%
    	String productCode = request.getParameter("productCode");
@@ -48,14 +50,13 @@
 					$("#phoneNavContainer").slideToggle();
 				})
 			})
-	</script>		
+	</script>
 </head>
 <body>
 
     <%@ include file="../header.jsp" %>
     
 	<div id="productBodyContainer">
-		
 		<div id="productImagesLeftContainer">
 			<div id="productListImagesContainer">
 				<div class="productImagesContainer">
@@ -87,9 +88,9 @@
 						<%= product.getModel()%>
 					</h1>
 					<div id="productHeaderParagraphContainer">
-						<p>
-							Marca: <%= product.getBrand()%>
-						</p>
+						<div id ="productRatingContainer">
+							<!-- Inserire valutazione -->
+						</div>
 						<p>
 							<a href="<%= request.getContextPath()%>/Catalogue?filter=category&categoryName=<%= product.getCategory()%>">
 								Categoria: <%= product.getCategory()%>
@@ -98,14 +99,55 @@
 					</div>
 				</div>
 				<div id="productPriceContainer">
-					<p>
-						<%= product.getPrice()%>
-					</p>
+					<%
+					    DecimalFormat decimalFormat = new DecimalFormat("#0.00");
+					    String formattedPrice = decimalFormat.format(product.getPrice());
+					%>
+					<p id="price"><%= formattedPrice %> &euro;</p>
+					<p>Tutti i prezzi includono l'IVA.</p>
+				</div>
+				<div id="productDescriptionContainer">
+					<h3>Descrizione</h3>
+					<p><%= product.getDescription()%></p>
+				</div>
+				<div id="productPurchaseContainer">
+					<input type="button" value="Aggiungi al carrello" onclick="addToCart('<%= product.getCode() %>')">
+					<input type="button" value="Acquista">
+					<p>Ricorda che il reso è gratuito!</p>
 				</div>
 			</div>
+			<div id="productReviews">
+				<h3>Recensioni dei clienti</h3>
+				<!-- Inserire recensioni! -->
+			</div>
 		</div>
-		
+		<hr>
+		<div id="similarProducts">
+			<p>Prodotti simili</p>
+			<!-- Inserire codice -->
+		</div>
 	</div>
+
+	<script>
+	  function addToCart(productCode) {
+	    var customer = session.getAttribute("Customer");
+	    alert(customer);
+	    $.ajax({
+	      url: <%=request.getContextPath()%>+"/AddItemToCart",
+	      method: 'POST',
+	      data: {
+	    	  productCode: productCode,
+	    	  customer: customer
+	    	},
+	      success: function(response) {
+	        alert('Prodotto aggiunto al carrello con successo!');
+	      },
+	      error: function(xhr, status, error) {
+	        alert('Si è verificato un errore durante l\'aggiunta del prodotto al carrello.');
+	      }
+	    });
+	  }
+	</script>
 	
     <%@ include file="../footer.jsp" %>
 

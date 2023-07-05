@@ -9,7 +9,20 @@
 		<meta charset="ISO-8859-1">
 		<meta name="viewport" content="initial-scale=1, width=device-width">
 		
+		<link rel="icon" type="image/x-icon" href="<%=request.getContextPath()+"/imgs/favicon.ico"%>">
 		<link type="text/css" rel="stylesheet" href="<%= request.getContextPath()%>/css/header.css">
+		
+		<!-- Effetto di scorrimento per i contatti -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script>
+		$(document).ready(function() {
+		  $("a[href='#footer']").click(function() {
+		    $('html, body').animate({
+		      scrollTop: $("#footer").offset().top
+		    }, 1000); // Tempo di animazione in millisecondi
+		  });
+		});
+		</script>
 		
 	</head>
 	
@@ -61,7 +74,7 @@
 			<!-- Inizio link di supporto -->
 			<div class="helpContainer">
 				<a href="<%=request.getContextPath()%>/common/support.jsp">Assistenza</a>
-				<a href="">Contatti</a>
+				<a href="#footer">Contatti</a>
 			</div>
 			<!-- Fine link di supporto -->
 			

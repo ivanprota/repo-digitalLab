@@ -16,7 +16,7 @@
 	<body>
 
 		<!-- Inizio footer -->
-		<footer>
+		<footer id="footer">
 		
 			<div id="topFooter">
 				<div id="leftTopFooter">

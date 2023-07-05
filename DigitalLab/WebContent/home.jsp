@@ -161,10 +161,12 @@
 		
 			<div id="buttonContainer">
 				<h1>Configura ora il tuo PC</h1>
-				<button id="confButton">CONFIGURA ORA!</button>
+				<a href="<%= request.getContextPath()%>/common/configuration.jsp">
+    				<button id="confButton">CONFIGURA ORA!</button>
+				</a>
 			</div>
 			<div id="confSideImageContainer">
-				<a href="">
+				<a href="<%= request.getContextPath()%>/common/configuration.jsp">
 					<img src="imgs/configpc2.jpg">
 				</a>
 			</div>
