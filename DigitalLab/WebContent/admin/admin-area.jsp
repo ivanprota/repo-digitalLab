@@ -87,19 +87,19 @@
 					<form action="javascript:void(0)" method="POST">
 						<div class="personalData">
 							<label for="name">Nome:</label>
-							<input type="text" name="name" id="adminNameInput" value="<%= admin.getName()%>">
+							<input type="text" name="name" id="adminNameInput" value="<%= admin.getName()%>" maxlength="20">
 						</div>
 						<div class="personalData">
 							<label for="surname">Cognome:</label>
-							<input type="text" name="surname" id="adminSurnameInput" value="<%= admin.getSurname()%>">
+							<input type="text" name="surname" id="adminSurnameInput" value="<%= admin.getSurname()%>" maxlength="20">
 						</div>
 						<div class="personalData">
 							<label for="username">Username:</label>
-							<input type="text" name="username" id="adminUsernameInput" value="<%= admin.getUsername()%>">
+							<input type="text" name="username" id="adminUsernameInput" value="<%= admin.getUsername()%>" maxlength="20">
 						</div>
 						<div class="personalData">
 							<label for="password">Password:</label>
-							<input type="password" name="password" id="adminPasswordInput" value="<%= admin.getPassword()%>">
+							<input type="password" name="password" id="adminPasswordInput" value="<%= admin.getPassword()%>" maxlength="20">
 						</div>
 						<div id="personalUpdateButtonContainer">
 							<button id="personalUpdateButton">Salva cambiamenti</button>

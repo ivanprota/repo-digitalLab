@@ -1,5 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    
+<%
+	String error = (String) request.getAttribute("error");
+	if (error == null)
+		error = "";
+%>
+
 <!DOCTYPE html>
 <html>
 
@@ -10,7 +17,7 @@
 		
 		<title>Accedi</title>
 		
-		<link type="text/css" rel="stylesheet" href="../css/login-signup.css">
+		<link type="text/css" rel="stylesheet" href="<%= request.getContextPath()%>/css/login-signup.css">
 
 	</head>
 
@@ -303,6 +310,7 @@
 		    <div class="signin">
 		    	<div class="content">
 		        	<h2>Accedi</h2>
+		        	<p style="color: red"><%= error%></p>
 		        	<div class="form">
 		          		<form action="<%= request.getContextPath()%>/LoginServlet" method="POST">
 				          <div class="inputBox">

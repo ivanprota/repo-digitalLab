@@ -336,12 +336,14 @@
 			            		<i>Cognome</i>
 			          		</div>		          		          		        
 			          		<div class="inputBox">
-			            		<input type="text" name="email" required>
+			            		<input type="text" name="email" required maxlength="40" oninput="checkEmail(this, 'errorMessageEmail', '#fba304')">
 			            		<i>E-mail</i>
+			            		<p id="errorMessageEmail"></p>
 			          		</div>
 			          		<div class="inputBox">
-			            		<input type="text" name="username" required>
+			            		<input type="text" name="username" maxlength="20" required oninput="checkUsername(this, 'errorMessageUsername', '#fba304')">
 			            		<i>Username</i>
+			            		<p id="errorMessageUsername"></p>
 			          		</div>
 			          		<div class="inputBox">
 			            		<input type="password" name="password" required maxlength="20">

@@ -53,6 +53,8 @@ public class LoginServlet extends HttpServlet
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		
+		String error = "";
+		
 		DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
 		
 		try
@@ -69,19 +71,28 @@ public class LoginServlet extends HttpServlet
 				}
 				else
 				{
-					response.sendRedirect(request.getContextPath() + "/login-signup/login.jsp");
+					if (error.equals(""))
+						error += "Username o password errati";
+					request.setAttribute("error", error);
+					request.getRequestDispatcher("/login-signup/login.jsp").forward(request, response);
 					return;
 				}
 			}
 			else 
 			{
-				response.sendRedirect(request.getContextPath() + "/login-signup/login.jsp");
+				if (error.equals(""))
+					error += "Username o password errati";
+				request.setAttribute("error", error);
+				request.getRequestDispatcher("/login-signup/login.jsp").forward(request, response);
 				return;
 			}
 		}
 		catch (SQLException e)
 		{
 			System.out.println(e);
+			if (error.equals(""))
+				error += "Username o password errati";
+			request.setAttribute("error", error);
 		}
 		
 		try
@@ -98,23 +109,31 @@ public class LoginServlet extends HttpServlet
 				}
 				else 
 				{
-					response.sendRedirect(request.getContextPath() + "/login-signup/login.jsp");
+					if (error.equals(""))
+						error += "Username o password errati";
+					request.setAttribute("error", error);
+					request.getRequestDispatcher("/login-signup/login.jsp").forward(request, response);
 					return;
 				}
 			}
 			else 
 			{
-				response.sendRedirect(request.getContextPath() + "/login-signup/login.jsp");
+				if (error.equals(""))
+					error += "Username o password errati";
+				request.setAttribute("error", error);
+				request.getRequestDispatcher("/login-signup/login.jsp").forward(request, response);
 				return;
 			}
 		}
 		catch (SQLException e)
 		{
 			System.out.println(e);
+			if (error.equals(""))
+				error += "Username o password errati";
+			request.setAttribute("error", error);
+			request.getRequestDispatcher("/login-signup/login.jsp").forward(request, response);
+			return;
 		}
-		
-		response.sendRedirect(request.getContextPath() + "/login-signup/login.jsp");
-		return;
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 

@@ -106,11 +106,11 @@
 						<div id="nameSurnameContainer">
 							<div class="personalData">
 								<label for="name">Nome:</label>
-								<input type="text" id="updateCustomerNameInput" name="name" value="<%= customer.getName()%>">
+								<input type="text" id="updateCustomerNameInput" name="name" value="<%= customer.getName()%>" maxlength="20">
 							</div>
 							<div class="personalData">
 								<label for="surname">Cognome:</label>
-								<input type="text" id="updateCustomerSurnameInput" name="surname" value="<%= customer.getSurname()%>">
+								<input type="text" id="updateCustomerSurnameInput" name="surname" value="<%= customer.getSurname()%>" maxlength="20">
 							</div>
 						</div>
 						<div class="personalData">
@@ -120,19 +120,22 @@
 								if (customer.getPhone() != null)
 									phone += customer.getPhone();
 							%>
-							<input type="tel" id="updateCustomerPhoneInput" name="phone" value="<%= phone%>">
+							<input type="tel" id="updateCustomerPhoneInput" name="phone" value="<%= phone%>" maxlength="10" oninput="checkPhone(this, 'errorMessagePhone')">
+							<p id="errorMessagePhone"></p>
 						</div>
 						<div class="personalData">
 							<label for="email">E-mail:</label>
-							<input type="text" id="updateCustomerEmailInput" name="email" value="<%= customer.getEmail()%>">
+							<input type="text" id="updateCustomerEmailInput" name="email" value="<%= customer.getEmail()%>" maxlength="40" oninput="checkEmail(this, 'errorMessageEmail', 'red')">
+							<p id="errorMessageEmail"></p>
 						</div>
 						<div class="personalData">
 							<label for="username">Username:</label>
-							<input type="text" id="updateCustomerUsernameInput" name="username" value="<%= customer.getUsername()%>">
+							<input type="text" id="updateCustomerUsernameInput" name="username" value="<%= customer.getUsername()%>" maxlength="20" oninput="checkUsername(this, 'errorMessageUsername', 'red')">
+							<p id="errorMessageUsername"></p>
 						</div>
 						<div class="personalData">
 							<label for="password">Password:</label>
-							<input type="password" id="updateCustomerPasswordInput" name="password" value="<%= customer.getPassword()%>">
+							<input type="password" id="updateCustomerPasswordInput" name="password" value="<%= customer.getPassword()%>" maxlength="20">
 						</div>
 						<div id="customerDataButtonContainer">
 							<button type="submit" id="uploadCustomerDataButton">Salva cambiamenti</button>
@@ -181,7 +184,7 @@
 						<form action="<%= request.getContextPath()%>/AddCustomerDataServlet?shippingAddress=true" method="POST">
 							<div class="shippingAddressInput">
 								<label for="street">Via:</label>
-								<input type="text" name="street" placeholder="Via" required>
+								<input type="text" name="street" placeholder="Via" required maxlength="20">
 							</div>
 							<div class="shippingAddressInput">
 								<label for="streetNumber">Civico:</label>
@@ -189,15 +192,15 @@
 							</div>
 							<div class="shippingAddressInput">
 								<label for="city">Paese:</label>
-								<input type="text" name="city" placeholder="Paese" required>
+								<input type="text" name="city" placeholder="Paese" required maxlength="20">
 							</div>
 							<div class="shippingAddressInput">
 								<label for="province">Provincia:</label>
-								<input type="text" name="province" placeholder="Provincia" required>
+								<input type="text" name="province" placeholder="Provincia" required maxlength="15">
 							</div>
 							<div class="shippingAddressInput">
 								<label for="zip">CAP:</label>
-								<input type="text" name="zip" placeholder="CAP" required>
+								<input type="text" name="zip" placeholder="CAP" required maxlength="10">
 							</div>
 							<div id="shippingAddressAddButtonContainer">
 								<button>Salva</button>
@@ -245,15 +248,15 @@
 						<form action="<%= request.getContextPath()%>/AddCustomerDataServlet?paymentMethod=true" method="POST">
 							<div class="paymentMethodInput">
 								<label for="owner">Titolare:</label>
-								<input type="text" name="owner" placeholder="Titolare" required>
+								<input type="text" name="owner" placeholder="Titolare" required maxlength="20">
 							</div>
 							<div class="paymentMethodInput">
 								<label for="pan">Pan:</label>
-								<input type="text" name="pan" placeholder="Pan" required>
+								<input type="text" name="pan" placeholder="Pan" required maxlength="16">
 							</div>
 							<div class="paymentMethodInput">
 								<label for="cvv">Cvv:</label>
-								<input type="text" name="cvv" placeholder="Cvv" required>
+								<input type="text" name="cvv" placeholder="Cvv" required maxlength="3">
 							</div>
 							<div class="paymentMethodInput">
 								<label for="expirationDate">Data di scadenza:</label>

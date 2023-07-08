@@ -171,3 +171,85 @@ function imagePreview()
 		}	
 	}
 }
+
+
+
+
+
+/* Script di controllo */
+function checkEmail(input, errorMessageId, color) 
+{
+  // Pattern per la validazione dell'email
+  let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  // Ottieni il valore dell'input email
+  let email = input.value.trim();
+  
+  let paragraph = document.getElementById(errorMessageId);
+
+  // Verifica se l'email è vuota
+  if (email === '') {
+    document.getElementById(errorMessageId).innerHTML = "";
+  }
+  // Verifica se l'email è valida utilizzando la regular expression
+  else if (!emailPattern.test(email)) {
+    document.getElementById(errorMessageId).innerHTML = "Inserisci un indirizzo email valido.";
+    paragraph.style.color = color;
+    paragraph.style.fontSize = "12px";
+  }
+  // L'email è valida
+  else {
+    document.getElementById(errorMessageId).innerHTML = "";
+  }
+}
+
+function checkUsername(input, errorMessageId, color) 
+{
+  // Pattern per la validazione dell'username
+  let usernamePattern = /^[a-zA-Z0-9_]+$/;
+
+  // Ottieni il valore dell'input username
+  let username = input.value.trim();
+
+
+  let paragraph = document.getElementById(errorMessageId);
+  // Verifica se l'username è vuoto
+  if (username === '') {
+    document.getElementById(errorMessageId).innerHTML = "";
+  }
+
+  // Verifica se l'username contiene solo caratteri alfanumerici e underscore
+  else if (!usernamePattern.test(username)) {
+    document.getElementById(errorMessageId).innerHTML = "L\'username pu&ograve; contenere solo lettere, numeri e underscore.";
+    paragraph.style.color = color;
+    paragraph.style.fontSize = "13px";
+  }
+  // L'username è valido
+  else {
+    document.getElementById(errorMessageId).innerHTML = "";
+  }
+}
+
+function checkPhone(input, errorMessageId) {
+  // Pattern per la validazione del numero di telefono (10 cifre)
+  let phonePattern = /^\d{10}$/;
+
+  // Ottieni il valore dell'input telefono
+  let phone = input.value.trim();
+  
+  let paragraph = document.getElementById(errorMessageId);
+
+  // Verifica se il numero di telefono è vuoto
+  if (phone === '') {
+    document.getElementById(errorMessageId).innerHTML = "";
+  }
+  // Verifica se il numero di telefono non corrisponde al formato desiderato
+  else if (!phonePattern.test(phone)) {
+    document.getElementById(errorMessageId).innerHTML = "Inserisci un numero di telefono valido (10 cifre).";
+    paragraph.style.color = "red";
+  }
+  // Il numero di telefono è valido
+  else {
+    document.getElementById(errorMessageId).innerHTML = "";
+  }
+}
