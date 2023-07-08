@@ -22,8 +22,10 @@ import javax.sql.DataSource;
 
 import it.unisa.db.AdministratorDAO;
 import it.unisa.db.CustomerDAO;
+import it.unisa.db.ShoppingCartDAO;
 import it.unisa.model.Administrator;
 import it.unisa.model.Customer;
+import it.unisa.model.ShoppingCart;
 
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet 
@@ -89,7 +91,7 @@ public class LoginServlet extends HttpServlet
 			if (customer.getUsername().equals(username))
 			{
 				if (customer.getPassword().equals(password))
-				{
+				{			
 					session.setAttribute("customer", customer);
 					response.sendRedirect(request.getContextPath() + "/common/user-area.jsp");
 					return;

@@ -13,6 +13,7 @@ import it.unisa.db.ShoppingCartDAO;
 import it.unisa.model.Customer;
 import it.unisa.model.Contains;
 import it.unisa.db.ContainsDAO;
+import it.unisa.db.CustomerDAO;
 import it.unisa.model.Product;
 import it.unisa.db.ProductDAO;
 import javax.sql.DataSource;
@@ -40,8 +41,7 @@ public class AddItemToCart extends HttpServlet {
         int productCode = Integer.parseInt(request.getParameter("productCode"));
 
         // Recupera l'utente corrente dal sistema di autenticazione
-        Customer customer = (Customer) request.getSession().getAttribute("customer");
-        String customerUsername = customer.getUsername();
+        String customerUsername = request.getParameter("customerUsername");
 
         // Recupera il carrello dell'utente dal database utilizzando il nome utente
         ShoppingCart shoppingCart = null;
@@ -51,8 +51,21 @@ public class AddItemToCart extends HttpServlet {
             // Gestisci eventuali errori
             e.printStackTrace();
         }
-
-        if (shoppingCart == null) {
+        
+        CustomerDAO customerDAO = new CustomerDAO(dataSource);
+        Customer customer = null;
+        try 
+        {
+        	customer = customerDAO.doRetrieveByKey(customerUsername);
+        	shoppingCartDAO.doSizeUpdateByKey(customerUsername);
+        	
+        }
+        catch (SQLException e)
+        {
+        	System.out.println(e);
+        }
+        
+       /* if (shoppingCart == null) {
             // Il carrello dell'utente non esiste nel database, puoi creare uno nuovo se necessario
             shoppingCart = new ShoppingCart();
             shoppingCart.setCustomer(customer);
@@ -69,7 +82,7 @@ public class AddItemToCart extends HttpServlet {
         } catch (SQLException e) {
             // Gestisci eventuali errori
             e.printStackTrace();
-        }
+        }*/
 
         // Crea la relazione tra il carrello e il prodotto
         Contains contains = new Contains();
@@ -87,16 +100,26 @@ public class AddItemToCart extends HttpServlet {
         // Salva la relazione tra carrello e prodotto nel database
         try {
         	ContainsDAO containsDAO = new ContainsDAO(dataSource);
+        	contains.setQuantity(1);
             containsDAO.doSave(contains);
         } catch (SQLException e) {
             // Gestisci eventuali errori
             e.printStackTrace();
+            try
+            {    	
+            	contains = containsDAO.doRetrieveByKey(customerUsername, productCode);
+            	containsDAO.doUpdateQuantity(customerUsername, productCode);
+            }
+            catch (SQLException e2)
+            {
+            	System.out.println(e2);
+            }
         }
 
-        // Salva l'oggetto ShoppingCart nella sessione
+        /*// Salva l'oggetto ShoppingCart nella sessione
         request.getSession().setAttribute("shoppingCart", shoppingCart);
 
         // Reindirizza l'utente alla pagina del catalogo o al carrello
-        response.sendRedirect("catalogue.jsp");
+        response.sendRedirect("catalogue.jsp");*/
     }
 }

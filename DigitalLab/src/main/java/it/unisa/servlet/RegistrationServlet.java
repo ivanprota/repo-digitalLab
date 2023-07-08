@@ -16,7 +16,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
 import it.unisa.db.CustomerDAO;
+import it.unisa.db.ShoppingCartDAO;
 import it.unisa.model.Customer;
+import it.unisa.model.ShoppingCart;
 
 @WebServlet("/RegistrationServlet")
 public class RegistrationServlet extends HttpServlet 
@@ -50,6 +52,22 @@ public class RegistrationServlet extends HttpServlet
 			System.out.println(e);
 			response.sendRedirect(request.getContextPath() + "/login-signup/signup.jsp");
 			return;
+		}
+		
+		ShoppingCartDAO shoppingCartDAO = new ShoppingCartDAO(ds);
+		ShoppingCart shoppingCart = new ShoppingCart();
+		
+		try
+		{
+			customer = dao.doRetrieveByKey(username);
+			
+			shoppingCart.setCustomer(customer);
+			shoppingCart.setSize(0);
+			shoppingCartDAO.doSave(shoppingCart);
+		}
+		catch (SQLException e)
+		{
+			System.out.println(e);
 		}
 		
 		response.sendRedirect(request.getContextPath() + "/common/user-area.jsp");

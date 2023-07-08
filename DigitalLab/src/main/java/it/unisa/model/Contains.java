@@ -5,6 +5,7 @@ public class Contains
 	// Instance variables
 	private Product product;
 	private ShoppingCart shoppingCart;
+	private int quantity;
 	
 	
 	// Constructors
@@ -13,6 +14,7 @@ public class Contains
 	{
 		product = null;
 		shoppingCart = null;
+		quantity = -1;
 	}
 	
 	
@@ -28,6 +30,11 @@ public class Contains
 		return shoppingCart;
 	}
 	
+	public int getQuantity()
+	{
+		return quantity;
+	}
+	
 	
 	// Set methods
 	
@@ -41,6 +48,15 @@ public class Contains
 		shoppingCart = newShoppingCart;
 	}
 	
+	public void setQuantity(int newQuantity)
+	{
+		quantity = newQuantity;
+	}
+	
+	public void incrementQuantity()
+	{
+		quantity++;
+	}
 	
 	// Overriding from Object class
 	
@@ -48,6 +64,7 @@ public class Contains
 	public String toString()
 	{
 		return "" +product.toString()+
-			   ", " +shoppingCart.toString();
+			   ", " +shoppingCart.toString()+
+			   ", " +quantity;
 	}
 }

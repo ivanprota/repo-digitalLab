@@ -22,6 +22,7 @@ public class LogoutServlet extends HttpServlet
 		HttpSession session = request.getSession();
 		session.removeAttribute("admin");
 		session.removeAttribute("customer");
+		session.removeAttribute("shoppingCart");
 		session.invalidate();
 		
 		response.sendRedirect(request.getContextPath());

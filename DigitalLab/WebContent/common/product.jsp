@@ -1,3 +1,4 @@
+<%@page import="it.unisa.model.Customer"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="it.unisa.db.PictureDAO"%>
 <%@page import="java.util.Collection"%>
@@ -7,6 +8,7 @@
 <%@ page import="javax.sql.DataSource" %>
 <%@ page import="java.sql.SQLException" %>
 <%@ page import="it.unisa.model.Picture" %>
+<%@ page import="it.unisa.model.Customer"%>
 <%@ page import="it.unisa.servlet.AddItemToCart" %>
 <%@ page import="java.text.DecimalFormat" %>
 
@@ -31,6 +33,8 @@
    	Iterator<Picture> it = pictures.iterator();
    	Picture picture1 = (Picture) it.next();
    	Picture picture2 = (Picture) it.next();
+   	
+   	Customer customer = (Customer) session.getAttribute("customer");
 %>
 
 <!DOCTYPE html>
@@ -111,9 +115,22 @@
 					<p><%= product.getDescription()%></p>
 				</div>
 				<div id="productPurchaseContainer">
-					<input type="button" value="Aggiungi al carrello" onclick="addToCart('<%= product.getCode() %>')">
+					<%
+						if (customer == null)
+						{
+					%>
+							<p>Autenticati per effettuare l'acquisto!</p>
+					<%		
+						}
+						else
+						{
+					%>
+					<input type="button" value="Aggiungi al carrello" onclick="addToCart('<%= product.getCode() %>', '<%=customer.getUsername()%>')">
 					<input type="button" value="Acquista">
 					<p>Ricorda che il reso è gratuito!</p>
+					<% 
+						}
+					%>
 				</div>
 			</div>
 			<div id="productReviews">
@@ -129,15 +146,14 @@
 	</div>
 
 	<script>
-	  function addToCart(productCode) {
-	    var customer = session.getAttribute("Customer");
-	    alert(customer);
+	  function addToCart(productCode, customerUsername) {
+	    alert(customerUsername);
 	    $.ajax({
-	      url: <%=request.getContextPath()%>+"/AddItemToCart",
+	      url: "<%=request.getContextPath()%>/addItemToCart",
 	      method: 'POST',
 	      data: {
 	    	  productCode: productCode,
-	    	  customer: customer
+	    	  customerUsername: customerUsername
 	    	},
 	      success: function(response) {
 	        alert('Prodotto aggiunto al carrello con successo!');

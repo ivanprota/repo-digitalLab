@@ -1,5 +1,8 @@
+<%@page import="it.unisa.model.ShoppingCart"%>
+<%@page import="it.unisa.db.PictureDAO"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="UTF-8" %>
 <%@ page import="it.unisa.model.Product" %>
+<%@ page import="it.unisa.model.Picture" %>
 <%@ page import="java.util.List" %>
 <%@ page import="javax.servlet.http.HttpServletRequest" %>
 <%@ page import="javax.servlet.http.HttpSession" %>
@@ -8,16 +11,23 @@
 <%@ page import="java.util.Iterator" %>
 <%@ page import="java.util.ListIterator" %>
 <%@ page import="java.util.Map" %>
+<%@ page import="java.util.HashMap" %>
 <%@ page import="java.util.Set" %>
 <%@ page import="it.unisa.db.ContainsDAO" %>
 <%@ page import="java.sql.SQLException" %>
 <%@ page import="it.unisa.model.Contains" %>
+<%@ page import="it.unisa.model.ShoppingCart" %>
 <%@ page import="javax.sql.DataSource" %>
 <%@ page import="it.unisa.db.ProductDAO" %>
 <%@ page import="it.unisa.model.Product" %>
+<%@ page import="it.unisa.model.Customer" %>
+<%@ page import="java.text.DecimalFormat" %>
 
-<% String username = (String) session.getAttribute("username"); %>
-<% DataSource dataSource = (DataSource) getServletContext().getAttribute("DataSource"); %>
+<% 
+	Customer customer = (Customer) session.getAttribute("customer");
+	DataSource dataSource = (DataSource) getServletContext().getAttribute("DataSource");
+%>
+ 
 
 <!DOCTYPE html>
 <html>
@@ -26,6 +36,7 @@
     <title>Il mio carrello DigitalLab.it</title>
     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/cart.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="<%= request.getContextPath()%>/scripts/common.js"></script>
     <script>
         $(document).ready(function() {
             $("#phoneButton").click(function() {
@@ -43,61 +54,87 @@
     
     <div id="cartItems">
 	<%
-	    Collection<Contains> containsItems;
-	    ContainsDAO containsDAO = new ContainsDAO(dataSource);
-	    try {
-	        containsItems = containsDAO.doRetrieveAll(username);
-	    } catch (SQLException e) {
-	        e.printStackTrace();
-	        containsItems = new ArrayList<>();
-	    }
+		if (customer == null)
+		{
+	%>
+		<p>Il tuo carrello è vuoto.</p>
+	<%
+		}
+		else
+		{
+		    Collection<Contains> containsItems;
+		    ContainsDAO containsDAO = new ContainsDAO(dataSource);
+		    try {
+		        containsItems = containsDAO.doRetrieveAllByKey(customer.getUsername());
+		    } catch (SQLException e) {
+		        e.printStackTrace();
+		        containsItems = new ArrayList<>();
+		    }
+		
+		    Collection<Product> cartItems = new ArrayList<>();
+		    ProductDAO productDAO = new ProductDAO(dataSource);
+		
+		    Map<Integer, Integer> map = new HashMap<>();
+		    for (Contains contains : containsItems) {
+		        int productCode = contains.getProduct().getCode();
+		        Product product = productDAO.doRetrieveByKey(productCode);
+		        cartItems.add(product);
+		        
+		        map.put(productCode, contains.getQuantity());
+		    }
 	
-	    Collection<Product> cartItems = new ArrayList<>();
-	    ProductDAO productDAO = new ProductDAO(dataSource);
-	
-	    for (Contains contains : containsItems) {
-	        int productCode = contains.getProduct().getCode();
-	        Product product = productDAO.doRetrieveByKey(productCode);
-	        cartItems.add(product);
-	    }
-
-            if (cartItems.isEmpty()) {
+	            if (cartItems.isEmpty()) {
         %>
             <p>Il tuo carrello è vuoto.</p>
         <% 
-            } else {
-                for (Product product : cartItems) {
+            	} else {
+                	for (Product product : cartItems) {
+                		PictureDAO pictureDAO = new PictureDAO(dataSource);
+                		Picture picture = pictureDAO.doRetrieveAllByKey(product.getCode()).iterator().next();
+                		
+                		int quantity = map.get(product.getCode());
         %>
                     <div class="cartItem">
                         <div class="cartItemImage">
-                            <img src="">			<!-- Immagine!!!!!!! -->
+                            <img src="<%= request.getContextPath()%>/imgs/products/<%= picture.getImageFileName()%>">			<!-- Immagine!!!!!!! -->
                         </div>
                         <div class="cartItemDetails">
+                        <%
+					    	DecimalFormat decimalFormat = new DecimalFormat("#0.00");
+					    	String formattedPrice = decimalFormat.format(product.getPrice());
+						%>
                             <h3><%=product.getBrand() + " " + product.getModel()%></h3>
-                            <p>Prezzo: <%= product.getPrice() %> €</p>
+                            <p>Prezzo: <%= formattedPrice %> &euro; Quantità: <%= quantity%></p>
                             <!-- Altre informazioni sui prodotti -->
                             
                         </div>
                     </div>
         <%
-                }
-            }
+                	}
+            	}
         %>
     </div>
-    
+    	
     <div id="cartSummary">
-	    <% double total = 0.0;
+	    <% double total = 0.00;
 	
 	    for (Product product : cartItems) {
-	        total += product.getPrice();
-	    } %>
-        <p>Totale: <%= total %> EURO</p>
+	        int quantity = map.get(product.getCode());
+	        total += product.getPrice() * quantity;
+	    } 
+    	DecimalFormat decimalFormat = new DecimalFormat("#0.00");
+    	String formattedPrice = decimalFormat.format(total);
+	    %>
+        <p>Totale: <%= formattedPrice %> &euro;</p>
         
         <div id="cartActions">
-            <button>Procedi al pagamento</button>
-            <button>Svuota carrello</button>
+            <a href=""><button>Procedi al pagamento</button></a>
+            <a href="<%= request.getContextPath()%>/EmptyCart"><button>Svuota carrello</button></a>
         </div>
     </div>
+    <% 
+		}
+    %>
 </div>
 
 <%@ include file="../footer.jsp" %>

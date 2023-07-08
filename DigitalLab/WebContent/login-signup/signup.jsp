@@ -12,6 +12,8 @@
 		
 		<link type="text/css" rel="stylesheet" href="../css/login-signup.css">
 		
+		<script type="text/javascript" src="<%= request.getContextPath()%>/scripts/common.js"></script>
+		
 		<style type="text/css">
 			
 			section .signin .content .form .inputBox {
@@ -326,11 +328,11 @@
 		        	<div class="form">
 		        		<form action="<%= request.getContextPath()%>/RegistrationServlet" method="POST">
 			          		<div class="inputBox">
-			            		<input type="text" name="name" required>
+			            		<input type="text" name="name" required maxlength="20">
 			            		<i>Nome</i>
 			          		</div>
 			          		<div class="inputBox">
-			            		<input type="text" name="surname" required>
+			            		<input type="text" name="surname" required maxlength="20">
 			            		<i>Cognome</i>
 			          		</div>		          		          		        
 			          		<div class="inputBox">
@@ -342,7 +344,7 @@
 			            		<i>Username</i>
 			          		</div>
 			          		<div class="inputBox">
-			            		<input type="password" name="password" required>
+			            		<input type="password" name="password" required maxlength="20">
 			            		<i>Password</i>
 			          		</div>
 			          		<div class="links">

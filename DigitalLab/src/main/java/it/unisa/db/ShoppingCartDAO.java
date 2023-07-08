@@ -88,6 +88,74 @@ public class ShoppingCartDAO
 		return (result != 0);
 	}
 	
+	public synchronized boolean doEmptyByKey(String username) throws SQLException
+	{
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		int result = 0;
+		String updateSQL = "UPDATE " +Constants.SHOPPING_CART_TABLE_NAME+ 
+				" SET shopping_cart_size = 0 WHERE shopping_cart_customer_username = ?";
+		
+		try
+		{
+			connection = ds.getConnection();
+			preparedStatement = connection.prepareStatement(updateSQL);
+			preparedStatement.setString(1, username);
+			
+			result = preparedStatement.executeUpdate();
+		}
+		finally
+		{
+			try
+			{
+				if (preparedStatement != null)
+					preparedStatement.close();
+			}
+			finally
+			{
+				if (connection != null)
+					connection.close();
+			}	
+		}
+		
+		return (result != 0);
+	}
+	
+	public synchronized boolean doSizeUpdateByKey(String username) throws SQLException
+	{
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		int result = 0;
+		String updateSQL = "UPDATE " +Constants.SHOPPING_CART_TABLE_NAME+ 
+				" SET shopping_cart_size = shopping_cart_size + 1 WHERE shopping_cart_customer_username = ?";
+		
+		try
+		{
+			connection = ds.getConnection();
+			preparedStatement = connection.prepareStatement(updateSQL);
+			preparedStatement.setString(1, username);
+			
+			result = preparedStatement.executeUpdate();
+		}
+		finally
+		{
+			try
+			{
+				if (preparedStatement != null)
+					preparedStatement.close();
+			}
+			finally
+			{
+				if (connection != null)
+					connection.close();
+			}			
+		}
+		
+		return (result != 0);
+	}
+	
 	public synchronized ShoppingCart doRetrieveByKey(String username) throws SQLException
 	{
 		Connection connection = null;
