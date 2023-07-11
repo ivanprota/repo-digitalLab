@@ -96,6 +96,41 @@ public class OrderDAO
 		return (result != 0);
 	}
 	
+	public synchronized int doRetrieveLastOrderCode() throws SQLException
+	{
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		int productCode = -1;
+		String selectSQL = "SELECT customer_order_code FROM " +Constants.ORDER_TABLE_NAME+ 
+				" ORDER BY customer_order_code DESC LIMIT 1";
+		
+		try
+		{
+			connection = ds.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+			
+			ResultSet rs = preparedStatement.executeQuery();
+			rs.next();
+			productCode = rs.getInt("customer_order_code");
+		}
+		finally
+		{
+			try
+			{
+				if (preparedStatement != null)
+					preparedStatement.close();
+			}
+			finally
+			{
+				if (connection != null)
+					connection.close();
+			}
+		}
+		
+		return productCode;
+	}
+	
 	public synchronized Order doRetrieveByKey(int code) throws SQLException
 	{
 		Connection connection = null;
