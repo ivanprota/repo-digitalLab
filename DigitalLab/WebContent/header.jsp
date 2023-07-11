@@ -129,20 +129,20 @@
 			<div id="phoneNavContainer">
 				<ul>
 					<li>
-						<a href="">Il mio profilo</a>
-						<a href="">Carrello</a>
+						<a href="<%= request.getContextPath()%>/UserRedirectServlet" onmouseover="borderItem(this)" onmouseout="deleteBorderItem(this)">Il mio profilo</a>
+						<a href="<%=request.getContextPath()%>/common/cart.jsp" onmouseover="borderItem(this)" onmouseout="deleteBorderItem(this)">Carrello</a>
 					</li>
-					<li><a href="">CASE</a></li>
-					<li><a href="">SCHEDE MADRI</a></li>
-					<li><a href="">CPU</a></li>
-					<li><a href="">GPU</a></li>
-					<li><a href="">RAM</a></li>
-					<li><a href="">STORAGE</a></li>
-					<li><a href="">COOLING</a></li>
-					<li><a href="">PSU</a></li>
-					<li><a href="">MONITOR</a></li>
-					<li><a href="">SISTEMI OPERATIVI</a></li>
-					<li><a href="">ACCESSORI</a></li>
+					<li><a href="<%= request.getContextPath()%>/Catalogue?filter=category&categoryName=Case">CASE</a></li>
+					<li><a href="<%= request.getContextPath()%>/Catalogue?filter=category&categoryName=Schede%20Madri">SCHEDE MADRI</a></li>
+					<li><a href="<%= request.getContextPath()%>/Catalogue?filter=category&categoryName=CPU">CPU</a></li>
+					<li><a href="<%= request.getContextPath()%>/Catalogue?filter=category&categoryName=GPU">GPU</a></li>
+					<li><a href="<%= request.getContextPath()%>/Catalogue?filter=category&categoryName=RAM">RAM</a></li>
+					<li><a href="<%= request.getContextPath()%>/Catalogue?filter=category&categoryName=Storage">STORAGE</a></li>
+					<li><a href="<%= request.getContextPath()%>/Catalogue?filter=category&categoryName=Cooling">COOLING</a></li>
+					<li><a href="<%= request.getContextPath()%>/Catalogue?filter=category&categoryName=PSU">PSU</a></li>
+					<li><a href="<%= request.getContextPath()%>/Catalogue?filter=category&categoryName=Monitor">MONITOR</a></li>
+					<li><a href="<%= request.getContextPath()%>/Catalogue?filter=category&categoryName=Sistemi%20Operativi">SISTEMI OPERATIVI</a></li>
+					<li><a href="<%= request.getContextPath()%>/Catalogue?filter=category&categoryName=Accessori">ACCESSORI</a></li>
 				</ul>				
 			</div>
 			

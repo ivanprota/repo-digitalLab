@@ -1,0 +1,169 @@
+@charset "ISO-8859-1";
+
+#checkoutBodyContainer{
+	background-color: #f2f2f2;
+	margin: 0 auto;
+	padding: 10px;
+}
+
+#checkoutBodyContainer h1{
+	text-align: center;
+	padding-bottom: 10px;
+}
+
+#checkoutBodyContainer hr {
+	color: #f2f2f2;
+}
+
+.checkoutBodyFields {
+	background-color: white;
+	display: flex;
+	padding-left: 20px;
+	flex-wrap: wrap;
+	padding-bottom: 5px;
+}
+
+.checkoutBodyFields .change{
+	font-style: oblique;
+	padding-top: 1%;
+	padding-left:5%;
+}
+
+.checkoutBodyFields .change a{
+	text-decoration: none;
+	color: #e68000;
+}
+
+.checkoutBodyFields .change a:hover{
+	text-decoration: none;
+	color: #f90;
+}
+
+.ListContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+  padding-bottom: 5px;
+}
+
+.choice {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  text-align: justify;
+  width: 30%;
+  background-color: #f2f2f2;
+  padding: 3px;
+  margin: 10px;
+  margin-top: 5px;
+}
+
+#productsContainer p{
+  	width: 100%;
+  	background-color: white;
+}
+
+.cartItem {
+	display: flex;
+	margin: 20px;
+}
+
+.cartItemImage img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  margin-right: 20px;
+  border: solid lightgrey 1px;
+  border-radius: 100px;
+}
+
+.cartItemDetails h3 {
+  font-size: 16px;
+  font-weight: normal;
+}
+
+.cartItemDetails p {
+  font-size: 14px;
+  font-style: italic;
+  color: #888;
+}
+
+#total {
+	font-size: 22px;
+  	font-weight: bold;
+}
+
+#completeOrderButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
+
+#completeOrderButton input {
+	display: flex;
+  	margin-top: 20px;
+  	margin-bottom: 20px;
+}
+
+#completeOrderButton input {
+  align-items: center;
+  background-color: #fba304;
+  border: 0;
+  border-radius: 100px;
+  box-sizing: border-box;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: -apple-system, system-ui, system-ui, "Segoe UI", Roboto, "Helvetica Neue", "Fira Sans", Ubuntu, Oxygen, "Oxygen Sans", Cantarell, "Droid Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  justify-content: center;
+  line-height: 20px;
+  max-width: 480px;
+  min-height: 40px;
+  min-width: 0px;
+  overflow: hidden;
+  padding: 0px;
+  padding-left: 10px;
+  padding-right: 10px;
+  text-align: center;
+  touch-action: manipulation;
+  transition: background-color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, box-shadow 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  user-select: none;
+  -webkit-user-select: none;
+  vertical-align: middle;
+  margin-left: 2%;
+  margin-right: 2%;
+}
+
+#completeOrderButton input:hover,
+.button-18:focus { 
+  background-color: #e29404;
+  color: #ffffff;
+}
+
+#completeOrderButton input:active {
+  background: #e29404;
+  color: rgb(255, 255, 255, .7);
+}
+
+span {
+	display: flex;
+  	align-items: center;
+  	flex-direction: column;
+  	text-align: center;
+	font-size: 10px;
+	margin-bottom: 10px;
+}
+
+.centered-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 75vh;
+  text-align: center;
+}

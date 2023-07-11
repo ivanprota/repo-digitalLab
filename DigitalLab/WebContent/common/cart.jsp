@@ -95,22 +95,31 @@
                 		int quantity = map.get(product.getCode());
         %>
                     <div class="cartItem">
-                        <div class="cartItemImage">
-                            <img src="<%= request.getContextPath()%>/imgs/products/<%= picture.getImageFileName()%>">			<!-- Immagine!!!!!!! -->
-                        </div>
-                        <div class="cartItemDetails">
-                        <%
-					    	DecimalFormat decimalFormat = new DecimalFormat("#0.00");
-					    	String formattedPrice = decimalFormat.format(product.getPrice());
-						%>
-                            <h3><%=product.getBrand() + " " + product.getModel()%></h3>
-                            <p>Prezzo: <%= formattedPrice %> &euro; Quantità: <%= quantity%></p>
-                            <!-- Altre informazioni sui prodotti -->
-                            
-                        </div>
+	                	<div class="cartItemImage">
+	                    	<img src="<%= request.getContextPath()%>/imgs/products/<%= picture.getImageFileName()%>">
+	                    </div>
+	                    <div class="cartItemDetails">
+	                        <%
+						    	DecimalFormat decimalFormat = new DecimalFormat("#0.00");
+						    	String formattedPrice = decimalFormat.format(product.getPrice());
+							%>
+							
+	                            <h3>
+	                            	<a href="<%=request.getContextPath()%>/common/product.jsp?productCode=<%= product.getCode()%>">
+	                            	<%=product.getBrand() + " " + product.getModel()%>
+	                        		</a>
+	                        	</h3>
+	                            <p>Prezzo: <%= formattedPrice %> &euro; Quantità: <%= quantity%></p>
+	                            <!-- Altre informazioni sui prodotti -->
+	                    </div>
+                        
                     </div>
         <%
                 	}
+                	
+                	// Da passare a checkout.jsp
+                	session.setAttribute("cartItems", cartItems);
+                	session.setAttribute("mapProductsQuantity", map);
             	}
         %>
     </div>
@@ -128,7 +137,7 @@
         <p>Totale: <%= formattedPrice %> &euro;</p>
         
         <div id="cartActions">
-            <a href=""><button>Procedi al pagamento</button></a>
+            <a href="<%=request.getContextPath()%>/LoadCheckOutCustomerData"><button>Procedi al pagamento</button></a>
             <a href="<%= request.getContextPath()%>/EmptyCart"><button>Svuota carrello</button></a>
         </div>
     </div>
