@@ -4,12 +4,15 @@
     import="it.unisa.model.Customer, 
     it.unisa.model.ShippingAddress, 
     it.unisa.model.PaymentMethod,
-    it.unisa.model.Product, 
+    it.unisa.model.Product,
+    it.unisa.model.Composes,
+    it.unisa.model.Picture, 
     java.util.Collection, 
     java.util.Iterator,
     java.text.DecimalFormat,
     javax.sql.DataSource,
     it.unisa.db.ComposesDAO,
+    it.unisa.db.PictureDAO,
     java.sql.SQLException"%>
     
 <%
@@ -319,9 +322,63 @@
 									<p><%= orderPaymentMethod.getPan()%></p>
 								</div>
 								<div class="orderBoxHeaderDetails">
-									<a href="">Dettagli</a>
+									<a onclick="funzione()">Dettagli</a>
 								</div>
 							</div>
+								<div id="orderBoxDetailsView">
+								<%
+									DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
+									Collection<Product> collection = null;
+									ComposesDAO composesDAO = new ComposesDAO(ds);
+									PictureDAO pictureDAO = new PictureDAO(ds);
+									Composes composes = null;
+									Picture picture = null;
+									try
+									{
+										collection = composesDAO.doRetrieveProductByOrderCode(order.getCode());
+									}
+									catch (SQLException e)
+									{
+										System.out.println(e);
+									}
+									
+									Iterator<Product> it2 = collection.iterator();
+									while (it2.hasNext())
+									{
+										Product product = (Product) it2.next();
+										try
+										{
+											composes = composesDAO.doRetrieveByKey(product.getCode(), order.getCode());
+											picture = pictureDAO.doRetrieveByKey(product.getCode());
+										}
+										catch (SQLException e)
+										{
+											System.out.println(e);
+										}
+								%>
+				                    <div class="cartItem" id="ciao">
+					                	<div class="cartItemImage">
+					                  		<img src="<%= request.getContextPath()%>/imgs/products/<%= picture.getImageFileName()%>">
+					                    </div>
+					                    <div class="cartItemDetails">
+					                        <%
+										    	DecimalFormat decimalFormat = new DecimalFormat("#0.00");
+										    	String formattedPrice = decimalFormat.format(product.getPrice());
+											%>
+											
+					                            <h3>
+					                            	<a href="<%=request.getContextPath()%>/common/product.jsp?productCode=<%= product.getCode()%>">
+					                            	<%=product.getBrand() + " " + product.getModel()%>
+					                        		</a>
+					                        	</h3>
+					                            <p>Prezzo: <%= formattedPrice %> &euro; Quantità: <%= composes.getQuantity()%></p>
+					                            <!-- Altre informazioni sui prodotti -->
+					                    </div>                       
+                    				</div>	
+                    				<%
+										}
+                    				%>							
+								</div>
 						</div>
 						<%
 								}

@@ -28,7 +28,7 @@ public class ComposesDAO
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		
-		String insertSQL = "INSERT INTO " +Constants.COMPOSES_TABLE_NAME+ " VALUES (?, ?)";
+		String insertSQL = "INSERT INTO " +Constants.COMPOSES_TABLE_NAME+ " VALUES (?, ?, ?)";
 		
 		try
 		{
@@ -36,6 +36,7 @@ public class ComposesDAO
 			preparedStatement = connection.prepareStatement(insertSQL);
 			preparedStatement.setInt(1, composes.getProduct().getCode());
 			preparedStatement.setInt(2, composes.getOrder().getCode());
+			preparedStatement.setInt(3, composes.getQuantity());
 			
 			preparedStatement.executeUpdate();
 			//connection.commit();
@@ -119,6 +120,8 @@ public class ComposesDAO
 			int oCode = rs.getInt("composes_order_code");
 			order = dao2.doRetrieveByKey(oCode);
 			composes.setOrder(order);
+			int quantity = rs.getInt("composes_product_quantity");
+			composes.setQuantity(quantity);
 		}
 		finally
 		{
@@ -207,6 +210,8 @@ public class ComposesDAO
 				int oCode = rs.getInt("composes_order_code");
 				customerOrder = dao2.doRetrieveByKey(oCode);
 				composes.setOrder(customerOrder);
+				int quantity = rs.getInt("composes_product_quantity");
+				composes.setQuantity(quantity);
 				
 				composesCollection.add(composes);
 			}

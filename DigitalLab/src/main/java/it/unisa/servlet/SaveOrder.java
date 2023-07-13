@@ -106,6 +106,7 @@ public class SaveOrder extends HttpServlet {
         	Composes composes = new Composes();
         	composes.setProduct(product);
         	composes.setOrder(order);
+        	composes.setQuantity(map.get(product.getCode()));
         	ComposesDAO composesDAO = new ComposesDAO(dataSource);
         	try {
         		composesDAO.doSave(composes);
