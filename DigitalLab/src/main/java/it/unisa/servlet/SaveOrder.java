@@ -117,6 +117,8 @@ public class SaveOrder extends HttpServlet {
         // Cancellare gli attributi!
         session.removeAttribute("ShippingAddress");
         session.removeAttribute("PaymentMethod");
+        session.removeAttribute("orders");
+        session.removeAttribute("orderProducts");
         
         // Svuotare il carrello!
 		ShoppingCartDAO dao = new ShoppingCartDAO(dataSource);

@@ -6,7 +6,11 @@
     it.unisa.model.PaymentMethod,
     it.unisa.model.Product, 
     java.util.Collection, 
-    java.util.Iterator"%>
+    java.util.Iterator,
+    java.text.DecimalFormat,
+    javax.sql.DataSource,
+    it.unisa.db.ComposesDAO,
+    java.sql.SQLException"%>
     
 <%
 	Customer customer = (Customer) session.getAttribute("customer");
