@@ -130,6 +130,52 @@ public class ReviewDAO
 		return review;
 	}
 	
+	public synchronized Collection<Review> doRetrieveAllByKey(int code) throws SQLException
+	{
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		Collection<Review> reviews = new LinkedList<Review>();
+		String selectSQL = "SELECT * FROM " +Constants.REVIEW_TABLE_NAME+ " WHERE review_product_code = ?";
+		
+		try
+		{
+			connection = ds.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+			preparedStatement.setInt(1, code);
+			
+			ResultSet rs = preparedStatement.executeQuery();
+			while(rs.next())
+			{
+				Review review = new Review();
+				Product product;
+				ProductDAO dao = new ProductDAO(ds);
+				int productCode = rs.getInt("review_product_code");
+				product = dao.doRetrieveByKey(productCode);
+				review.setProduct(product);
+				review.setDescription(rs.getString("review_description"));
+				review.setAssessment(rs.getInt("review_assessment"));
+				
+				reviews.add(review);
+			}
+		}
+		finally
+		{
+			try
+			{
+				if (preparedStatement != null)
+					preparedStatement.close();
+			}
+			finally
+			{
+				if (connection != null)
+					connection.close();
+			}				
+		}
+		
+		return reviews;
+	}
+	
 	public synchronized Collection<Review> doRetrieveAll(String order) throws SQLException
 	{
 		Connection connection = null;

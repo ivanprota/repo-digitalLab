@@ -48,6 +48,7 @@ div#productDetailsContainer {
 
 div#productHeaderContainer h1 {
   margin-top: 0;
+  margin-bottom: 0;
   font-weight: normal;
   font-style: italic;
 }
@@ -55,6 +56,18 @@ div#productHeaderContainer h1 {
 div#productHeaderParagraphContainer {
   display: flex;
   border-bottom: solid thin gray;
+}
+
+div#productRatingContainer {
+	width: 20%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-right: 5%;
+}
+
+div#productRatingContainer img {
+	width: 100%;
 }
 
 div#productHeaderParagraphContainer p {
@@ -155,6 +168,10 @@ div#productHeaderParagraphContainer a:hover {
 	font-weight: normal;
 	padding-bottom: 15px;
 	border-bottom: solid 1px #b3b3b3;
+}
+
+div.productReviewContainer {
+	border-bottom: solid thin white;
 }
 
 hr {

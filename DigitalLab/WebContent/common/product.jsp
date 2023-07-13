@@ -1,9 +1,11 @@
+<%@page import="it.unisa.db.ReviewDAO"%>
 <%@page import="it.unisa.model.Customer"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="it.unisa.db.PictureDAO"%>
 <%@page import="java.util.Collection"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
 <%@ page import="it.unisa.model.Product" %>
+<%@ page import="it.unisa.model.Review" %>
 <%@ page import="it.unisa.db.ProductDAO" %>
 <%@ page import="javax.sql.DataSource" %>
 <%@ page import="java.sql.SQLException" %>
@@ -93,7 +95,40 @@
 					</h1>
 					<div id="productHeaderParagraphContainer">
 						<div id ="productRatingContainer">
-							<!-- Inserire valutazione -->
+							<%
+								DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
+								ReviewDAO reviewDAO = new ReviewDAO(ds);
+								String reviewImageFileName = "";
+								Collection<Review> reviews = null;
+								try
+								{
+									reviews = reviewDAO.doRetrieveAllByKey(product.getCode());
+								}
+								catch (SQLException e)
+								{
+									System.out.println(e);
+								}
+								
+								Iterator<Review> it2 = reviews.iterator();
+								int stars = 0;
+								while (it2.hasNext())
+								{
+									Review review = (Review) it2.next();
+									stars += review.getAssessment();
+								}
+								
+								stars /= reviews.size();
+								
+								switch(stars)
+								{
+									case 1: reviewImageFileName += "1stars.png"; break;
+									case 2: reviewImageFileName += "2stars.png"; break;
+									case 3: reviewImageFileName += "3stars.png"; break;
+									case 4: reviewImageFileName += "4stars.png"; break;
+									case 5: reviewImageFileName += "5stars.png"; break;
+								}
+							%>
+							<img src="<%= request.getContextPath()%>/imgs/<%= reviewImageFileName%>">
 						</div>
 						<p>
 							<a href="<%= request.getContextPath()%>/Catalogue?filter=category&categoryName=<%= product.getCategory()%>">
@@ -135,7 +170,18 @@
 			</div>
 			<div id="productReviews">
 				<h3>Recensioni dei clienti</h3>
-				<!-- Inserire recensioni! -->
+					<%
+						Iterator<Review> it3 = reviews.iterator();
+						while (it3.hasNext())
+						{
+							Review review = (Review) it3.next();
+					%>
+						<p>
+							<%= review.getDescription()%>
+						</p>
+					<%
+						}
+					%>
 			</div>
 		</div>
 		<hr>
