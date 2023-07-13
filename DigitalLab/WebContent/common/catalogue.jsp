@@ -41,7 +41,6 @@
 <body>
 	<%@ include file="../header.jsp"%>
 	
-	<!-- FILTRI CATALOGO -->
 	<div id="catalogueBody">
 		<!-- FILTRI Prezzo, brand e recensioni -->
 			<div id="bodyContainer">

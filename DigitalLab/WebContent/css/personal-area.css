@@ -385,18 +385,18 @@ div#orderContainer {
 div#orderContainer > h1 {
 	font-style: italic;
 	font-weight: normal;
-	padding-left: 20px;
+	padding: 20px;
+	border-bottom: solid thin black;
+	margin: 0px;
 }
 
 div.orderBox {
-	border-top: solid thin black;
 	border-bottom: solid thin black;
 }
 
 div.orderBoxHeader {
 	display: flex;
 	padding: 10px 15px 10px 15px;
-	border-bottom: solid thin black;
 }
 
 div.orderBoxHeader h1 {
@@ -436,8 +436,14 @@ div.orderBoxHeaderDetails {
 }
 
 div.orderBoxHeaderDetails a {
-	cursor: pointer;
+	color: #e29404;
 }
+
+div.orderBoxHeaderDetails a:hover {
+	cursor: pointer;
+	color: #fba304;
+}
+
 
 div.productContainer {
 	display: flex;
@@ -446,7 +452,7 @@ div.productContainer {
 .cartItem {
   display: none;
   align-items: center;
-  margin-bottom: 20px;
+  margin: 10px;
   border-bottom: solid gray 1px;
 }
 
@@ -455,7 +461,6 @@ div.productContainer {
   width: 80px;
   height: 80px;
   object-fit: contain;
-  margin-right: 20px;
 }
 
 /* Dettagli del prodotto */
@@ -465,16 +470,15 @@ div.productContainer {
 }
 
 .cartItemDetails h3 {
-  font-size: 18px;
-  margin-bottom: 5px;
+  font-size: 12px;
+  margin-bottom: 2px;
 }
 
 .cartItemDetails p {
-  font-size: 14px;
+  font-size: 10px;
   color: #888;
   margin-bottom: 10px;
 }
-
 /* FINE I MIEI ORDINI */
 /* FINE SEZIONE DI DESTRA */
 

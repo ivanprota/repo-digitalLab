@@ -122,7 +122,6 @@ h1 {
   flex-wrap: wrap;
   justify-content: flex-start;
   width: 100%;
-  
   padding: 20px;
   box-sizing: border-box;
 }
@@ -167,7 +166,7 @@ h1 {
 
 
 
-/* RESONSIVE */	
+/* RESPONSIVE */	
 @media screen and (max-width: 700px)
 {
 	div#catalogueFilters {

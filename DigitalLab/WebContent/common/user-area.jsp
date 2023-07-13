@@ -277,6 +277,7 @@
 					<!-- Fine form nuovo metodo di pagamento -->
 				</div>
 				<!-- Fine metodi di pagamento -->
+				
 				<!-- Inizio ordini -->
 				<div id="orderContainer">
 					<h1>I miei ordini</h1>
@@ -290,97 +291,98 @@
 									Order order = (Order) it.next();
 									ShippingAddress orderShippingAddress = order.getShippingAddress();
 									PaymentMethod orderPaymentMethod = order.getPaymentMethod();
-						%>
-						<div class="orderBox">
-							<div class="orderBoxHeader">
-								<div class="orderBoxHeaderPaymentDate">
-									<h1>Ordine effettuato il:</h1>
-									<p><%= order.getPaymentDate()%></p>
-								</div>
-								<div class="orderBoxHeaderTotalAmount">
-									<h1>Totale:</h1>
-									<p><%= order.getTotalAmount()%></p>
-								</div>
-								<div class="orderBoxHeaderStatus">
-									<h1>Stato:</h1>
-									<p><%= order.getStatus()%></p>
-								</div>
-								<div class="orderBoxHeaderShippingAddress">
-									<h1>Invia a:</h1>
-									<p>
-										<%= orderShippingAddress.getCustomer().getName()%>
-										<%= orderShippingAddress.getCustomer().getSurname()%>,
-										<%= orderShippingAddress.getStreet()%>
-										<%= orderShippingAddress.getStreetNumber()%>,
-										<%= orderShippingAddress.getCity()%>,
-										<%= orderShippingAddress.getProvince()%>,
-										<%= orderShippingAddress.getZip()%>
-									</p>
-								</div>
-								<div class="orderBoxHeaderPaymentMethod">
-									<h1>Pagamento:</h1>
-									<p><%= orderPaymentMethod.getPan()%></p>
-								</div>
-								<div class="orderBoxHeaderDetails">
-									<a onclick="funzione()">Dettagli</a>
-								</div>
-							</div>
-								<div id="orderBoxDetailsView">
-								<%
-									DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
-									Collection<Product> collection = null;
-									ComposesDAO composesDAO = new ComposesDAO(ds);
-									PictureDAO pictureDAO = new PictureDAO(ds);
-									Composes composes = null;
-									Picture picture = null;
-									try
-									{
-										collection = composesDAO.doRetrieveProductByOrderCode(order.getCode());
-									}
-									catch (SQLException e)
-									{
-										System.out.println(e);
-									}
-									
-									Iterator<Product> it2 = collection.iterator();
-									while (it2.hasNext())
-									{
-										Product product = (Product) it2.next();
-										try
-										{
-											composes = composesDAO.doRetrieveByKey(product.getCode(), order.getCode());
-											picture = pictureDAO.doRetrieveByKey(product.getCode());
-										}
-										catch (SQLException e)
-										{
-											System.out.println(e);
-										}
 								%>
-				                    <div class="cartItem" id="ciao">
-					                	<div class="cartItemImage">
-					                  		<img src="<%= request.getContextPath()%>/imgs/products/<%= picture.getImageFileName()%>">
-					                    </div>
-					                    <div class="cartItemDetails">
-					                        <%
-										    	DecimalFormat decimalFormat = new DecimalFormat("#0.00");
-										    	String formattedPrice = decimalFormat.format(product.getPrice());
+									<div class="orderBox">
+										<div class="orderBoxHeader">
+											<div class="orderBoxHeaderPaymentDate">
+												<h1>Ordine effettuato il:</h1>
+												<p><%= order.getPaymentDate()%></p>
+											</div>
+											<div class="orderBoxHeaderTotalAmount">
+												<h1>Totale:</h1>
+												<% DecimalFormat decimalFormat = new DecimalFormat("#0.00");
+												String formattedPrice = decimalFormat.format(order.getTotalAmount());%>
+												<p><%= formattedPrice %> &euro;</p>
+											</div>
+											<div class="orderBoxHeaderStatus">
+												<h1>Stato:</h1>
+												<p><%= order.getStatus()%></p>
+											</div>
+											<div class="orderBoxHeaderShippingAddress">
+												<h1>Invia a:</h1>
+												<p>
+													<%= orderShippingAddress.getCustomer().getName()%>
+													<%= orderShippingAddress.getCustomer().getSurname()%>,
+													<%= orderShippingAddress.getStreet()%>
+													<%= orderShippingAddress.getStreetNumber()%>,
+													<%= orderShippingAddress.getCity()%>,
+													<%= orderShippingAddress.getProvince()%>,
+													<%= orderShippingAddress.getZip()%>
+												</p>
+											</div>
+											<div class="orderBoxHeaderPaymentMethod">
+												<h1>Pagamento:</h1>
+												<p><%= orderPaymentMethod.getPan()%></p>
+											</div>
+											<div class="orderBoxHeaderDetails">
+												<a id="<%=order.getCode()%>" onclick="funzione('<%= order.getCode() %>')">Dettagli</a>
+											</div>
+										</div>
+											<div id="orderBoxDetailsView<%= order.getCode() %>">
+											<%
+												DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
+												Collection<Product> collection = null;
+												ComposesDAO composesDAO = new ComposesDAO(ds);
+												PictureDAO pictureDAO = new PictureDAO(ds);
+												Composes composes = null;
+												Picture picture = null;
+												try
+												{
+													collection = composesDAO.doRetrieveProductByOrderCode(order.getCode());
+												}
+												catch (SQLException e)
+												{
+													System.out.println(e);
+												}
+												
+												Iterator<Product> it2 = collection.iterator();
+												while (it2.hasNext())
+												{
+													Product product = (Product) it2.next();
+													try
+													{
+														composes = composesDAO.doRetrieveByKey(product.getCode(), order.getCode());
+														picture = pictureDAO.doRetrieveByKey(product.getCode());
+													}
+													catch (SQLException e)
+													{
+														System.out.println(e);
+													}
 											%>
-											
-					                            <h3>
-					                            	<a href="<%=request.getContextPath()%>/common/product.jsp?productCode=<%= product.getCode()%>">
-					                            	<%=product.getBrand() + " " + product.getModel()%>
-					                        		</a>
-					                        	</h3>
-					                            <p>Prezzo: <%= formattedPrice %> &euro; Quantità: <%= composes.getQuantity()%></p>
-					                            <!-- Altre informazioni sui prodotti -->
-					                    </div>                       
-                    				</div>	
-                    				<%
-										}
-                    				%>							
-								</div>
-						</div>
-						<%
+							                    <div class="cartItem">
+								                	<div class="cartItemImage">
+								                  		<img src="<%= request.getContextPath()%>/imgs/products/<%= picture.getImageFileName()%>">
+								                    </div>
+								                    <div class="cartItemDetails">
+								                        <%
+													    	DecimalFormat decimalFormat2 = new DecimalFormat("#0.00");
+													    	String formattedPrice2 = decimalFormat.format(product.getPrice());
+														%>
+														
+								                            <h3>
+								                            	<a href="<%=request.getContextPath()%>/common/product.jsp?productCode=<%= product.getCode()%>">
+								                            	<%=product.getBrand() + " " + product.getModel()%>
+								                        		</a>
+								                        	</h3>
+								                            <p>Prezzo: <%= formattedPrice2 %> &euro; Quantità: <%= composes.getQuantity()%></p>
+								                    </div>                       
+			                    				</div>	
+			                    				<%
+													}
+			                    				%>							
+											</div>
+									</div>
+								<%
 								}
 							}
 						%>
@@ -391,6 +393,15 @@
 			<!-- Fine sezione di destra -->
 			
 		</div>
+		
+		<script>
+			  function funzione(orderCode) {
+			    var orderBox = $('#' + orderCode).closest('.orderBox');
+			    var orderDetailsView = orderBox.find('.cartItem');
+			    
+			    orderDetailsView.slideToggle();
+			  }
+		</script>
 		
 		<%@ include file="../footer.jsp" %>
 		
