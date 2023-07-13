@@ -6,8 +6,11 @@
     it.unisa.model.PaymentMethod,
     it.unisa.model.Product,
     it.unisa.model.Composes,
-    it.unisa.model.Picture, 
-    java.util.Collection, 
+    it.unisa.model.Picture,
+    java.util.List,
+    java.util.ArrayList,
+    java.util.Collection,
+    java.util.Collections,
     java.util.Iterator,
     java.text.DecimalFormat,
     javax.sql.DataSource,
@@ -36,11 +39,13 @@
 		response.sendRedirect(request.getContextPath() + "/LoadCustomerDataServlet");
 		return;
 	}
-	Collection<?> orders = (Collection<?>) session.getAttribute("orders");
-	if (orders == null)
-	{
-		response.sendRedirect(request.getContextPath() + "/LoadCustomerDataServlet");
-		return;
+	List<?> orders = (List<?>) session.getAttribute("orders");
+	
+	if (orders == null) {
+	    response.sendRedirect(request.getContextPath() + "/LoadCustomerDataServlet");
+	    return;
+	} else {
+	    Collections.reverse(orders);
 	}
 	Collection<?> orderProducts = (Collection<?>) session.getAttribute("orderProducts");
 %>

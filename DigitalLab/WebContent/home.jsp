@@ -10,7 +10,7 @@
 		<meta charset="ISO-8859-1">
 		<meta name="viewport" content="initial-scale=1, width=device-width">
 		
-		<title>Digital Lab</title>
+		<title>DigitalLab.it</title>
 		
 		<link type="text/css" rel="stylesheet" href="css/slider.css">
 		<link type="text/css" rel="stylesheet" href="css/best-selling.css">

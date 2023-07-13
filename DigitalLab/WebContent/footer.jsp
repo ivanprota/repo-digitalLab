@@ -50,7 +50,7 @@
 						<ul>
 							<li><a href="">Informazioni sulla consegna</a></li>
 							<li><a href="">I nostri servizi</a></li>
-							<li><a href="">Assistenza</a></li>
+							<li><a href="<%=request.getContextPath()%>/common/support.jsp">Assistenza</a></li>
 							<li><a href="">Opportunità di lavoro</a></li>
 						</ul>
 					</div>					

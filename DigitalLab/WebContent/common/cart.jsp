@@ -137,8 +137,10 @@
         <p>Totale: <%= formattedPrice %> &euro;</p>
         
         <div id="cartActions">
-            <a href="<%=request.getContextPath()%>/LoadCheckOutCustomerData"><button>Procedi al pagamento</button></a>
-            <a href="<%= request.getContextPath()%>/EmptyCart"><button>Svuota carrello</button></a>
+        	<%if(!cartItems.isEmpty()) {%>
+	            <a href="<%=request.getContextPath()%>/LoadCheckOutCustomerData"><button>Procedi al pagamento</button></a>
+	            <a href="<%= request.getContextPath()%>/EmptyCart"><button>Svuota carrello</button></a>
+            <%}%>
         </div>
     </div>
     <% 

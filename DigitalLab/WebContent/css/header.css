@@ -65,7 +65,7 @@ header div#searchContainer input#searchInput {
 header div#searchContainer button#searchButton {
 	background-color: #fba304;
 	width: 12%;
-	height: 37px;
+	height: 35px;
 	cursor: pointer;
 	border-radius: 0px 5px 5px 0px;
 	font-family: Verdana, Arial, Tahoma, Serif;
