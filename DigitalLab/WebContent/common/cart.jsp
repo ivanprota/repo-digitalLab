@@ -73,7 +73,7 @@
 		
 		    Collection<Product> cartItems = new ArrayList<>();
 		    ProductDAO productDAO = new ProductDAO(dataSource);
-		
+			
 		    Map<Integer, Integer> map = new HashMap<>();
 		    for (Contains contains : containsItems) {
 		        int productCode = contains.getProduct().getCode();

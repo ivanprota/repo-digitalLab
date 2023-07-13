@@ -5,6 +5,7 @@ public class Composes
 	// Instance variables
 	private Order order;
 	private Product product;
+	private int quantity;
 	
 	
 	// Constructors
@@ -28,6 +29,10 @@ public class Composes
 		return product;
 	}
 	
+	public int getQuantity() {
+		return quantity;
+	}
+	
 	
 	// Set methods
 	
@@ -41,6 +46,9 @@ public class Composes
 		product = newProduct;
 	}
 	
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
 	
 	// Overriding from Object class
 	

@@ -48,45 +48,23 @@ public class AddItemToCart extends HttpServlet {
         try {
             shoppingCart = shoppingCartDAO.doRetrieveByKey(customerUsername);
         } catch (SQLException e) {
-            // Gestisci eventuali errori
             e.printStackTrace();
         }
         
         CustomerDAO customerDAO = new CustomerDAO(dataSource);
         Customer customer = null;
-        try 
-        {
+        try {
         	customer = customerDAO.doRetrieveByKey(customerUsername);
         	shoppingCartDAO.doSizeUpdateByKey(customerUsername);
         	
-        }
-        catch (SQLException e)
-        {
+        } catch (SQLException e) {
         	System.out.println(e);
         }
         
-       /* if (shoppingCart == null) {
-            // Il carrello dell'utente non esiste nel database, puoi creare uno nuovo se necessario
-            shoppingCart = new ShoppingCart();
-            shoppingCart.setCustomer(customer);
-            shoppingCart.setSize(0);
-        }
-
-     // Incrementa la dimensione del carrello
-        int newSize = shoppingCart.getSize() + 1;
-        shoppingCart.setSize(newSize);
-
-        // Salva il carrello aggiornato nel database
-        try {
-            shoppingCartDAO.doSave(shoppingCart);
-        } catch (SQLException e) {
-            // Gestisci eventuali errori
-            e.printStackTrace();
-        }*/
-
         // Crea la relazione tra il carrello e il prodotto
         Contains contains = new Contains();
         contains.setShoppingCart(shoppingCart);
+        
         // Recupera il prodotto dal database utilizzando il codice del prodotto
         ProductDAO productDAO = new ProductDAO(dataSource);
         Product product = null;
@@ -115,11 +93,5 @@ public class AddItemToCart extends HttpServlet {
             	System.out.println(e2);
             }
         }
-
-        /*// Salva l'oggetto ShoppingCart nella sessione
-        request.getSession().setAttribute("shoppingCart", shoppingCart);
-
-        // Reindirizza l'utente alla pagina del catalogo o al carrello
-        response.sendRedirect("catalogue.jsp");*/
     }
 }
