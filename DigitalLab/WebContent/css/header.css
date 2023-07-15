@@ -47,6 +47,11 @@ header div#searchContainer {
 	justify-content: center;
 }
 
+div#searchContainer form {
+	width: 100%;
+	display: flex;
+}
+
 header div#searchContainer select {
 	width: 28%;
 	height: 35px;

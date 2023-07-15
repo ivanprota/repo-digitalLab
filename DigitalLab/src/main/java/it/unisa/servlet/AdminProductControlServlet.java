@@ -77,7 +77,7 @@ public class AdminProductControlServlet extends HttpServlet
 			
 			
 			// Dobbiamo agirare il problema del salvataggio delle foto dei prodotti
-			/*String savePath = request.getServletContext() + "imgs/products";
+			/*String savePath = request.getServletContext()+ "imgs/products";
 			
 			File fileSaveDir = new File(savePath);
 			if (!fileSaveDir.exists())

@@ -50,23 +50,26 @@
 			<!-- Inizio barra di ricerca -->
 			<div id="searchContainer">
 			
-				<select>
-					<option>Tutte le categorie</option>
-					<option>Case</option>
-					<option>Schede madri</option>
-					<option>CPU</option>
-					<option>GPU</option>
-					<option>RAM</option>
-					<option>Storage</option>
-					<option>Cooling</option>
-					<option>PSU</option>
-					<option>Monitor</option>
-					<option>Sistemi Operativi</option>
-					<option>Accessori</option>
+				<form action="<%= request.getContextPath()%>/Catalogue" method="GET">
+				<input type="text" name="searchBar" value="true" hidden="hidden">
+				<select name="category">
+					<option value="Tutte le categorie">Tutte le categorie</option>
+					<option value="Case">Case</option>
+					<option value="Schede madri">Schede madri</option>
+					<option value="CPU">CPU</option>
+					<option value="GPU">GPU</option>
+					<option value="RAM">RAM</option>
+					<option value="Storage">Storage</option>
+					<option value="Cooling">Cooling</option>
+					<option value="PSU">PSU</option>
+					<option value="Monitor">Monitor</option>
+					<option value="Sistemi Operativi">Sistemi Operativi</option>
+					<option value="Accessori">Accessori</option>
 				</select>
 				
-				<input id="searchInput" type="search" placeholder="Ricerca DigitalLab.it" spellcheck="false">
+				<input id="searchInput" name="search" type="search" placeholder="Ricerca DigitalLab.it" spellcheck="false">
 				<button id="searchButton">Cerca</button>
+				</form>
 				
 			</div>
 			<!-- Fine barra di ricerca -->

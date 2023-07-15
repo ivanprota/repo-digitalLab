@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.LinkedList;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -30,14 +31,15 @@ public class Catalogue extends HttpServlet {
     	Collection<Product> products = null;
     	ProductDAO dao = new ProductDAO(ds);
     	String filter = request.getParameter("filter");
+    	String searchBar = request.getParameter("searchBar");
     	
     	try
     	{	
-    		if (filter == null)
+    		if (filter == null && searchBar == null)
     		{
     			products = dao.doRetrieveAll(null);
     		}   		
-    		else if (filter.equals("price"))
+    		else if (filter != null && filter.equals("price"))
 	    	{
 	    		String priceRange1String = request.getParameter("priceRange1");
 	    		String priceRange2String = request.getParameter("priceRange2");
@@ -52,17 +54,17 @@ public class Catalogue extends HttpServlet {
 	    		else if (priceRange1String != null && priceRange2String != null)
 	    			products = dao.doRetrieveByFilter(priceRange1String, priceRange2String);
 	    	}
-    		else if (filter.equals("brand"))
+    		else if (filter != null && filter.equals("brand"))
     		{
     			String[] brands = request.getParameterValues("brands");
     			products = dao.doRetrieveByFiler(brands);
     		}
-    		else if (filter.equals("category"))
+    		else if (filter != null && filter.equals("category"))
     		{
     			String category = request.getParameter("categoryName");
     			products = dao.doRetrieveByFilter(category);
     		}
-    		else if (filter.equals("assessment"))
+    		else if (filter != null && filter.equals("assessment"))
     		{
     			String starsString = request.getParameter("stars");
     			int stars = -1;
@@ -70,6 +72,61 @@ public class Catalogue extends HttpServlet {
     				stars = Integer.parseInt(starsString);
     			
     			products = dao.doRetrieveByFilter(stars);
+    		}
+    		else if (searchBar != null)
+    		{
+    			String category = request.getParameter("category");
+    			String search = request.getParameter("search");
+    			
+    			if (category.equals("Tutte le categorie"))
+    			{
+    				if (search.isEmpty())
+    				{
+    					products = dao.doRetrieveAll(null);
+    				}
+    				else
+    				{
+    					String searchInput = search.toLowerCase();
+    					Collection<Product> productsCollection = new LinkedList<Product>();
+    					products = dao.doRetrieveAll(null);
+    					Iterator<Product> it = products.iterator();
+    					while (it.hasNext())
+    					{
+    						Product product = (Product) it.next();
+    						String brandModelCategory = ("" + product.getBrand() +" "+ product.getModel() +" "+ product.getCategory()).toLowerCase();
+    						
+    						if (brandModelCategory.contains(searchInput))
+    						{
+    							productsCollection.add(product);
+    						}
+    					}
+    					
+    					products = productsCollection;
+    				}
+    			}
+    			else
+    			{
+    				if (search.isEmpty())
+    				{
+    					products = dao.doRetrieveByFilter(category);
+    				}
+    				else
+    				{
+    					String searchInput = search.toLowerCase();
+    					Collection<Product> productsCollection = new LinkedList<Product>();
+    					products = dao.doRetrieveByFilter(category);
+    					Iterator<Product> it = products.iterator();
+    					while (it.hasNext())
+    					{
+    						Product product = (Product) it.next();
+    						String brandModelCategory = ("" + product.getBrand() +" "+ product.getModel() +" "+ product.getCategory()).toLowerCase();
+    						if (brandModelCategory.contains(searchInput))
+    							productsCollection.add(product);
+    					}
+    					
+    					products = productsCollection;
+    				}
+    			}
     		}
     	}
     	catch(SQLException e)
@@ -93,30 +150,5 @@ public class Catalogue extends HttpServlet {
         	System.out.println(e);
 		}
         return;
-    	
-        /*try 
-        {
-        	DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
-
-            ProductDAO productDAO = new ProductDAO(ds);
-
-            Collection<Product> products = productDAO.doRetrieveAll(null);
-            request.setAttribute("products", products);
-
-            request.getRequestDispatcher("/common/catalogue.jsp").forward(request, response);
-            return;
-        } 
-        catch (SQLException e) 
-        {
-            e.printStackTrace();
-        } 
-        catch (ServletException e) 
-        {
-            e.printStackTrace();
-        } 
-        catch (IOException e) 
-        {
-            e.printStackTrace();
-        }*/
     }
 }
