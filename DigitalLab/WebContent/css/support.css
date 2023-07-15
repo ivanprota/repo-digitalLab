@@ -18,7 +18,7 @@
 	text-align: center;
 }
 
-form {
+#supportBody form {
   max-width: 45%;
   margin: 0 auto;
   padding: 20px;
@@ -26,22 +26,22 @@ form {
   background-color: #f7f7f7;
 }
 
-label {
+#supportBody label {
   display: block;
   margin-bottom: 10px;
   font-weight: bold;
 }
 
-input[type="text"],
-input[type="email"],
-textarea {
+#supportBody input[type="text"],
+#supportBody input[type="email"],
+#supportBody textarea {
   width: 97%;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
 }
 
-input[type="submit"] {
+#supportBody input[type="submit"] {
   display: block;
   margin-top: 10px;
   padding: 10px 20px;
@@ -53,7 +53,7 @@ input[type="submit"] {
   font-size: 16px;
 }
 
-input[type="submit"]:hover {
+#supportBody input[type="submit"]:hover {
   background-color: #ffbb33;
 }
 
