@@ -29,8 +29,9 @@
      <div id="configurationBodyContainer">
      
 	    <!-- Barra avanzamento e pulsante -->
-	    <div id="progressBar">
-	        <span style="width: 0;"></span>
+	    <div id="progressBarContainer">
+	    	<button id="backButton" onclick="backStep()">Indietro</button>
+	        <span id="progressBar" style="width: 0;"></span>
 	        <div class="step">Scegli il processore</div>
 	    	<button id="progressButton" onclick="nextStep()">Avanti</button>
 	    	<!-- DA FARE: INSERIRE PULSANTE PER POTER NON SCEGLIERE ALCUN ELEMENTO E ANDARE AVANTI CON GLI STEPS -->
@@ -147,6 +148,18 @@
                 }
             }
         }
+        
+        function backStep() {
+        	  if (currentStep > 0) {
+        	    currentStep--;
+        	    var progressWidth = (currentStep * (steps.length - 1)) / 100;
+        	    progressBar.style.width = progressWidth + "%";
+        	    stepText.textContent = steps[currentStep];
+        	    
+        	    // Cambiamo valore della categoria per tornare indietro
+        	    category = categories[currentStep];
+        	  }
+        	}
 
         function addToCart() {
         	// DA FARE: CHIAMARE LA SERVLET /AddItemToCart INVIANDO IN INPUT TUTTI GLI OGGETTI SELEZIONATI (magari con un messaggio di testo "Riceverai il tuo computer assemblato")

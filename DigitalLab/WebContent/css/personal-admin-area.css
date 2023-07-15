@@ -170,6 +170,49 @@ div.orderDetails {
 div.orderDetails a {
 	margin-bottom: 20px;
 }
+
+div.orderBoxHeaderDetails a {
+	color: #e29404;
+}
+
+div.orderBoxHeaderDetails a:hover {
+	cursor: pointer;
+	color: #fba304;
+}
+
+
+div.productContainer {
+	display: flex;
+}
+
+.cartItem {
+  display: none;
+  align-items: center;
+  margin: 10px;
+  border-bottom: solid gray 1px;
+}
+
+.cartItemImage img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+}
+
+.cartItemDetails a {
+	text-decoration: none;
+	color: black;
+}
+
+.cartItemDetails h3 {
+  font-size: 12px;
+  margin-bottom: 2px;
+}
+
+.cartItemDetails p {
+  font-size: 10px;
+  color: #888;
+  margin-bottom: 10px;
+}
 /* FINE SEZIONE ORDINI */
 /* FINE SEZIONE DI DESTRA */
 
