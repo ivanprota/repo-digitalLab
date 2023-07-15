@@ -16,17 +16,16 @@ $(document).ready(function()
 		let adminUsername = $("#adminUsernameInput").val();
 		let adminPassword = $("#adminPasswordInput").val();
 		
-		let url = '/DigitalLab/UpdatePersonalDataServlet';
-		let data = 
-		{
+		$.ajax({
+	      url: '/DigitalLab/UpdatePersonalDataServlet',
+	      method: 'POST',
+	      data: {
 			"adminName": adminName,
 			"adminSurname": adminSurname,
 			"adminUsername": adminUsername,
 			"adminPassword": adminPassword
-		};
-		
-		$.post(url, data, function(data)
-		{
+	      },
+	      success: function(data) {
 			let entireName = data.adminName +" "+ data.adminSurname;
 			$("#leftAdminData").html(entireName);
 			
@@ -34,7 +33,15 @@ $(document).ready(function()
 			$("#adminSurnameInput").val(data.adminSurname);
 			$("#adminUsernameInput").val(data.adminUsername);
 			$("#adminPasswordInput").val(data.adminPassword);
-		});
+			
+			$("#feedbackMessage").html("Cambiamenti salvati con successo");
+	        $("#feedbackMessage").css({"color" : "green"});
+	      },
+	      error: function(xhr, status, error) {
+	        $("#feedbackMessage").html("Impossibile salvare i cambiamenti");
+	        $("#feedbackMessage").css({"color" : "red"});
+	      }
+	    });
 	}
 });
 
@@ -52,17 +59,30 @@ $(document).ready(function()
 	function loadProductData()
 	{
 		let productCode = $("#productCodeInput").val();
-		let url = '/DigitalLab/AdminProductControlServlet?action=select';
-		$.get(url, {"code": productCode}, function(data)
-		{
-			$("#updateProductCodeInput").val(data.code);
-			$("#updateProductBrandInput").val(data.brand);
-			$("#updateProductModelInput").val(data.model);
-			$("#updateProductCategoryInput").val(data.category);
-			$("#updateProductPriceInput").val(data.price);
-			$("#updateProductQuantityInput").val(data.quantity);
-			$("#updateProductDescriptionInput").val(data.description);
-		});
+		
+		$.ajax({
+			url: '/DigitalLab/AdminProductControlServlet?action=select',
+			method: 'GET',
+			data: {"code": productCode},
+			success: function(data)
+			{
+				$("#updateProductCodeInput").val(data.code);
+				$("#updateProductBrandInput").val(data.brand);
+				$("#updateProductModelInput").val(data.model);
+				$("#updateProductCategoryInput").val(data.category);
+				$("#updateProductPriceInput").val(data.price);
+				$("#updateProductQuantityInput").val(data.quantity);
+				$("#updateProductDescriptionInput").val(data.description);
+				
+				$("#updateMessage").html("Prodotto modificato correttamente");
+				$("#updateMessage").css({"color" : "green"});
+			},
+			error: function(xhr, status, error)
+			{
+				$("#updateMessage").html("Impossibile modificare il prodotto");
+				$("#updateMessage").css({"color" : "red"});
+			}
+		})
 	}
 });
 
@@ -133,5 +153,23 @@ $(document).ready(function()
 		let url = '/DigitalLab/AdminProductControlServlet?action=delete';
 		$.get(url, {"code": productCode});
 		$("#deleteProductForm")[0].reset();
+		
+		$.ajax({
+			url: '/DigitalLab/AdminProductControlServlet?action=delete',
+			method: 'GET',
+			data: {"code": productCode},
+			success: function(data)
+			{
+				$("#deleteProductForm")[0].reset();
+				$("#deleteMessage").html("Prodotto eliminato con successo");
+				$("#deleteMessage").css({"color" : "red"});
+			},
+			error: function(xhr, status, error)
+			{
+				$("#deleteProductForm")[0].reset();
+				$("#deleteMessage").html("Impossibile eliminare il prodotto");
+				$("#deleteMessage").css({"color" : "red"});
+			}
+		})
 	}
 });

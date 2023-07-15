@@ -26,19 +26,20 @@ public class ProductDAO
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		
-		String insertSQL = "INSERT INTO " +Constants.PRODUCT_TABLE_NAME+ " VALUES (?, ?, ?, ?, ?, ?, ?)";
+		String insertSQL = "INSERT INTO " +Constants.PRODUCT_TABLE_NAME+ 
+				" (product_quantity, product_description, product_price, product_brand, product_model, product_category)"
+				+ " VALUES (?, ?, ?, ?, ?, ?)";
 		
 		try
 		{
 			connection = ds.getConnection();
 			preparedStatement = connection.prepareStatement(insertSQL);
-			preparedStatement.setInt(1, product.getCode());
-			preparedStatement.setInt(2, product.getQuantity());
-			preparedStatement.setString(3, product.getDescription());
-			preparedStatement.setDouble(4, product.getPrice());
-			preparedStatement.setString(5, product.getBrand());
-			preparedStatement.setString(6, product.getModel());
-			preparedStatement.setString(7, product.getCategory());
+			preparedStatement.setInt(1, product.getQuantity());
+			preparedStatement.setString(2, product.getDescription());
+			preparedStatement.setDouble(3, product.getPrice());
+			preparedStatement.setString(4, product.getBrand());
+			preparedStatement.setString(5, product.getModel());
+			preparedStatement.setString(6, product.getCategory());
 			
 			preparedStatement.executeUpdate();
 			//connection.commit();

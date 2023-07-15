@@ -13,6 +13,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -37,6 +38,9 @@ public class AddCustomerDataServlet extends HttpServlet
 		String isShippingAddress = request.getParameter("shippingAddress");
 		String isPaymentMethod = request.getParameter("paymentMethod");
 		
+		String error = "";
+		String message = "";
+		
 		HttpSession session = request.getSession();
 		Customer customer = (Customer) session.getAttribute("customer");
 		
@@ -59,7 +63,10 @@ public class AddCustomerDataServlet extends HttpServlet
 			catch(SQLException e)
 			{
 				System.out.println(e);
-				response.sendRedirect(request.getContextPath() + "/common/user-area.jsp");
+				error += "Impossibile salvare i cambiamenti";
+				request.setAttribute("error", error);
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/common/user-area.jsp");
+				dispatcher.forward(request, response);
 				return;
 			}
 			
@@ -74,7 +81,11 @@ public class AddCustomerDataServlet extends HttpServlet
 			collection.add(shippingAddress);
 			session.setAttribute("shippingAddresses", collection);
 			
-			response.sendRedirect(request.getContextPath() + "/common/user-area.jsp");
+			message += "Salvamenti effettuati con successo";
+			request.setAttribute("message", message);
+			
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/common/user-area.jsp");
+			dispatcher.forward(request, response);
 			return;
 		}
 		else if (isPaymentMethod != null && isPaymentMethod.equals("true"))
@@ -97,7 +108,10 @@ public class AddCustomerDataServlet extends HttpServlet
 			catch(SQLException e)
 			{
 				System.out.println(e);
-				response.sendRedirect(request.getContextPath() + "/common/user-area.jsp");
+				error += "Impossibile salvare i cambiamenti";
+				request.setAttribute("error", error);
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/common/user-area.jsp");
+				dispatcher.forward(request, response);
 				return;
 			}
 			
@@ -111,7 +125,12 @@ public class AddCustomerDataServlet extends HttpServlet
 			}
 			collection.add(paymentMethod);
 			session.setAttribute("paymentMethods", collection);
-			response.sendRedirect(request.getContextPath() + "/common/user-area.jsp");
+			
+			message += "Salvamenti effettuati con successo";
+			request.setAttribute("message", message);
+			
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/common/user-area.jsp");
+			dispatcher.forward(request, response);
 			return;
 		}
 		

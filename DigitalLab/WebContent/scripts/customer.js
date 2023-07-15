@@ -18,19 +18,18 @@ $(document).ready(function()
 		let customerUsername = $("#updateCustomerUsernameInput").val();
 		let customerPassword = $("#updateCustomerPasswordInput").val();
 		
-		let url = '/DigitalLab/UpdatePersonalDataServlet';
-		let data =
-		{
+		$.ajax({
+	      url: '/DigitalLab/UpdatePersonalDataServlet',
+	      method: 'POST',
+	      data: {
 			"customerName" : customerName,
 			"customerSurname": customerSurname,
 			"customerPhone": customerPhone,
 			"customerEmail": customerEmail,
 			"customerUsername": customerUsername,
 			"customerPassword": customerPassword
-		};
-		
-		$.post(url, data, function(data)
-		{
+	      },
+	      success: function(data) {
 			let entireName = data.name+ " " +data.surname;
 			$("#leftCustomerData").html(entireName);
 			$("#leftCustomerEmail").html(data.email);
@@ -40,7 +39,15 @@ $(document).ready(function()
 			$("#updateCustomerPhoneInput").val(data.phone);
 			$("#updateCustomerEmailInput").val(data.email);
 			$("#updateCustomerUsernameInput").val(data.username);
-			$("#updateCustomerPasswordInput").val(data.password);	
-		});
-	}
+			$("#updateCustomerPasswordInput").val(data.password);
+			
+	        $("#feedbackParagraph").html("Cambiamenti salvati con successo");
+	        $("#feedbackParagraph").css({"color" : "green"});
+	      },
+	      error: function(xhr, status, error) {
+	        $("#feedbackParagraph").html("Impossibile salvare i cambiamenti");
+	        $("#feedbackParagraph").css({"color" : "red"});
+	      }
+	    });
+	  }
 });

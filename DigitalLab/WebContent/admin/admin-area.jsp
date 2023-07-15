@@ -13,6 +13,14 @@
 		response.sendRedirect(request.getContextPath() + "/login-signup/login.jsp");
 		return;
 	}
+	
+	String error = (String) request.getAttribute("error");
+	if (error == null)
+		error = "";
+	
+	String message = (String) request.getAttribute("message");
+	if (message == null)
+		message = "";
 %>
 <!DOCTYPE html>
 <html>
@@ -84,6 +92,9 @@
 				<!-- Inizio dati personali -->
 				<div id="personalDataRightContainer">
 					<h1>Profilo</h1>
+					<p id="feedbackMessage"></p>
+					<p id="errorMessage"><%= error%></p>
+					<p id="confirmMessage"><%= message%></p>
 					<form action="javascript:void(0)" method="POST">
 						<div class="personalData">
 							<label for="name">Nome:</label>
@@ -95,7 +106,8 @@
 						</div>
 						<div class="personalData">
 							<label for="username">Username:</label>
-							<input type="text" name="username" id="adminUsernameInput" value="<%= admin.getUsername()%>" maxlength="20">
+							<input type="text" name="username" id="adminUsernameInput" value="<%= admin.getUsername()%>" maxlength="20" oninput="checkUsername(this, 'errorMessageUsername', 'red')">
+							<p id="errorMessageUsername"></p>
 						</div>
 						<div class="personalData">
 							<label for="password">Password:</label>
@@ -122,10 +134,10 @@
 									<div id="uploadImagePreview"></div>
 									<script>imagePreview()</script>
 								</div>
-								<div class="productOpData">
+								<!-- <div class="productOpData">
 									<label for="code">Codice Prodotto:</label>
 									<input type="number" name="code" placeholder="Codice">
-								</div>
+								</div> -->
 								<div class="productOpData">
 									<label for="brand">Brand:</label>
 									<input type="text" name="brand" placeholder="Brand">
@@ -170,6 +182,7 @@
 					<div class="fieldsetOp">
 						<fieldset>
 							<legend>Modifica un prodotto:</legend>
+							<p id="updateMessage"></p>
 							<form id="loadForm" action="javascript:void(0)" method="POST">
 								<div class="productOpData">
 									<label for="code">Codice Prodotto:</label>
@@ -226,6 +239,7 @@
 					<div class="fieldsetOp">
 						<fieldset>
 							<legend>Elimina un prodotto</legend>
+							<p id="deleteMessage"></p>
 							<form action="javascript:void(0)" method="POST" id="deleteProductForm">
 								<div class="productOpData">
 									<label for="code">Codice Prodotto:</label>

@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.util.Collection;
 import java.util.Iterator;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -35,6 +36,9 @@ public class DeleteCustomerDataServlet extends HttpServlet
 		String shippingAddressIdString = request.getParameter("shippingAddressId");
 		String paymentMethodPan = request.getParameter("paymentMethodPan");
 		
+		String error = "";
+		String message = "";
+		
 		if (shippingAddressIdString != null && !(shippingAddressIdString.equals("")))
 		{
 			int shippingAddressId = Integer.parseInt(shippingAddressIdString);
@@ -47,8 +51,11 @@ public class DeleteCustomerDataServlet extends HttpServlet
 			catch(SQLException e)
 			{
 				System.out.println(e);
-				response.sendRedirect(request.getContextPath() + "/common/user-area.jsp");
-				return;		
+				error += "Impossibile salvare i cambiamenti";
+				request.setAttribute("error", error);
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/common/user-area.jsp");
+				dispatcher.forward(request, response);
+				return;	
 			}
 			
 			// Rimuovo l'indirizzo di spedizione dalla sessione
@@ -61,6 +68,13 @@ public class DeleteCustomerDataServlet extends HttpServlet
 				if (shippingAddress.getId() == shippingAddressId)
 					shippingAddresses.remove(shippingAddress);
 			}
+			
+			message += "Salvamenti effettuati con successo";
+			request.setAttribute("message", message);
+			
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/common/user-area.jsp");
+			dispatcher.forward(request, response);
+			return;	
 		}
 		else if (paymentMethodPan != null && !(paymentMethodPan.equals("")))
 		{
@@ -73,8 +87,11 @@ public class DeleteCustomerDataServlet extends HttpServlet
 			catch(SQLException e)
 			{
 				System.out.println(e);
-				response.sendRedirect(request.getContextPath() + "/common/user-area.jsp");
-				return;		
+				error += "Impossibile salvare i cambiamenti";
+				request.setAttribute("error", error);
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/common/user-area.jsp");
+				dispatcher.forward(request, response);
+				return;	
 			}
 			
 			// Rimuovo il metodo di pagamento dalla sessione
@@ -84,9 +101,16 @@ public class DeleteCustomerDataServlet extends HttpServlet
 			while (it.hasNext())
 			{
 				PaymentMethod paymentMethod = (PaymentMethod) it.next();
-				if (paymentMethod.getPan() == paymentMethodPan)
+				if (paymentMethod.getPan().equals(paymentMethodPan))
 					paymentMethods.remove(paymentMethod);
 			}
+			
+			message += "Salvamenti effettuati con successo";
+			request.setAttribute("message", message);
+			
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/common/user-area.jsp");
+			dispatcher.forward(request, response);
+			return;
 		}
 		
 		response.sendRedirect(request.getContextPath() + "/common/user-area.jsp");

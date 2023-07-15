@@ -5,6 +5,7 @@ div#cartBodyContainer {
 	background-color: #f2f2f2;
   	margin: 0 auto;
   	padding: 20px;
+  	min-height: 500px;
 }
 
 #cartBodyContainer h1 {

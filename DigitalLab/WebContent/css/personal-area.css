@@ -92,6 +92,14 @@ div#personalDataRightContainer {
 	border-bottom: solid thin black;
 }
 
+#errorMessage {
+	color: red;
+}
+
+#confirmMessage {
+	color: green;
+}
+
 div#personalDataRightContainer h1 {
 	font-style: italic;
 	font-weight: normal;

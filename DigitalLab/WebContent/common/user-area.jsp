@@ -39,6 +39,7 @@
 		response.sendRedirect(request.getContextPath() + "/LoadCustomerDataServlet");
 		return;
 	}
+	
 	List<?> orders = (List<?>) session.getAttribute("orders");
 	
 	if (orders == null) {
@@ -48,6 +49,14 @@
 	    Collections.reverse(orders);
 	}
 	Collection<?> orderProducts = (Collection<?>) session.getAttribute("orderProducts");
+	
+	String error = (String) request.getAttribute("error");
+	if (error == null)
+		error = "";
+	
+	String message = (String) request.getAttribute("message");
+	if (message == null)
+		message = "";
 %>
 
 <!DOCTYPE html>
@@ -114,6 +123,9 @@
 				<!-- Inizio dati personali -->
 				<div id="personalDataRightContainer">
 					<h1>Profilo</h1>
+					<p id="feedbackParagraph"></p>
+					<p id="errorMessage"><%= error%></p>
+					<p id="confirmMessage"><%= message%></p>
 					<form action="javascript:void(0)" method="POST">
 						<div id="nameSurnameContainer">
 							<div class="personalData">
@@ -193,7 +205,8 @@
 					<!-- Inizio form nuovo indirizzo -->
 					<div id="shippingAddressForm">
 						<h1>Inserisci il nuovo indirizzo</h1>
-						<form action="<%= request.getContextPath()%>/AddCustomerDataServlet?shippingAddress=true" method="POST">
+						<form action="<%= request.getContextPath()%>/AddCustomerDataServlet" method="POST">
+							<input type="text" name="shippingAddress" value="true" hidden = "hidden">
 							<div class="shippingAddressInput">
 								<label for="street">Via:</label>
 								<input type="text" name="street" placeholder="Via" required maxlength="20">

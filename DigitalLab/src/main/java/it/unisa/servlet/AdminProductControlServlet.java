@@ -6,6 +6,7 @@
 
 package it.unisa.servlet;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -37,10 +38,11 @@ public class AdminProductControlServlet extends HttpServlet
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 		String action = (String) request.getParameter("action");
+		String error = "";
+		String message = "";
 		
 		if (action.equals("add"))
 		{
-			int code = Integer.parseInt(request.getParameter("code"));
 			String brand = request.getParameter("brand");
 			String model = request.getParameter("model");
 			String category = request.getParameter("category");
@@ -49,7 +51,6 @@ public class AdminProductControlServlet extends HttpServlet
 			String description = request.getParameter("description");
 				
 			Product product = new Product();
-			product.setCode(code);
 			product.setBrand(brand);
 			product.setModel(model);
 			product.setCategory(category);
@@ -67,30 +68,38 @@ public class AdminProductControlServlet extends HttpServlet
 			catch(SQLException e)
 			{
 				System.out.println(e);
-				response.sendRedirect(request.getContextPath() + "/admin/admin-area.jsp");
+				error += "Impossibile aggiungere il prodotto";
+				request.setAttribute("error", error);
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/common/user-area.jsp");
+				dispatcher.forward(request, response);
 				return;
 			}
-				
-			PictureDAO pictureDAO = new PictureDAO(ds);
-			for (Part part : request.getParts())
+			
+			
+			// Dobbiamo agirare il problema del salvataggio delle foto dei prodotti
+			/*String savePath = request.getServletContext() + "imgs/products";
+			
+			File fileSaveDir = new File(savePath);
+			if (!fileSaveDir.exists())
+				fileSaveDir.mkdir();
+			
+			if (request.getParts() != null && request.getParts().size() > 0)
 			{
-				String fileName = part.getSubmittedFileName();
-				if (fileName != null && !fileName.equals(""))
+				for (Part part : request.getParts())
 				{
-					try
+					String fileName = part.getSubmittedFileName();
+					if (fileName != null && !fileName.equals(""))
 					{
-						pictureDAO.doUpdatePhoto(code, part.getInputStream());
-					}
-					catch(SQLException e)
-					{
-						System.out.println(e);
-						response.sendRedirect(request.getContextPath() + "/admin/admin-area.jsp");
-						return;
+						System.out.println(savePath + File.separator + fileName + "");
+						part.write(savePath + File.separator + fileName);
 					}
 				}
-			}
-				
-			response.sendRedirect(request.getContextPath() + "/admin/admin-area.jsp");
+			}*/
+			
+			message += "Prodotto aggiunto con successo";
+			request.setAttribute("message", message);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/admin-area.jsp");
+			dispatcher.forward(request, response);
 			return;
 		}
 		else if (action.equals("select"))
@@ -176,32 +185,26 @@ public class AdminProductControlServlet extends HttpServlet
 				if (!(product.getBrand().equals(brand)))
 				{
 					dao.doUpdate(code, "product_brand", brand);
-					json.put("brand", brand);
 				}
 				if (!(product.getModel().equals(model)))
 				{
 					dao.doUpdate(code, "product_model", model);
-					json.put("model", model);
 				}
 				if (!(product.getCategory().equals(category)))
 				{
 					dao.doUpdate(code, "product_category", category);
-					json.put("category", category);
 				}
 				if (!(product.getDescription().equals(description)))
 				{
 					dao.doUpdate(code, "product_description", description);
-					json.put("description", description);
 				}
 				if (product.getPrice() != price)
 				{
 					dao.doUpdate(code, "product_price", priceString);
-					json.put("price", price);
 				}
 				if (product.getQuantity() != quantity)
 				{
 					dao.doUpdate(code, "product_quantity", quantityString);
-					json.put("quantity", quantity);
 				}
 			}
 			catch (SQLException e)
@@ -210,7 +213,14 @@ public class AdminProductControlServlet extends HttpServlet
 				response.sendRedirect(request.getContextPath() + "/admin/admin-area.jsp");
 				return;				
 			}
-				
+			
+			json.put("code", code);
+			json.put("brand", brand);
+			json.put("model", model);
+			json.put("category", category);
+			json.put("description", description);
+			json.put("price", price);
+			json.put("quantity", quantity);
 			out.print(json.toString());
 		}
 		else if (action.equals("delete"))
