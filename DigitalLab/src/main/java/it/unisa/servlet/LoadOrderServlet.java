@@ -84,8 +84,7 @@ public class LoadOrderServlet extends HttpServlet
 					orders.add(order);
 			}
 			
-			if (orders.size() != 0)
-				request.setAttribute("orders", orders);
+			request.setAttribute("orders", orders);
 			
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/admin-area.jsp");
 			dispatcher.forward(request, response);
