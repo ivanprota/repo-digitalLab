@@ -17,7 +17,6 @@
 
 		<!-- Inizio footer -->
 		<footer id="footer">
-		
 			<div id="topFooter">
 				<div id="leftTopFooter">
 					<img src="<%=request.getContextPath()+"/imgs/logo.png"%>">
@@ -96,7 +95,6 @@
 					</div>
 				</div>
 			</div>
-			
 		</footer>
 		<!-- Fine footer -->
 
