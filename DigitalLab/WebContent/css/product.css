@@ -177,3 +177,12 @@ div.productReviewContainer {
 hr {
 	color: #b3b3b3;
 }
+
+
+
+
+/* RESPONSIVE */
+@media screen and (max-width: 700px)
+{
+
+}

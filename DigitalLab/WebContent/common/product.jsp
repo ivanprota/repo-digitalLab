@@ -190,6 +190,7 @@
 			<!-- Inserire codice -->
 		</div>
 	</div>
+	
 
 	<script>
 	  function addToCart(productCode, customerUsername) {

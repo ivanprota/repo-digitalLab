@@ -4,12 +4,17 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.LinkedList;
 
 import javax.sql.DataSource;
 
+import org.apache.catalina.ssi.SSIFlastmod;
+
 import it.unisa.model.Product;
+import it.unisa.model.Review;
 import it.unisa.utils.Constants;
 
 public class ProductDAO 
@@ -398,19 +403,19 @@ public class ProductDAO
 		PreparedStatement preparedStatement = null;
 		
 		Collection<Product> products = new LinkedList<Product>();
-		String selectSQL = "SELECT DISTINCT product_code, product_quantity, product_description, product_price,  product_brand, product_model, product_category"+
-				" FROM " +Constants.PRODUCT_TABLE_NAME+ ", " +Constants.REVIEW_TABLE_NAME+
-				" WHERE product_code = review_product_code AND review_assessment = ?";
-		
+		String selectSQL = "SELECT * FROM " +Constants.PRODUCT_TABLE_NAME;
+
 		try
 		{
 			connection = ds.getConnection();
 			preparedStatement = connection.prepareStatement(selectSQL);
-			preparedStatement.setInt(1, stars);
 			
 			ResultSet rs = preparedStatement.executeQuery();
+			Collection<Review> reviews = null;
+			ReviewDAO reviewDAO = new ReviewDAO(ds);
 			while (rs.next())
 			{
+				
 				Product product = new Product();
 				product.setCode(rs.getInt("product_code"));
 				product.setQuantity(rs.getInt("product_quantity"));
@@ -419,7 +424,18 @@ public class ProductDAO
 				product.setBrand(rs.getString("product_brand"));
 				product.setModel(rs.getString("product_model"));
 				product.setCategory(rs.getString("product_category"));
-				products.add(product);
+				
+				reviews = reviewDAO.doRetrieveAllByKey(product.getCode());
+				Iterator<Review> it = reviews.iterator();
+				int sum = 0;
+				while(it.hasNext())
+				{
+					Review review = (Review) it.next();
+					sum += review.getAssessment();
+				}
+				
+				if ((sum / reviews.size()) >= stars)
+					products.add(product);
 			}
 		}
 		finally
