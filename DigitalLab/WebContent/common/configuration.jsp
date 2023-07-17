@@ -33,7 +33,11 @@
 	}
 	
 	Customer customer = (Customer) session.getAttribute("customer");
-	String username = customer.getUsername();
+	String username = "";
+	
+	if(customer != null) {
+		username = customer.getUsername();
+	}
 %>
 
 <!DOCTYPE html>
@@ -80,7 +84,7 @@
         	%>
         	<div class="caseContainer">	
 	            <label>
-	            	<input id="radioCase" type="radio" name="radioCase" value="<%=product.getCode()%>">
+	            	<input id="radioCase" type="radio" name="radioCase" value="<%=product.getCode()%>" checked>
 	                 <img src="<%= request.getContextPath()%>/imgs/products/<%= picture.getImageFileName()%>">
 	            </label>
 	            <%
@@ -305,7 +309,11 @@
         	</div>
         </div>
         
-        <input type="button" id="configurationButton" value="Aggiungi al carrello">
+        <%if(customer == null) {
+        	%><p>Autenticati per effettuare l'acquisto</p><%
+        } else { %>
+            <input type="button" id="configurationButton" value="Aggiungi al carrello"><%
+        } %>
     </div>
 	
 	<%@ include file="../footer.jsp"%>

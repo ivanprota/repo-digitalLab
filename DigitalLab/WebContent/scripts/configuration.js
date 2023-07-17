@@ -5,8 +5,14 @@ $(document).ready(function()
 	function addItemsToCartFunction()
 	{
 		let username = $("#inputCustomerUsername").val();
+		let caseValue;
 		
-		let caseValue = $("#radioCase").val();
+		$("input[name='radioCase']").each(function() {
+			if ($(this).is(":checked")) {
+		    	caseValue = $(this).val();
+				return false;
+			}
+		});
 		let cpuValue = $("#cpuSelect").val();
 		let motherboardValue = $("#motherboardSelect").val();
 		let ramValue = $("#ramSelect").val();

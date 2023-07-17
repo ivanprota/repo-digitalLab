@@ -37,8 +37,11 @@ div#productImageContainer {
 }
 
 div#productImageContainer img {
-  width: 100%;
-  max-width: 100%;
+	width: 300px;
+	height: 300px;
+	object-fit: cover;
+  	/*width: 100%;
+  	max-width: 100%;*/
 }
 
 div#productDetailsContainer {
@@ -139,7 +142,7 @@ div#productHeaderParagraphContainer a:hover {
 }
 
 #productPurchaseContainer input:hover,
-.button-18:focus { 
+#productPurchaseContainer input:focus { 
   background-color: #e29404;
   color: #ffffff;
 }

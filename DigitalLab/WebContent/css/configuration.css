@@ -5,33 +5,109 @@
 	justify-content: space-between;
 }
 
-#caseSelectionContainer {
-    flex-wrap: wrap;
-    padding: 10px;
+#configurationBodyContainer h1 {
+	font-size: 20px;
+	margin: 0px;
+	padding: 10px;
+	font-style: italic;
+	font-weight: normal;
 }
 
 #caseSelection {
+	background-color: white;
+	border: solid #ccc 1px;
+	border-radius: 10px;
+	padding: 10px;
+	margin: 0% 2%;
 	display: flex;
+	flex-wrap: wrap;
+	text-align: center;
 }
 
-#caseContainer {
-	width: 30%;
-}
-
-#caseContainer label {
-	width: 100%;
-}
-
-#caseContainer label img {
-	width: 100%;
-    /*width: 200px;*/
-    /*height: 200px;*/
-    object-fit: cover;
+.caseContainer img {
+	width: 100px;
+	height: 100px;
     margin-bottom: 10px;
+    border: solid gray 1px;
+    border-radius: 100px;
 }
 
 #caseContainer p {
-  font-size: 14px;
-  color: #888;
-  margin-bottom: 10px;
+	font-size: 10px;
+  	color: #888;
+  	margin-bottom: 10px;
+}
+
+#configurationBodyContainer select {
+  display: inline-block;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  color: #333;
+  margin-left: 1%;
+  margin-bottom: 7%;
+}
+
+#configurationBodyContainer select:focus {
+  outline: none;
+  border-color: #66afe9;
+  box-shadow: 0 0 5px rgba(102, 175, 233, 0.6);
+}
+
+#configurationBodyContainer select option {
+  padding: 10px;
+  background-color: #fff;
+  color: #333;
+}
+
+#configurationBodyContainer hr {
+  	display: block;
+  	height: 1px;
+  	border: 0;
+ 	border-top: 1px solid #ccc;
+  	margin: 15px 0px;
+  	padding: 0;
+}
+
+#configurationBodyContainer input[type="button"] {
+  align-items: center;
+  background-color: #fba304;
+  border: 0;
+  border-radius: 100px;
+  box-sizing: border-box;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: -apple-system, system-ui, system-ui, "Segoe UI", Roboto, "Helvetica Neue", "Fira Sans", Ubuntu, Oxygen, "Oxygen Sans", Cantarell, "Droid Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  justify-content: center;
+  line-height: 20px;
+  max-width: 480px;
+  min-height: 40px;
+  min-width: 0px;
+  overflow: hidden;
+  padding: 0px;
+  padding-left: 20px;
+  padding-right: 20px;
+  text-align: center;
+  touch-action: manipulation;
+  transition: background-color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, box-shadow 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  user-select: none;
+  -webkit-user-select: none;
+  vertical-align: middle;
+  margin-left: 1%;
+  margin-bottom: 1%;
+}
+
+#productPurchaseContainer input:hover,
+#productPurchaseContainer input:focus { 
+  background-color: #e29404;
+}
+
+#productPurchaseContainer input:active {
+  background: #e29404;
+  color: rgb(255, 255, 255, .7);
 }
