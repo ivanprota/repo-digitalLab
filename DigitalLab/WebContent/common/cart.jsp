@@ -45,110 +45,110 @@
         })
     </script>
 </head>
-<body>
-
-<%@ include file="../header.jsp" %>
-
-<div id="cartBodyContainer">
-    <h1>Carrello</h1>
-    
-    <div id="cartItems">
-	<%
-		if (customer == null)
-		{
-	%>
-		<p>Il tuo carrello è vuoto.</p>
-	<%
-		}
-		else
-		{
-		    Collection<Contains> containsItems;
-		    ContainsDAO containsDAO = new ContainsDAO(dataSource);
-		    try {
-		        containsItems = containsDAO.doRetrieveAllByKey(customer.getUsername());
-		    } catch (SQLException e) {
-		        e.printStackTrace();
-		        containsItems = new ArrayList<>();
-		    }
-		
-		    Collection<Product> cartItems = new ArrayList<>();
-		    ProductDAO productDAO = new ProductDAO(dataSource);
+	<body>
+	
+	<%@ include file="../header.jsp" %>
+	
+	<div id="cartBodyContainer">
+	    <h1>Carrello</h1>
+	    
+	    <div id="cartItems">
+		<%
+			if (customer == null)
+			{
+		%>
+			<p>Il tuo carrello è vuoto.</p>
+		<%
+			}
+			else
+			{
+			    Collection<Contains> containsItems;
+			    ContainsDAO containsDAO = new ContainsDAO(dataSource);
+			    try {
+			        containsItems = containsDAO.doRetrieveAllByKey(customer.getUsername());
+			    } catch (SQLException e) {
+			        e.printStackTrace();
+			        containsItems = new ArrayList<>();
+			    }
 			
-		    Map<Integer, Integer> map = new HashMap<>();
-		    for (Contains contains : containsItems) {
-		        int productCode = contains.getProduct().getCode();
-		        Product product = productDAO.doRetrieveByKey(productCode);
-		        cartItems.add(product);
-		        
-		        map.put(productCode, contains.getQuantity());
-		    }
-	
-	            if (cartItems.isEmpty()) {
-        %>
-            <p>Il tuo carrello è vuoto.</p>
-        <% 
-            	} else {
-                	for (Product product : cartItems) {
-                		PictureDAO pictureDAO = new PictureDAO(dataSource);
-                		Picture picture = pictureDAO.doRetrieveAllByKey(product.getCode()).iterator().next();
-                		
-                		int quantity = map.get(product.getCode());
-        %>
-                    <div class="cartItem">
-	                	<div class="cartItemImage">
-	                    	<img src="<%= request.getContextPath()%>/imgs/products/<%= picture.getImageFileName()%>">
+			    Collection<Product> cartItems = new ArrayList<>();
+			    ProductDAO productDAO = new ProductDAO(dataSource);
+				
+			    Map<Integer, Integer> map = new HashMap<>();
+			    for (Contains contains : containsItems) {
+			        int productCode = contains.getProduct().getCode();
+			        Product product = productDAO.doRetrieveByKey(productCode);
+			        cartItems.add(product);
+			        
+			        map.put(productCode, contains.getQuantity());
+			    }
+		
+		            if (cartItems.isEmpty()) {
+	        %>
+	            <p>Il tuo carrello è vuoto.</p>
+	        <% 
+	            	} else {
+	                	for (Product product : cartItems) {
+	                		PictureDAO pictureDAO = new PictureDAO(dataSource);
+	                		Picture picture = pictureDAO.doRetrieveAllByKey(product.getCode()).iterator().next();
+	                		
+	                		int quantity = map.get(product.getCode());
+	        %>
+	                    <div class="cartItem">
+		                	<div class="cartItemImage">
+		                    	<img src="<%= request.getContextPath()%>/imgs/products/<%= picture.getImageFileName()%>">
+		                    </div>
+		                    <div class="cartItemDetails">
+		                        <%
+							    	DecimalFormat decimalFormat = new DecimalFormat("#0.00");
+							    	String formattedPrice = decimalFormat.format(product.getPrice());
+								%>
+								
+		                            <h3>
+		                            	<a href="<%=request.getContextPath()%>/common/product.jsp?productCode=<%= product.getCode()%>">
+		                            	<%=product.getBrand() + " " + product.getModel()%>
+		                        		</a>
+		                        	</h3>
+		                            <p>Prezzo: <%= formattedPrice %> &euro; Quantità: <%= quantity%></p>
+		                            <!-- Altre informazioni sui prodotti -->
+		                    </div>
+	                        
 	                    </div>
-	                    <div class="cartItemDetails">
-	                        <%
-						    	DecimalFormat decimalFormat = new DecimalFormat("#0.00");
-						    	String formattedPrice = decimalFormat.format(product.getPrice());
-							%>
-							
-	                            <h3>
-	                            	<a href="<%=request.getContextPath()%>/common/product.jsp?productCode=<%= product.getCode()%>">
-	                            	<%=product.getBrand() + " " + product.getModel()%>
-	                        		</a>
-	                        	</h3>
-	                            <p>Prezzo: <%= formattedPrice %> &euro; Quantità: <%= quantity%></p>
-	                            <!-- Altre informazioni sui prodotti -->
-	                    </div>
-                        
-                    </div>
-        <%
-                	}
-                	
-                	// Da passare a checkout.jsp
-                	session.setAttribute("cartItems", cartItems);
-                	session.setAttribute("mapProductsQuantity", map);
-            	}
-        %>
-    </div>
-    	
-    <div id="cartSummary">
-	    <% double total = 0.00;
-	
-	    for (Product product : cartItems) {
-	        int quantity = map.get(product.getCode());
-	        total += product.getPrice() * quantity;
-	    } 
-    	DecimalFormat decimalFormat = new DecimalFormat("#0.00");
-    	String formattedPrice = decimalFormat.format(total);
+	        <%
+	                	}
+	                	
+	                	// Da passare a checkout.jsp
+	                	session.setAttribute("cartItems", cartItems);
+	                	session.setAttribute("mapProductsQuantity", map);
+	            	}
+	        %>
+	    </div>
+	    	
+	    <div id="cartSummary">
+		    <% double total = 0.00;
+		
+		    for (Product product : cartItems) {
+		        int quantity = map.get(product.getCode());
+		        total += product.getPrice() * quantity;
+		    } 
+	    	DecimalFormat decimalFormat = new DecimalFormat("#0.00");
+	    	String formattedPrice = decimalFormat.format(total);
+		    %>
+	        <p>Totale: <%= formattedPrice %> &euro;</p>
+	        
+	        <div id="cartActions">
+	        	<%if(!cartItems.isEmpty()) {%>
+		            <a href="<%=request.getContextPath()%>/LoadCheckOutCustomerData"><button>Procedi al pagamento</button></a>
+		            <a href="<%= request.getContextPath()%>/EmptyCart"><button>Svuota carrello</button></a>
+	            <%}%>
+	        </div>
+	    </div>
+	    <% 
+			}
 	    %>
-        <p>Totale: <%= formattedPrice %> &euro;</p>
-        
-        <div id="cartActions">
-        	<%if(!cartItems.isEmpty()) {%>
-	            <a href="<%=request.getContextPath()%>/LoadCheckOutCustomerData"><button>Procedi al pagamento</button></a>
-	            <a href="<%= request.getContextPath()%>/EmptyCart"><button>Svuota carrello</button></a>
-            <%}%>
-        </div>
-    </div>
-    <% 
-		}
-    %>
-</div>
-
-<%@ include file="../footer.jsp" %>
+	</div>
+	
+	<%@ include file="../footer.jsp" %>
 
 </body>
 </html>
