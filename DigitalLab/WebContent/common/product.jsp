@@ -121,7 +121,7 @@
 								
 								switch(stars)
 								{
-									case 1: reviewImageFileName += "1stars.png"; break;
+									case 1: reviewImageFileName += "1star.png"; break;
 									case 2: reviewImageFileName += "2stars.png"; break;
 									case 3: reviewImageFileName += "3stars.png"; break;
 									case 4: reviewImageFileName += "4stars.png"; break;
