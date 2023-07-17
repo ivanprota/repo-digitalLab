@@ -8,6 +8,30 @@
 <%@ page import="java.text.DecimalFormat" %>
 <%@ page import="javax.sql.DataSource" %>
 
+<%
+	
+
+	Collection<?> caseCollection = (Collection<?>) request.getAttribute("case");
+	Collection<?> cpuCollection = (Collection<?>) request.getAttribute("cpu");
+	Collection<?> motherboardCollection = (Collection<?>) request.getAttribute("motherboard");
+	Collection<?> ramCollection = (Collection<?>) request.getAttribute("ram");
+	Collection<?> gpuCollection = (Collection<?>) request.getAttribute("gpu");
+	Collection<?> storageCollection = (Collection<?>) request.getAttribute("storage");
+	Collection<?> psuCollection = (Collection<?>) request.getAttribute("psu");
+	Collection<?> coolingCollection = (Collection<?>) request.getAttribute("cooling");
+	Collection<?> monitorCollection = (Collection<?>) request.getAttribute("monitor");
+	Collection<?> osCollection = (Collection<?>) request.getAttribute("os");
+	Collection<?> extraCollection = (Collection<?>) request.getAttribute("extra");
+	
+	Collection<?> casePictures = (Collection<?>) request.getAttribute("casePictures");
+	
+	if (caseCollection == null || casePictures == null)
+	{
+		response.sendRedirect(request.getContextPath() + "/Configuration");
+		return;
+	}
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,147 +48,49 @@
     </script>
 </head>
 <body>
-    <%@ include file="../header.jsp" %>
-    
-     <div id="configurationBodyContainer">
-     
-	    <!-- Barra avanzamento e pulsante -->
-	    <div id="progressBarContainer">
-	    	<button id="backButton" onclick="backStep()">Indietro</button>
-	        <span id="progressBar" style="width: 0;"></span>
-	        <div class="step">Scegli il processore</div>
-	    	<button id="progressButton" onclick="nextStep()">Avanti</button>
-	    	<!-- DA FARE: INSERIRE PULSANTE PER POTER NON SCEGLIERE ALCUN ELEMENTO E ANDARE AVANTI CON GLI STEPS -->
-	    </div>
-	    
-		<!-- Applichiamo i filtri -->
-	   	<% DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
-	   	ProductDAO dao = new ProductDAO(ds);
-	   	Collection<Product> products = null;
-	   	String category = "CPU";
-	    products = dao.doRetrieveByFilter(category);%>
 	
-		<div id="productContainer">
-			<%
-			PictureDAO dao2 = new PictureDAO(ds);
-			Collection<Picture> pictures = new LinkedList<Picture>();
-			for (int code = 1; code <= 22; code++) {
-				pictures.add(dao2.doRetrieveByKey(code));
-			}
-			Iterator<?> it = products.iterator();
-			while(it.hasNext()) {
-				Product product = (Product) it.next();
-				Iterator<?> it2 = pictures.iterator();
-				Picture picture = null;
-				while (it2.hasNext())
-				{
-					picture = (Picture) it2.next();
-					if (picture.getProduct().getCode() == product.getCode())
-						break;
-				}%>
-				
-				<!-- Carichiamo i prodotti -->
-				<div class="product">
-				
-					<!-- Carichiamo l'immagine -->
-					<div class="product-image">
-						<!-- Creiamo il pulsante per la scelta del prodotto -->
-						<!-- DA FARE: per i prodotti come "Monitor" e "Accessori" bisogna poter scegliere più di una componente (opzionale) -->
-						<input type="radio" name="<%=category%>" value="<%=product.getCode()%>">
-						<label class="choice">
-						    <a href="<%=request.getContextPath()%>/common/product.jsp?productCode=<%= product.getCode()%>">
-						    	<img src="<%= request.getContextPath()%>/imgs/products/<%= picture.getImageFileName()%>">
-						    </a>
-					 	</label>
-					</div>
-					
-					<!-- Carichiamo il nome e il prezzo -->
-					<div class="product-name">
-						<%= product.getBrand() + " " + product.getModel() %>
-					</div>
-					<div class="product-price">
-						<%
-						DecimalFormat decimalFormat = new DecimalFormat("#0.00");
-						String formattedPrice = decimalFormat.format(product.getPrice());
-						%>
-						<%= formattedPrice %> &euro;
-					</div>
-				</div>
-				<!-- Fine caricamento prodotti -->
-			<%}%> 
-		</div>
-	</div>
-    
-    <%@ include file="../footer.jsp" %>
-    
-    <script>
-        var steps = [
-            "Scegli il processore",
-            "Scegli la scheda madre",
-            "Scegli la memoria RAM",
-            "Scegli la scheda grafica",
-            "Scegli la memoria di archiviazione",
-            "Scegli l'alimentatore",
-            "Scegli il case",
-            "Scegli il sistema di raffreddamento",
-            "Scegli il monitor",
-            "Scegli gli accessori",
-            "Scegli il sistema operativo"
-        ];
+	<%@ include file="../header.jsp"%>
+	
+	<div id="configurationBodyContainer">
         
-        var categories = [
-        	"CPU",
-        	"Schede%20Madri",
-        	"RAM",
-        	"GPU",
-        	"Storage",
-        	"PSU",
-        	"Case",
-        	"Cooling",
-        	"Monitor",
-        	"Accessori",
-        	"Sistemi%20Operativi"
-        ];
-
-        var currentStep = 0;
-        var progressBar = document.querySelector("#progressBar span");
-        var stepText = document.querySelector("#progressBar .step");
-        var progressButton = document.querySelector("#progressButton");
-
-        function nextStep() {
-            if (currentStep < steps.length - 1) {
-                currentStep++;
-                var progressWidth = (currentStep / (steps.length - 1)) * 100;
-                progressBar.style.width = progressWidth + "%";
-                stepText.textContent = steps[currentStep];
-                
-                // Cambiamo valore della categoria per procedere
-                category = categories[currentStep];
-                
-                if (currentStep === steps.length - 1) {
-                    progressButton.textContent = "Aggiungi al carrello";
-                    progressButton.onclick = addToCart;
-                    progressBar.classList.add("complete");
-                }
-            }
-        }
-        
-        function backStep() {
-        	  if (currentStep > 0) {
-        	    currentStep--;
-        	    var progressWidth = (currentStep * (steps.length - 1)) / 100;
-        	    progressBar.style.width = progressWidth + "%";
-        	    stepText.textContent = steps[currentStep];
-        	    
-        	    // Cambiamo valore della categoria per tornare indietro
-        	    category = categories[currentStep];
-        	  }
-        	}
-
-        function addToCart() {
-        	// DA FARE: CHIAMARE LA SERVLET /AddItemToCart INVIANDO IN INPUT TUTTI GLI OGGETTI SELEZIONATI (magari con un messaggio di testo "Riceverai il tuo computer assemblato")
-            alert("Prodotto aggiunto al carrello!");
-        }
-    </script>
+        <div id="caseSelectionContainer">
+        	<h1>Case</h1>
+        	<div id="caseSelection">
+        	<%
+        		Iterator<?> itCase = caseCollection.iterator();
+        		while (itCase.hasNext())
+        		{
+	        		Product product = (Product) itCase.next();
+	        		Picture picture = null;
+	        		Iterator<?> itPicturesCase = casePictures.iterator();
+	        		while (itPicturesCase.hasNext())
+	        		{
+	        			picture = (Picture) itPicturesCase.next();
+	        			if(product.getCode() == picture.getProduct().getCode())
+	        				break;
+	        		}
+        	%>
+        	<div class="caseContainer">	
+	            <label>
+	            	<input type="radio" value="<%=request.getContextPath()%>/imgs/products/<%= picture.getImageFileName()%>">
+	                 <img src="<%= request.getContextPath()%>/imgs/products/<%= picture.getImageFileName()%>">
+	            </label>
+	            <p><%= product.getPrice()%></p>
+            </div>
+        	<%  
+        		}
+        	%>
+        	</div>               
+        </div>
+        <div id="cpuSelection">
+        	<h1>CPU</h1>
+        	<%
+        		Iterator<?> itCpu = cpuCollection.iterator();
+        	%>
+        </div>
+    </div>
+	
+	<%@ include file="../footer.jsp"%>
+	
 </body>
 </html>

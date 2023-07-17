@@ -30,33 +30,63 @@ public class Configuration extends HttpServlet {
 		DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
 		
 		ProductDAO productDAO = new ProductDAO(ds);
-	   	Collection<Product> products = null;
-	   	String category = (String) request.getParameter("category");
-	   	System.out.println("SERVLET " + category);
+	   	Collection<Product> caseCollection = null;
+	   	Collection<Product> cpuCollection = null;
+	   	Collection<Product> motherboardCollection = null;
+	   	Collection<Product> ramCollection = null;
+	   	Collection<Product> gpuCollection = null;
+	   	Collection<Product> storageCollection = null;
+	   	Collection<Product> psuCollection = null;
+	   	Collection<Product> coolingCollection = null;
+	   	Collection<Product> monitorCollection = null;
+	   	Collection<Product> osCollection = null;
+	   	Collection<Product> extraCollection = null;
 	   	
 	   	try {
 	   		// Prendiamo tutti i prodotti appartenenti alla categoria desiderata
-			products = productDAO.doRetrieveByFilter(category);
+	   		caseCollection = productDAO.doRetrieveByFilter("Case");
+	   		cpuCollection = productDAO.doRetrieveByFilter("CPU");
+	   		motherboardCollection = productDAO.doRetrieveByFilter("Schede Madri");
+	   		ramCollection = productDAO.doRetrieveByFilter("RAM");
+	   		gpuCollection = productDAO.doRetrieveByFilter("GPU");
+	   		storageCollection = productDAO.doRetrieveByFilter("Storage");
+	   		psuCollection = productDAO.doRetrieveByFilter("PSU");
+	   		coolingCollection = productDAO.doRetrieveByFilter("Cooling");
+	   		monitorCollection = productDAO.doRetrieveByFilter("Monitor");
+	   		osCollection = productDAO.doRetrieveByFilter("Sistemi Operativi");
+	   		extraCollection = productDAO.doRetrieveByFilter("Accessori");
+	   		
 		} catch (SQLException e) {
 			System.out.println("Errore ottenimento prodotti");
 		}
 	   	
    		PictureDAO pictureDAO = new PictureDAO(ds);
-		Collection<Picture> pictures = new LinkedList<Picture>();
+		Collection<Picture> casePictures = new LinkedList<Picture>();
 	   	
-	   	for(Product product : products) {
+	   	for(Product product : caseCollection) {
 	   		try {
 	   			// Salviamo le foto dei prodotti ottenuti
-				pictures.add(pictureDAO.doRetrieveByKey(product.getCode()));
+	   			casePictures.add(pictureDAO.doRetrieveByKey(product.getCode()));
 			} catch (SQLException e) {
 				System.out.println("Errore ottenimento foto prodotti");
 			}
 	   	}
 		
 		// Inviamo products e pictures
-	   	request.removeAttribute("category");
-	   	request.setAttribute("products", products);
-	   	request.setAttribute("pictures", pictures);
+	   	request.setAttribute("case", caseCollection);
+	   	request.setAttribute("cpu", cpuCollection);
+	   	request.setAttribute("motherboard", motherboardCollection);
+	   	request.setAttribute("ram", ramCollection);
+	   	request.setAttribute("gpu", gpuCollection);
+	   	request.setAttribute("storage", storageCollection);
+	   	request.setAttribute("psu", psuCollection);
+	   	request.setAttribute("cooling", coolingCollection);
+	   	request.setAttribute("monitor", monitorCollection);
+	   	request.setAttribute("os", osCollection);
+	   	request.setAttribute("extra", extraCollection);
+	   	
+	   	request.setAttribute("casePictures", casePictures);
+	   	
 	   	RequestDispatcher dispatcher = request.getRequestDispatcher("common/configuration.jsp");
 	   	dispatcher.forward(request, response);
 		
