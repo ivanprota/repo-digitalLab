@@ -193,11 +193,6 @@
 					%>
 			</div>
 		</div>
-		<hr>
-		<div id="similarProducts">
-			<p>Prodotti simili</p>
-			<!-- Inserire codice -->
-		</div>
 	</div>
 	
 

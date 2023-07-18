@@ -177,15 +177,60 @@ div.productReviewContainer {
 	border-bottom: solid thin white;
 }
 
-hr {
-	color: #b3b3b3;
-}
-
 
 
 
 /* RESPONSIVE */
 @media screen and (max-width: 700px)
 {
-
+	/* Contenitore di tutto */
+	#productBodyContainer {
+		text-align: center;
+		min-height: 1200px;
+	}
+	
+		/* Contenitore di tutto quello che riguarda il prodotto (foto, descrizione, recensioni) + tutto quello che viene sotto */
+		/* tranne i prodotti simili */
+		div#productImagesLeftContainer {
+		    justify-content: center;
+		    align-items: center;
+		    flex-wrap: wrap;
+		}
+		
+			/* Contenitore delle immagini (tutte) + tutto quello che viene sotto */
+			#productListImagesContainer {
+					display: block;
+			}
+				
+				/* Contenitore dei dettagli del prodotto (nome, descrizione, prezzo) + tutto quello che viene sotto */
+				/* tranne le recensioni e i prodotti simili) */
+				#productDetailsContainer {
+					position: relative;
+					top: 450px;
+					right: 140px;
+				}
+					
+					div#productRatingContainer {
+						display: flex;
+						justify-content: center;
+						align-items: center;
+					}
+					
+					/* Contenitore della descrizione del prodotto */
+					#productDescriptionContainer {
+						text-align: justify;
+					}
+					
+					#productPurchaseContainer input {
+						margin-bottom: 10px;
+					}
+					
+					/* Contenitore delle recensioni del prodotto */
+					#productReviews {
+						position: relative;
+						top: 500px;
+						right: 30px;
+						padding: 10px;
+					}
+	
 }
