@@ -60,7 +60,6 @@ public class AddCustomerDataServlet extends HttpServlet
 			{
 				dao.doSave(shippingAddress);
 			}
-			
 			catch(SQLException e)
 			{
 				System.out.println(e);
