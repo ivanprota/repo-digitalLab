@@ -73,13 +73,10 @@ $(document).ready(function()
 				$("#updateProductPriceInput").val(data.price);
 				$("#updateProductQuantityInput").val(data.quantity);
 				$("#updateProductDescriptionInput").val(data.description);
-				
-				$("#updateMessage").html("Prodotto modificato correttamente");
-				$("#updateMessage").css({"color" : "green"});
 			},
 			error: function(xhr, status, error)
 			{
-				$("#updateMessage").html("Impossibile modificare il prodotto");
+				$("#updateMessage").html("Impossibile caricare le informazioni sul prodotto");
 				$("#updateMessage").css({"color" : "red"});
 			}
 		})
@@ -106,33 +103,43 @@ $(document).ready(function()
 		let productPrice = $("#updateProductPriceInput").val();
 		let productQuantity = $("#updateProductQuantityInput").val();
 		let productDescription = $("#updateProductDescriptionInput").val();
-		
-		let url = '/DigitalLab/AdminProductControlServlet?action=update';
-		let data =
-		{
-			"code": productCode,
-			"brand": productBrand,
-			"model": productModel,
-			"category": productCategory,
-			"price": productPrice,
-			"quantity": productQuantity,
-			"description": productDescription
-		};
-		
-		$.get(url, data, function(data){
-			if (data.brand !== 'undefined')
-				$("#updateProductBrandInput").val(data.brand);
-			if (data.model !== 'undefined')
-				$("#updateProductModelInput").val(data.model);
-			if (data.category !== 'undefined')
-				$("#updateProductCategoryInput").val(data.category);
-			if (data.description !== 'undefined')
-				$("#updateProductDescriptionInput").val(data.description);
-			if (data.price !== 'undefined')
-				$("#updateProductPriceInput").val(data.price);
-			if (data.quantity !== 'undefined')
-				$("#updateProductQuantityInput").val(data.quantity);
-		});
+
+		$.ajax({
+			url: '/DigitalLab/AdminProductControlServlet?action=update',
+			method: 'GET',
+			data: {
+				"code": productCode,
+				"brand": productBrand,
+				"model": productModel,
+				"category": productCategory,
+				"price": productPrice,
+				"quantity": productQuantity,
+				"description": productDescription
+			},
+			success: function(data)
+			{
+				if (data.brand !== 'undefined')
+					$("#updateProductBrandInput").val(data.brand);
+				if (data.model !== 'undefined')
+					$("#updateProductModelInput").val(data.model);
+				if (data.category !== 'undefined')
+					$("#updateProductCategoryInput").val(data.category);
+				if (data.description !== 'undefined')
+					$("#updateProductDescriptionInput").val(data.description);
+				if (data.price !== 'undefined')
+					$("#updateProductPriceInput").val(data.price);
+				if (data.quantity !== 'undefined')
+					$("#updateProductQuantityInput").val(data.quantity);
+					
+				$("#updateMessage").html("Prodotto modificato correttamente");
+				$("#updateMessage").css({"color" : "green"});
+			},
+			error: function(xhr, status, error)
+			{
+				$("#updateMessage").html("Impossibile modificare il prodotto");
+				$("#updateMessage").css({"color" : "red"});
+			}
+		})
 	}
 });
 
