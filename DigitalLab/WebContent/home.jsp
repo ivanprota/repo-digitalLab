@@ -94,33 +94,33 @@
 			<h1>I Più Venduti</h1>
 			<div id="itemsContainer">			
 				<div class="bestSelling">
-					<a href="">
-						<img src="imgs/intel-i5.jpg">
+					<a href="<%=request.getContextPath()%>/common/product.jsp?productCode=4">
+						<img src="imgs/products/cpu1_f1.jpg">
 						Intel Core i5-12400F
 					</a>
 				</div>
 				<div class="bestSelling">
-					<a href="">
-						<img src="imgs/case.jpg">
-						EMPIRE GAMING - Case
+					<a href="<%=request.getContextPath()%>/common/product.jsp?productCode=22">
+						<img src="imgs/products/case1_f1.jpg">
+						Mars MC-U3
 					</a>
 				</div>
 				<div class="bestSelling">
-					<a href="">
-						<img src="imgs/gpu.jpg">
+					<a href="<%=request.getContextPath()%>/common/product.jsp?productCode=7">
+						<img src="imgs/products/gpu2_f1.jpg">
 						Gigabyte GeForce RTX 3060
 					</a>
 				</div>
 				<div class="bestSelling">
-					<a href="">
-						<img src="imgs/windows11home.jpg">
+					<a href="<%=request.getContextPath()%>/common/product.jsp?productCode=18">
+						<img src="imgs/products/os1_f1.jpg">
 						Windows 11 HOME
 					</a>
 				</div>
 				<div class="bestSelling">
-					<a href="">
-						<img src="imgs/monitor.jpg">
-						MSI Optix G24C24
+					<a href="<%=request.getContextPath()%>/common/product.jsp?productCode=16">
+						<img src="imgs/products/monitor1_f1.jpg">
+						Samsung S36C 
 					</a>
 				</div>											
 			</div>
@@ -134,19 +134,19 @@
 			<h1>I Più Popolari</h1>
 			<div id="pcContainer">
 				<div class="mostPopular">
-					<a href="">
+					<a href="<%= request.getContextPath()%>/Catalogue?filter=category&categoryName=PC%20Gaming">
 						<img src="imgs/pcgaming.png">
 						PC Gaming
 					</a>
 				</div>
 				<div class="mostPopular">
-					<a href="">
+					<a href="<%= request.getContextPath()%>/Catalogue?filter=category&categoryName=PC%20Workstation">
 						<img src="imgs/workstation.png">
 						Workstation
 					</a>
 				</div>
 				<div class="mostPopular">
-					<a href="">
+					<a href="<%= request.getContextPath()%>/Catalogue?filter=category&categoryName=PC%20Streaming">
 						<img src="imgs/pcstreaming.jpg">
 						PC Streaming
 					</a>
