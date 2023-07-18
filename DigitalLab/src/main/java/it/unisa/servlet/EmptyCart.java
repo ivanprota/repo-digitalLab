@@ -40,11 +40,10 @@ public class EmptyCart extends HttpServlet
 		}
 		catch (SQLException e)
 		{
-			System.out.println(e);
+			System.err.println(e);
 		}
 		
 		response.sendRedirect(request.getContextPath() + "/common/cart.jsp");
-		return;
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 

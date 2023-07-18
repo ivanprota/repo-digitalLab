@@ -64,7 +64,7 @@ public class SaveOrder extends HttpServlet {
         	shippingAddress = shippingAddressDAO.doRetrieveByKey(ShippingAddressID);
         	paymentMethod = paymentMethodDAO.doRetrieveByKey(PaymentMethodPAN);
         } catch(SQLException e) {
-        	System.out.println("Error");
+        	System.err.println("Error");
         }
         
         Customer customer = (Customer) session.getAttribute("customer");
@@ -136,7 +136,7 @@ public class SaveOrder extends HttpServlet {
 		}
 		catch (SQLException e)
 		{
-			System.out.println(e);
+			System.err.println(e);
 		}
     	
     	return;

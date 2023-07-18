@@ -113,7 +113,7 @@
 	                
 	                <div class="cartItem">
 		               	<div class="cartItemImage">
-		                   	<img src="<%= request.getContextPath()%>/imgs/products/<%= picture.getImageFileName()%>">
+		                   	<img src="<%= request.getContextPath()%>/imgs/products/<%= picture.getImageFileName()%>" alt="PRODUCT IMAGE">
 		                </div>
 		               	<div class="cartItemDetails">
 		                	<%DecimalFormat decimalFormat = new DecimalFormat("#0.00");

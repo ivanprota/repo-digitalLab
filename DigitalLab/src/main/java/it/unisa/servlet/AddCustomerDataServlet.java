@@ -63,7 +63,7 @@ public class AddCustomerDataServlet extends HttpServlet
 			
 			catch(SQLException e)
 			{
-				System.out.println(e);
+				System.err.println(e);
 				error += "Impossibile salvare i cambiamenti";
 				request.setAttribute("error", error);
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/common/user-area.jsp");
@@ -108,7 +108,7 @@ public class AddCustomerDataServlet extends HttpServlet
 			}
 			catch(SQLException e)
 			{
-				System.out.println(e);
+				System.err.println(e);
 				error += "Impossibile salvare i cambiamenti";
 				request.setAttribute("error", error);
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/common/user-area.jsp");
@@ -136,7 +136,6 @@ public class AddCustomerDataServlet extends HttpServlet
 		}
 		
 		response.sendRedirect(request.getContextPath() + "/common/user-area.jsp");
-		return;
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 

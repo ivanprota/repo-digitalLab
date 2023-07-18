@@ -49,7 +49,7 @@ public class RegistrationServlet extends HttpServlet
 		}
 		catch (SQLException e)
 		{
-			System.out.println(e);
+			System.err.println(e);
 			response.sendRedirect(request.getContextPath() + "/login-signup/signup.jsp");
 			return;
 		}
@@ -67,11 +67,10 @@ public class RegistrationServlet extends HttpServlet
 		}
 		catch (SQLException e)
 		{
-			System.out.println(e);
+			System.err.println(e);
 		}
 		
 		response.sendRedirect(request.getContextPath() + "/common/user-area.jsp");
-		return;
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 

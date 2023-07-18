@@ -40,7 +40,6 @@ public class CustomerDAO
 			preparedStatement.setString(6, customer.getPhone());
 			
 			preparedStatement.executeUpdate();
-			//connection.commit();
 		}
 		finally
 		{
@@ -72,7 +71,6 @@ public class CustomerDAO
 			preparedStatement.setString(1, username);
 			
 			result = preparedStatement.executeUpdate();
-			//connection.commit();
 		}
 		finally
 		{

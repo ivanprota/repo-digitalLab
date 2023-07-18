@@ -52,13 +52,11 @@ public class AddItemToCart extends HttpServlet {
         }
         
         CustomerDAO customerDAO = new CustomerDAO(dataSource);
-        Customer customer = null;
         try {
-        	customer = customerDAO.doRetrieveByKey(customerUsername);
         	shoppingCartDAO.doSizeUpdateByKey(customerUsername);
         	
         } catch (SQLException e) {
-        	System.out.println(e);
+        	System.err.println(e);
         }
         
         // Crea la relazione tra il carrello e il prodotto
@@ -66,7 +64,6 @@ public class AddItemToCart extends HttpServlet {
         contains.setShoppingCart(shoppingCart);
         
         // Recupera il prodotto dal database utilizzando il codice del prodotto
-        ProductDAO productDAO = new ProductDAO(dataSource);
         Product product = null;
 		try {
 			product = productDAO.doRetrieveByKey(productCode);
@@ -77,7 +74,6 @@ public class AddItemToCart extends HttpServlet {
 
         // Salva la relazione tra carrello e prodotto nel database
         try {
-        	ContainsDAO containsDAO = new ContainsDAO(dataSource);
         	contains.setQuantity(1);
             containsDAO.doSave(contains);
         } catch (SQLException e) {
@@ -85,12 +81,11 @@ public class AddItemToCart extends HttpServlet {
             e.printStackTrace();
             try
             {    	
-            	contains = containsDAO.doRetrieveByKey(customerUsername, productCode);
             	containsDAO.doUpdateQuantity(customerUsername, productCode);
             }
             catch (SQLException e2)
             {
-            	System.out.println(e2);
+            	System.err.println(e2);
             }
         }
     }

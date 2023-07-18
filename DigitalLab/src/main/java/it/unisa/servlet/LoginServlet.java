@@ -89,7 +89,7 @@ public class LoginServlet extends HttpServlet
 		}
 		catch (SQLException e)
 		{
-			System.out.println(e);
+			System.err.println(e);
 			if (error.equals(""))
 				error += "Username o password errati";
 			request.setAttribute("error", error);
@@ -105,7 +105,6 @@ public class LoginServlet extends HttpServlet
 				{			
 					session.setAttribute("customer", customer);
 					response.sendRedirect(request.getContextPath() + "/common/user-area.jsp");
-					return;
 				}
 				else 
 				{
@@ -113,7 +112,6 @@ public class LoginServlet extends HttpServlet
 						error += "Username o password errati";
 					request.setAttribute("error", error);
 					request.getRequestDispatcher("/login-signup/login.jsp").forward(request, response);
-					return;
 				}
 			}
 			else 
@@ -122,17 +120,15 @@ public class LoginServlet extends HttpServlet
 					error += "Username o password errati";
 				request.setAttribute("error", error);
 				request.getRequestDispatcher("/login-signup/login.jsp").forward(request, response);
-				return;
 			}
 		}
 		catch (SQLException e)
 		{
-			System.out.println(e);
+			System.err.println(e);
 			if (error.equals(""))
 				error += "Username o password errati";
 			request.setAttribute("error", error);
 			request.getRequestDispatcher("/login-signup/login.jsp").forward(request, response);
-			return;
 		}
 	}
 

@@ -45,7 +45,6 @@ public class OrderDAO
 			preparedStatement.setString(7, order.getPaymentMethod().getPan());
 			
 			preparedStatement.executeUpdate();
-			//connection.commit();
 		}
 		finally
 		{
@@ -77,7 +76,6 @@ public class OrderDAO
 			preparedStatement.setInt(1, code);
 			
 			result = preparedStatement.executeUpdate();
-			//connection.commit();
 		}
 		finally
 		{

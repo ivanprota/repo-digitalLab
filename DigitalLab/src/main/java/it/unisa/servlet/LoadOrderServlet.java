@@ -51,7 +51,7 @@ public class LoadOrderServlet extends HttpServlet
 			} 
 			catch (ParseException e) 
 			{
-				System.out.println(e);
+				System.err.println(e);
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/admin-area.jsp");
 				dispatcher.forward(request, response);
 			}
@@ -70,7 +70,7 @@ public class LoadOrderServlet extends HttpServlet
 			}
 			catch(SQLException e)
 			{
-				System.out.println(e);
+				System.err.println(e);
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/admin-area.jsp");
 				dispatcher.forward(request, response);
 			}
@@ -101,7 +101,7 @@ public class LoadOrderServlet extends HttpServlet
 			} 
 			catch (ParseException e) 
 			{
-				System.out.println(e);
+				System.err.println(e);
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/admin-area.jsp");
 				dispatcher.forward(request, response);
 			}
@@ -119,7 +119,7 @@ public class LoadOrderServlet extends HttpServlet
 			}
 			catch (SQLException e)
 			{
-				System.out.println(e);
+				System.err.println(e);
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/admin-area.jsp");
 				dispatcher.forward(request, response);				
 			}
@@ -140,7 +140,7 @@ public class LoadOrderServlet extends HttpServlet
 			}
 			catch(SQLException e)
 			{
-				System.out.println(e);
+				System.err.println(e);
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/admin-area.jsp");
 				dispatcher.forward(request, response);
 			}

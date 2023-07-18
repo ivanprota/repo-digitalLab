@@ -19,7 +19,7 @@
 		<footer id="footer">
 			<div id="topFooter">
 				<div id="leftTopFooter">
-					<img src="<%=request.getContextPath()+"/imgs/logo.png"%>">
+					<img src="<%=request.getContextPath()+"/imgs/logo.png"%>" alt="LOGO IMAGE">
 					<p>
 						Venditore hardware e costruttore di computer personalizzati
 						ad alte prestazioni.<br>
@@ -65,32 +65,32 @@
 				<div id="rightBottomFooter">
 					<div class="socialFooter">
 						<a href="" onmouseover="borderItem(this)" onmouseout="deleteBorderItem(this)">
-							<img src="<%=request.getContextPath()+"/imgs/facebook.png"%>">
+							<img src="<%=request.getContextPath()+"/imgs/facebook.png"%>" alt="FACEBOOK LOGO">
 						</a>
 					</div>
 					<div class="socialFooter">
 						<a href="" onmouseover="borderItem(this)" onmouseout="deleteBorderItem(this)">
-							<img src="<%=request.getContextPath()+"/imgs/instagram.png"%>">
+							<img src="<%=request.getContextPath()+"/imgs/instagram.png"%>" alt="INSTAGRAM LOGO">
 						</a>
 					</div>
 					<div class="socialFooter">
 						<a href="" onmouseover="borderItem(this)" onmouseout="deleteBorderItem(this)">
-							<img src="<%=request.getContextPath()+"/imgs/tiktok.png"%>">
+							<img src="<%=request.getContextPath()+"/imgs/tiktok.png"%>" alt="TIKTOK LOGO">
 						</a>
 					</div>					
 					<div class="socialFooter">
 						<a href="" onmouseover="borderItem(this)" onmouseout="deleteBorderItem(this)">
-							<img src="<%=request.getContextPath()+"/imgs/twitter.png"%>">
+							<img src="<%=request.getContextPath()+"/imgs/twitter.png"%>" alt="TWITTER LOGO">
 						</a>
 					</div>
 					<div class="socialFooter">
 						<a href="" onmouseover="borderItem(this)" onmouseout="deleteBorderItem(this)">
-							<img src="<%=request.getContextPath()+"/imgs/linkedin.png"%>">
+							<img src="<%=request.getContextPath()+"/imgs/linkedin.png"%>" alt="LINKEDIN LOGO">
 						</a>
 					</div>
 					<div class="socialFooter">
 						<a href="" onmouseover="borderItem(this)" onmouseout="deleteBorderItem(this)">
-							<img src="<%=request.getContextPath()+"/imgs/youtube.png"%>">
+							<img src="<%=request.getContextPath()+"/imgs/youtube.png"%>" alt="YOUTUBE LOGO">
 						</a>
 					</div>
 				</div>

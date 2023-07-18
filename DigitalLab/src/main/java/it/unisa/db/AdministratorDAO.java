@@ -38,7 +38,6 @@ public class AdministratorDAO
 			preparedStatement.setString(4, admin.getPassword());
 			
 			preparedStatement.executeUpdate();
-			//connection.commit();
 		}
 		finally
 		{
@@ -70,7 +69,6 @@ public class AdministratorDAO
 			preparedStatement.setString(1, username);
 			
 			result = preparedStatement.executeUpdate();
-			//connection.commit();
 		}
 		finally
 		{

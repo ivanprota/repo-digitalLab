@@ -85,7 +85,7 @@
         	<div class="caseContainer">	
 	            <label>
 	            	<input id="radioCase" type="radio" name="radioCase" value="<%=product.getCode()%>" checked>
-	                 <img src="<%= request.getContextPath()%>/imgs/products/<%= picture.getImageFileName()%>">
+	                 <img src="<%= request.getContextPath()%>/imgs/products/<%= picture.getImageFileName()%>" alt="PRODUCT IMAGE">
 	            </label>
 	            <%
 		            DecimalFormat decimalFormat = new DecimalFormat("#0.00");

@@ -67,34 +67,13 @@ public class AdminProductControlServlet extends HttpServlet
 			}
 			catch(SQLException e)
 			{
-				System.out.println(e);
+				System.err.println(e);
 				error += "Impossibile aggiungere il prodotto";
 				request.setAttribute("error", error);
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/common/user-area.jsp");
 				dispatcher.forward(request, response);
 				return;
 			}
-			
-			
-			// Dobbiamo agirare il problema del salvataggio delle foto dei prodotti
-			/*String savePath = request.getServletContext()+ "imgs/products";
-			
-			File fileSaveDir = new File(savePath);
-			if (!fileSaveDir.exists())
-				fileSaveDir.mkdir();
-			
-			if (request.getParts() != null && request.getParts().size() > 0)
-			{
-				for (Part part : request.getParts())
-				{
-					String fileName = part.getSubmittedFileName();
-					if (fileName != null && !fileName.equals(""))
-					{
-						System.out.println(savePath + File.separator + fileName + "");
-						part.write(savePath + File.separator + fileName);
-					}
-				}
-			}*/
 			
 			message += "Prodotto aggiunto con successo";
 			request.setAttribute("message", message);
@@ -114,7 +93,7 @@ public class AdminProductControlServlet extends HttpServlet
 			}
 			catch(SQLException e)
 			{
-				System.out.println(e);
+				System.err.println(e);
 				response.sendRedirect(request.getContextPath() + "/admin/admin-area.jsp");
 				return;
 			}
@@ -151,7 +130,7 @@ public class AdminProductControlServlet extends HttpServlet
 			}
 			catch (SQLException e)
 			{
-				System.out.println(e);
+				System.err.println(e);
 				response.sendRedirect(request.getContextPath() + "/admin/admin-area.jsp");
 				return;
 			}
@@ -209,7 +188,7 @@ public class AdminProductControlServlet extends HttpServlet
 			}
 			catch (SQLException e)
 			{
-				System.out.println(e);
+				System.err.println(e);
 				response.sendRedirect(request.getContextPath() + "/admin/admin-area.jsp");
 				return;				
 			}
@@ -234,9 +213,8 @@ public class AdminProductControlServlet extends HttpServlet
 			}
 			catch(SQLException e)
 			{
-				System.out.println(e);
-				response.sendRedirect(request.getContextPath() + "/admin/admin-area.jsp");
-				return;			
+				System.err.println(e);
+				response.sendRedirect(request.getContextPath() + "/admin/admin-area.jsp");		
 			}
 		}
 	}

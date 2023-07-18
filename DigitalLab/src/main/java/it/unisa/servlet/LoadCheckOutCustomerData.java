@@ -41,7 +41,7 @@ public class LoadCheckOutCustomerData extends HttpServlet {
 			shippingAddresses = shippingAddressDAO.doRetrieveByCustomerUsername(customer.getUsername());
 		}
 		catch (SQLException e) {
-			System.out.println(e);
+			System.err.println(e);
 		}
 		finally {
 			request.setAttribute("shippingAddresses", shippingAddresses);
@@ -54,15 +54,13 @@ public class LoadCheckOutCustomerData extends HttpServlet {
 			paymentMethods = paymentMethodDAO.doRetrieveByCustomerUsername(customer.getUsername());
 		}
 		catch (SQLException e) {
-			System.out.println(e);
+			System.err.println(e);
 		}
 		finally {
 			request.setAttribute("paymentMethods", paymentMethods);
 		}
 		
 		request.getRequestDispatcher("/common/checkout.jsp").forward(request, response);
-		return;
-		
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

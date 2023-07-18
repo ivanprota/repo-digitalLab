@@ -86,12 +86,12 @@
 			
 				<div id="cartContainer">
 					<a href="<%=request.getContextPath()%>/common/cart.jsp" onmouseover="borderItem(this)" onmouseout="deleteBorderItem(this)">
-						<img id="cartImage" src="<%=request.getContextPath()+"/imgs/cart.png"%>">
+						<img id="cartImage" src="<%=request.getContextPath()+"/imgs/cart.png"%>" alt="CART IMAGE">
 					</a>
 				</div>
 				<div id="userContainer">
 					<a href="<%= request.getContextPath()%>/UserRedirectServlet" onmouseover="borderItem(this)" onmouseout="deleteBorderItem(this)">
-						<img id="userImage" src="<%=request.getContextPath()+"/imgs/user.png"%>">
+						<img id="userImage" src="<%=request.getContextPath()+"/imgs/user.png"%>" alt="USER LOGO">
 					</a>				
 				</div>
 			

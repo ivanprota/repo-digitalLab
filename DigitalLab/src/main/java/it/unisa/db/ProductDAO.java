@@ -47,7 +47,6 @@ public class ProductDAO
 			preparedStatement.setString(6, product.getCategory());
 			
 			preparedStatement.executeUpdate();
-			//connection.commit();
 		}
 		finally
 		{
@@ -79,7 +78,6 @@ public class ProductDAO
 			preparedStatement.setInt(1, code);
 			
 			result = preparedStatement.executeUpdate();
-			//connection.commit();
 		}
 		finally
 		{

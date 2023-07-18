@@ -79,7 +79,7 @@ public class UpdatePersonalDataServlet extends HttpServlet
 			}
 			catch (SQLException e)
 			{
-				System.out.println(e);
+				System.err.println(e);
 				session.invalidate();
 				response.sendRedirect(request.getContextPath() + "/login-signup/login.jsp");
 				return;
@@ -153,7 +153,7 @@ public class UpdatePersonalDataServlet extends HttpServlet
 			}
 			catch (SQLException e)
 			{
-				System.out.println(e);
+				System.err.println(e);
 				session.invalidate();
 				response.sendRedirect(request.getContextPath() + "/login-signup/login.jsp");
 				return;

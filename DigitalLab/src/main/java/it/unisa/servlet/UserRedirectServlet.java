@@ -31,18 +31,15 @@ public class UserRedirectServlet extends HttpServlet
 		
 		if (customer != null)
 		{
-			response.sendRedirect(request.getContextPath() + "/common/user-area.jsp");
-			return;			
+			response.sendRedirect(request.getContextPath() + "/common/user-area.jsp");	
 		}
 		else if (admin != null)
 		{
-			response.sendRedirect(request.getContextPath() + "/admin/admin-area.jsp");
-			return;			
+			response.sendRedirect(request.getContextPath() + "/admin/admin-area.jsp");		
 		}
 		else
 		{
-			response.sendRedirect(request.getContextPath() + "/login-signup/login.jsp");
-			return;			
+			response.sendRedirect(request.getContextPath() + "/login-signup/login.jsp");		
 		}
 	}
 	

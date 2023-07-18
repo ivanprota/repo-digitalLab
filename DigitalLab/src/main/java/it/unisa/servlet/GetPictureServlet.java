@@ -49,7 +49,7 @@ public class GetPictureServlet extends HttpServlet
 		}
 		catch (SQLException e)
 		{
-			System.out.println(e);
+			System.err.println(e);
 			response.sendRedirect(request.getContextPath());
 			request.getSession().invalidate();
 			return;
@@ -58,7 +58,6 @@ public class GetPictureServlet extends HttpServlet
 		request.setAttribute("pictures", pictures);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/common/catalogue.jsp");
 		dispatcher.forward(request, response);
-		return;
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 

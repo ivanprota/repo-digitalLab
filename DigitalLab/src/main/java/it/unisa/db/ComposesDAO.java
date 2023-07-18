@@ -39,7 +39,6 @@ public class ComposesDAO
 			preparedStatement.setInt(3, composes.getQuantity());
 			
 			preparedStatement.executeUpdate();
-			//connection.commit();
 		}
 		finally
 		{
@@ -73,7 +72,6 @@ public class ComposesDAO
 			preparedStatement.setInt(2, orderCode);
 			
 			result = preparedStatement.executeUpdate();
-			//connection.commit();
 		}
 		finally
 		{

@@ -61,7 +61,7 @@
 			<div id="personalAreaLeftContainer">
 				<div id="personalDataLeftContainer">
 					<div id="personalDataLeftImageContainer">
-						<img src="<%= request.getContextPath()%>/imgs/user.png">
+						<img src="<%= request.getContextPath()%>/imgs/user.png" alt="User Area Image">
 					</div>
 					<h1 id="leftAdminData">
 						<%= admin.getName()%> <%= admin.getSurname()%>
@@ -144,10 +144,6 @@
 									<div id="uploadImagePreview"></div>
 									<script>imagePreview()</script>
 								</div>
-								<!-- <div class="productOpData">
-									<label for="code">Codice Prodotto:</label>
-									<input type="number" name="code" placeholder="Codice">
-								</div> -->
 								<div class="productOpData">
 									<label for="brand">Brand:</label>
 									<input type="text" name="brand" placeholder="Brand">
@@ -348,7 +344,7 @@
 											} %>
 									        <div class="cartItem">
 										    	<div class="cartItemImage">
-										    		<img src="<%= request.getContextPath()%>/imgs/products/<%= picture.getImageFileName()%>">
+										    		<img src="<%= request.getContextPath()%>/imgs/products/<%= picture.getImageFileName()%>" alt="PRODUCT IMAGE">
 										        </div>
 										        <div class="cartItemDetails">
 										        <%	DecimalFormat decimalFormat2 = new DecimalFormat("#0.00");

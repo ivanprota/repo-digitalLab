@@ -220,7 +220,7 @@ function checkUsername(input, errorMessageId, color)
 
   // Verifica se l'username contiene solo caratteri alfanumerici e underscore
   else if (!usernamePattern.test(username)) {
-    document.getElementById(errorMessageId).innerHTML = "L\'username pu&ograve; contenere solo lettere, numeri e underscore.";
+    document.getElementById(errorMessageId).innerHTML = "L'username pu&ograve; contenere solo lettere, numeri e underscore.";
     paragraph.style.color = color;
     paragraph.style.fontSize = "13px";
   }

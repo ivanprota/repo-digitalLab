@@ -71,7 +71,7 @@
 				%>
 					<a onmouseover="borderItem2(this)" onmouseout="deleteBorderItem(this)">
 						<img src="<%= request.getContextPath()%>/imgs/products/<%= picture1.getImageFileName()%>" 
-							onmouseover="setImage('<%=fileName1%>')">
+							onmouseover="setImage('<%=fileName1%>')" alt="PRODUCT IMAGE">
 					</a>
 				</div>
 				<div class="productImagesContainer">
@@ -80,12 +80,12 @@
 				%>
 					<a onmouseover="borderItem2(this)" onmouseout="deleteBorderItem(this)">
 						<img src="<%= request.getContextPath()%>/imgs/products/<%= picture2.getImageFileName()%>" 
-							onmouseover="setImage('<%=fileName2%>')">
+							onmouseover="setImage('<%=fileName2%>')" alt="PRODUCT IMAGE">
 					</a>
 				</div>
 			</div>
 			<div id="productImageContainer">
-				<img id="productImage" src="<%= request.getContextPath()%>/imgs/products/<%= picture1.getImageFileName()%>">
+				<img id="productImage" src="<%= request.getContextPath()%>/imgs/products/<%= picture1.getImageFileName()%>" alt="PRODUCT IMAGE">
 			</div>
 			<div id="productDetailsContainer">
 				<div id="productHeaderContainer">
@@ -131,7 +131,7 @@
 									case 5: reviewImageFileName += "5stars.png"; break;
 								}
 							%>
-							<img src="<%= request.getContextPath()%>/imgs/<%= reviewImageFileName%>">
+							<img src="<%= request.getContextPath()%>/imgs/<%= reviewImageFileName%>" alt="REVIEW IMAGE">
 						</div>
 						<p>
 							<a href="<%= request.getContextPath()%>/Catalogue?filter=category&categoryName=<%= product.getCategory()%>">

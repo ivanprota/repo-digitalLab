@@ -48,13 +48,13 @@
 					<input type="radio" name="radio-btn" id="radio3">
 					
 					<div class="slide first">
-						<img src="imgs/amd.jpg">
+						<img src="imgs/amd.jpg" alt="AMD IMAGE">
 					</div>
 					<div class="slide">
-						<img src="imgs/intel.png">
+						<img src="imgs/intel.png" alt="INTEL IMAGE">
 					</div>
 					<div class="slide">
-						<img src="imgs/msi.jpg">
+						<img src="imgs/msi.jpg" alt="MSI IMAGE">
 					</div>
 					
 					<div class="navigation-auto">
@@ -95,31 +95,31 @@
 			<div id="itemsContainer">			
 				<div class="bestSelling">
 					<a href="<%=request.getContextPath()%>/common/product.jsp?productCode=4">
-						<img src="imgs/products/cpu1_f1.jpg">
+						<img src="imgs/products/cpu1_f1.jpg" alt="CPU IMAGE">
 						Intel Core i5-12400F
 					</a>
 				</div>
 				<div class="bestSelling">
 					<a href="<%=request.getContextPath()%>/common/product.jsp?productCode=22">
-						<img src="imgs/products/case1_f1.jpg">
+						<img src="imgs/products/case1_f1.jpg" alt="CASE IMAGE">
 						Mars MC-U3
 					</a>
 				</div>
 				<div class="bestSelling">
 					<a href="<%=request.getContextPath()%>/common/product.jsp?productCode=7">
-						<img src="imgs/products/gpu2_f1.jpg">
+						<img src="imgs/products/gpu2_f1.jpg" alt="GPU IMAGE">
 						Gigabyte GeForce RTX 3060
 					</a>
 				</div>
 				<div class="bestSelling">
 					<a href="<%=request.getContextPath()%>/common/product.jsp?productCode=18">
-						<img src="imgs/products/os1_f1.jpg">
+						<img src="imgs/products/os1_f1.jpg" alt="OS IMAGE">
 						Windows 11 HOME
 					</a>
 				</div>
 				<div class="bestSelling">
 					<a href="<%=request.getContextPath()%>/common/product.jsp?productCode=16">
-						<img src="imgs/products/monitor1_f1.jpg">
+						<img src="imgs/products/monitor1_f1.jpg" alt="MONITOR IMAGE">
 						Samsung S36C 
 					</a>
 				</div>											
@@ -135,19 +135,19 @@
 			<div id="pcContainer">
 				<div class="mostPopular">
 					<a href="<%= request.getContextPath()%>/Catalogue?filter=category&categoryName=PC%20Gaming">
-						<img src="imgs/pcgaming.png">
+						<img src="imgs/pcgaming.png" alt="PC GAMING IMAGE">
 						PC Gaming
 					</a>
 				</div>
 				<div class="mostPopular">
 					<a href="<%= request.getContextPath()%>/Catalogue?filter=category&categoryName=PC%20Workstation">
-						<img src="imgs/workstation.png">
+						<img src="imgs/workstation.png" alt="WORKSTATION IMAGE">
 						Workstation
 					</a>
 				</div>
 				<div class="mostPopular">
 					<a href="<%= request.getContextPath()%>/Catalogue?filter=category&categoryName=PC%20Streaming">
-						<img src="imgs/pcstreaming.jpg">
+						<img src="imgs/pcstreaming.jpg" alt="PC STREAMING IMAGE">
 						PC Streaming
 					</a>
 				</div>
@@ -167,7 +167,7 @@
 			</div>
 			<div id="confSideImageContainer">
 				<a href="<%= request.getContextPath()%>/common/configuration.jsp">
-					<img src="imgs/configpc2.jpg">
+					<img src="imgs/configpc2.jpg" alt="CONFIGURATION PC IMAGE">
 				</a>
 			</div>
 		

@@ -131,7 +131,7 @@ public class Catalogue extends HttpServlet {
     	}
     	catch(SQLException e)
     	{
-    		System.out.println(e);
+    		System.err.println(e);
     	}
     	
         request.setAttribute("products", products);
@@ -143,12 +143,11 @@ public class Catalogue extends HttpServlet {
 		} 
         catch (ServletException e) 
         {
-        	System.out.println(e);
+        	System.err.println(e);
 		} 
         catch (IOException e) 
         {
-        	System.out.println(e);
+        	System.err.println(e);
 		}
-        return;
     }
 }

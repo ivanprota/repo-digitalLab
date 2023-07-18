@@ -43,7 +43,6 @@ public class ShippingAddressDAO
 			preparedStatement.setString(6, shippingAddress.getCustomer().getUsername());
 			
 			preparedStatement.executeUpdate();
-			//connection.commit();
 		}
 		finally
 		{
@@ -75,7 +74,6 @@ public class ShippingAddressDAO
 			preparedStatement.setInt(1, id);
 			
 			result = preparedStatement.executeUpdate();
-			//connection.commit();
 		}
 		finally
 		{

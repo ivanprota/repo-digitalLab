@@ -58,7 +58,7 @@ public class LoadCustomerDataServlet extends HttpServlet
 		}
 		catch (SQLException e)
 		{
-			System.out.println(e);
+			System.err.println(e);
 		}
 		finally
 		{
@@ -74,7 +74,7 @@ public class LoadCustomerDataServlet extends HttpServlet
 		}
 		catch (SQLException e)
 		{
-			System.out.println(e);
+			System.err.println(e);
 		}
 		finally
 		{
@@ -90,7 +90,7 @@ public class LoadCustomerDataServlet extends HttpServlet
 		}
 		catch(SQLException e)
 		{
-			System.out.println(e);
+			System.err.println(e);
 		}
 		finally
 		{
@@ -116,7 +116,7 @@ public class LoadCustomerDataServlet extends HttpServlet
 		}
 		catch(SQLException e)
 		{
-			System.out.println(e);
+			System.err.println(e);
 		}
 		finally
 		{
@@ -124,7 +124,6 @@ public class LoadCustomerDataServlet extends HttpServlet
 		}
 		
 		response.sendRedirect(request.getContextPath() + "/common/user-area.jsp");
-		return;
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 

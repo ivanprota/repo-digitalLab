@@ -57,7 +57,7 @@ public class Configuration extends HttpServlet {
 	   		extraCollection = productDAO.doRetrieveByFilter("Accessori");
 	   		
 		} catch (SQLException e) {
-			System.out.println("Errore ottenimento prodotti");
+			System.err.println("Errore ottenimento prodotti");
 		}
 	   	
    		PictureDAO pictureDAO = new PictureDAO(ds);
@@ -68,7 +68,7 @@ public class Configuration extends HttpServlet {
 	   			// Salviamo le foto dei prodotti ottenuti
 	   			casePictures.add(pictureDAO.doRetrieveByKey(product.getCode()));
 			} catch (SQLException e) {
-				System.out.println("Errore ottenimento foto prodotti");
+				System.err.println("Errore ottenimento foto prodotti");
 			}
 	   	}
 		
