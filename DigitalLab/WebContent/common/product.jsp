@@ -117,10 +117,13 @@
 									stars += review.getAssessment();
 								}
 								
-								stars /= reviews.size();
+								if (reviews.size() == 0)
+									stars = 0;
+								else stars /= reviews.size();
 								
 								switch(stars)
 								{
+									case 0: reviewImageFileName += "0stars.png"; break;
 									case 1: reviewImageFileName += "1star.png"; break;
 									case 2: reviewImageFileName += "2stars.png"; break;
 									case 3: reviewImageFileName += "3stars.png"; break;
@@ -151,7 +154,13 @@
 				</div>
 				<div id="productPurchaseContainer">
 					<%
-						if (customer == null)
+						if (product.getQuantity() == 0)
+						{
+					%>
+							<p>Prodotto momentaneamente non disponibile</p>
+					<%		
+						}
+						else if (customer == null)
 						{
 					%>
 							<p>Autenticati per effettuare l'acquisto!</p>

@@ -434,7 +434,12 @@ public class ProductDAO
 					sum += review.getAssessment();
 				}
 				
-				if ((sum / reviews.size()) >= stars)
+				if (reviews.size() == 0)
+				{
+					if (0 >= stars)
+						products.add(product);
+				}
+				else if ((sum / reviews.size()) >= stars)
 					products.add(product);
 			}
 		}

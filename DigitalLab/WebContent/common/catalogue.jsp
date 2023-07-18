@@ -137,6 +137,11 @@
 							<img src="<%=request.getContextPath()%>/imgs/1star.png">e più
 						</a>
 					</div>
+					<div class="reviewStarContainer">
+						<a href="<%= request.getContextPath()%>/Catalogue?filter=assessment&stars=0">
+							<img src="<%=request.getContextPath()%>/imgs/0stars.png">e più
+						</a>
+					</div>
 				</div>
 			</div>
 		</div>

@@ -20,7 +20,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
 import it.unisa.db.PictureDAO;
+import it.unisa.db.ProductDAO;
 import it.unisa.model.Picture;
+import it.unisa.model.Product;
 
 @WebServlet("/GetPictureServlet")
 public class GetPictureServlet extends HttpServlet 
@@ -31,11 +33,19 @@ public class GetPictureServlet extends HttpServlet
 	{
 		DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
 		PictureDAO dao = new PictureDAO(ds);
+		ProductDAO productDAO = new ProductDAO(ds);
+		Collection<Product> products = null;
 		Collection<Picture> pictures = new LinkedList<Picture>();
 		try
 		{
-			for (int code=1; code<=22; code++)
-				pictures.add(dao.doRetrieveByKey(code));
+			products = productDAO.doRetrieveAll(null);
+			
+			Iterator<Product> itProducts = products.iterator();
+			while (itProducts.hasNext())
+			{
+				Product product = (Product) itProducts.next();
+				pictures.add(dao.doRetrieveByKey(product.getCode()));
+			}
 		}
 		catch (SQLException e)
 		{
