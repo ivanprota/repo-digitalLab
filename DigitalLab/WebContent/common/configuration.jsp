@@ -310,7 +310,7 @@
         </div>
         
         <%if(customer == null) {
-        	%><p class="error">Autenticati per effettuare l'acquisto</p><%
+        	%><p class= "error">Autenticati per effettuare l'acquisto</p><%
         } else { %>
             <input type="button" id="configurationButton" value="Aggiungi al carrello"><%
         } %>
