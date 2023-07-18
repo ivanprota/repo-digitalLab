@@ -81,7 +81,7 @@ public class AddCustomerDataServlet extends HttpServlet
 			collection.add(shippingAddress);
 			session.setAttribute("shippingAddresses", collection);
 			
-			message += "Salvamenti effettuati con successo";
+			message += "Cambiamenti effettuati con successo";
 			request.setAttribute("message", message);
 			
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/common/user-area.jsp");
@@ -126,7 +126,7 @@ public class AddCustomerDataServlet extends HttpServlet
 			collection.add(paymentMethod);
 			session.setAttribute("paymentMethods", collection);
 			
-			message += "Salvamenti effettuati con successo";
+			message += "Cambiamenti effettuati con successo";
 			request.setAttribute("message", message);
 			
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/common/user-area.jsp");
