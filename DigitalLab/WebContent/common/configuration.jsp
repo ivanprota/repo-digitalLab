@@ -41,7 +41,7 @@
 %>
 
 <!DOCTYPE html>
-<html>
+<html lang="IT">
 <head>
     <meta charset="ISO-8859-1">
     <title>Configurazione DigitalLab.it</title>

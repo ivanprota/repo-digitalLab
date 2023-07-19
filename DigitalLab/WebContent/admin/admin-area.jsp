@@ -33,7 +33,7 @@
 		message = "";
 %>
 <!DOCTYPE html>
-<html>
+<html lang="IT">
 
 	<head>
 

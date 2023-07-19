@@ -30,7 +30,7 @@
  
 
 <!DOCTYPE html>
-<html>
+<html lang="IT">
 <head>
     <meta charset="UTF-8">
     <title>Il mio carrello DigitalLab.it</title>

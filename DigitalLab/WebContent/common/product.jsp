@@ -40,7 +40,7 @@
 %>
 
 <!DOCTYPE html>
-<html>
+<html lang="IT">
 <head>
     <meta charset="ISO-8859-1">
     <title><%= product.getBrand() + " " + product.getModel()%></title>
@@ -170,7 +170,6 @@
 						{
 					%>
 					<input type="button" value="Aggiungi al carrello" onclick="addToCart('<%= product.getCode() %>', '<%=customer.getUsername()%>')">
-					<input type="button" value="Acquista">
 					<p>Ricorda che il reso è gratuito!</p>
 					<% 
 						}

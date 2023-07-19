@@ -169,7 +169,7 @@ $(document).ready(function()
 			{
 				$("#deleteProductForm")[0].reset();
 				$("#deleteMessage").html("Prodotto eliminato con successo");
-				$("#deleteMessage").css({"color" : "red"});
+				$("#deleteMessage").css({"color" : "green"});
 			},
 			error: function(xhr, status, error)
 			{

@@ -6,7 +6,6 @@
 
 package it.unisa.servlet;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -18,7 +17,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
 import javax.sql.DataSource;
 
 import org.json.JSONObject;
@@ -60,7 +58,7 @@ public class AdminProductControlServlet extends HttpServlet
 				
 			DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
 			ProductDAO productDAO = new ProductDAO(ds);
-				
+		
 			try
 			{
 				productDAO.doSave(product);		

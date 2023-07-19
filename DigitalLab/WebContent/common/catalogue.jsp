@@ -22,7 +22,7 @@
 %>
 
 <!DOCTYPE html>
-<html>
+<html lang="IT">
 <head>
     <meta charset="UTF-8">
     <title>Catalogo</title>
@@ -134,12 +134,12 @@
 					</div>
 					<div class="reviewStarContainer">
 						<a href="<%= request.getContextPath()%>/Catalogue?filter=assessment&stars=1">
-							<img src="<%=request.getContextPath()%>/imgs/1star.png">e più
+							<img src="<%=request.getContextPath()%>/imgs/1star.png" alt="STARS IMAGE">e più
 						</a>
 					</div>
 					<div class="reviewStarContainer">
 						<a href="<%= request.getContextPath()%>/Catalogue?filter=assessment&stars=0">
-							<img src="<%=request.getContextPath()%>/imgs/0stars.png">e più
+							<img src="<%=request.getContextPath()%>/imgs/0stars.png" alt="STARS IMAGE">e più
 						</a>
 					</div>
 				</div>
