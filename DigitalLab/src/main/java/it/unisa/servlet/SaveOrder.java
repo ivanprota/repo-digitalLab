@@ -79,7 +79,8 @@ public class SaveOrder extends HttpServlet {
         String array[] = {"In Transito", "Consegnato"};
         Random random = new Random();
         
-        order.setStatus(array[random.nextInt(2)]);
+        int randomInt = random.nextInt(2);
+        order.setStatus(array[randomInt]);
         order.setTotalAmount(total);
         order.setPaymentDate(date);
         order.setCustomer(customer);

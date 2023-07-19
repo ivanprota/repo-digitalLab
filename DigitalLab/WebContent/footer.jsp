@@ -11,6 +11,8 @@
 		
 		<link type="text/css" rel="stylesheet" href="<%= request.getContextPath()%>/css/footer.css">
 		
+		<title>Digital Lab</title>
+		
 	</head>
 	
 	<body>

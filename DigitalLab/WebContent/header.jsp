@@ -12,6 +12,8 @@
 		<link rel="icon" type="image/x-icon" href="<%=request.getContextPath()+"/imgs/favicon.ico"%>">
 		<link type="text/css" rel="stylesheet" href="<%= request.getContextPath()%>/css/header.css">
 		
+		<title>Digital Lab</title>
+		
 		<!-- Effetto di scorrimento per i contatti -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 		<script>

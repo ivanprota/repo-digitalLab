@@ -92,15 +92,15 @@ div#sliderContainer {
 	margin-right: 40px;
 }
 
-#radio1:chedked ~ .navigation-auto .auto-btn1 {
+#radio1:checked ~ .navigation-auto .auto-btn1 {
 	background: #fba304;
 }
 
-#radio2:chedked ~ .navigation-auto .auto-btn2 {
+#radio2:checked ~ .navigation-auto .auto-btn2 {
 	background: #fba304;
 }
 
-#radio3:chedked ~ .navigation-auto .auto-btn3 {
+#radio3:checked ~ .navigation-auto .auto-btn3 {
 	background: #fba304;
 }
 
