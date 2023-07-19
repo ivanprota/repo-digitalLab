@@ -62,7 +62,7 @@
 	margin-bottom: 10px;
 }
 
-#checkboxPhoneContainer inptu[type="checkbox"] {
+#checkboxPhoneContainer input[type="checkbox"] {
 	padding:0px;
 }
 
