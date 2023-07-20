@@ -133,7 +133,7 @@ public class ReviewDAO
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		
-		Collection<Review> reviews = new LinkedList<Review>();
+		Collection<Review> reviews = new LinkedList<>();
 		String selectSQL = "SELECT * FROM " +Constants.REVIEW_TABLE_NAME+ " WHERE review_product_code = ?";
 		
 		try
@@ -179,7 +179,7 @@ public class ReviewDAO
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		
-		Collection<Review> reviews = new LinkedList<Review>();
+		Collection<Review> reviews = new LinkedList<>();
 		String selectSQL = "SELECT * FROM " +Constants.REVIEW_TABLE_NAME;
 		
 		if (order != null && !order.equals(""))

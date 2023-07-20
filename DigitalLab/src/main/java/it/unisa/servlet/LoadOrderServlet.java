@@ -62,7 +62,7 @@ public class LoadOrderServlet extends HttpServlet
 			DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
 			OrderDAO dao = new OrderDAO(ds);
 			Collection<Order> ordersCollection = null;
-			Collection<Order> orders = new LinkedList<Order>();
+			Collection<Order> orders = new LinkedList<>();
 			
 			try
 			{

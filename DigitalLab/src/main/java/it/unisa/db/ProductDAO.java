@@ -214,7 +214,7 @@ public class ProductDAO
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		
-		Collection<Product> products = new LinkedList<Product>();
+		Collection<Product> products = new LinkedList<>();
 		String selectSQL = "";
 		
 		boolean isMoreThanOrLessThan = false;
@@ -301,7 +301,7 @@ public class ProductDAO
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		
-		Collection<Product> products = new LinkedList<Product>();
+		Collection<Product> products = new LinkedList<>();
 		String selectSQL = "SELECT * FROM " +Constants.PRODUCT_TABLE_NAME+ " WHERE product_brand = ?";
 		for (int i=1; i<brands.length; i++)
 			selectSQL += " OR product_brand = ?";
@@ -354,7 +354,7 @@ public class ProductDAO
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		
-		Collection<Product> products = new LinkedList<Product>();
+		Collection<Product> products = new LinkedList<>();
 		String selectSQL = "SELECT * FROM " +Constants.PRODUCT_TABLE_NAME+ " WHERE product_category = ?";
 		
 		try
@@ -400,7 +400,7 @@ public class ProductDAO
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		
-		Collection<Product> products = new LinkedList<Product>();
+		Collection<Product> products = new LinkedList<>();
 		String selectSQL = "SELECT * FROM " +Constants.PRODUCT_TABLE_NAME;
 
 		try
@@ -463,7 +463,7 @@ public class ProductDAO
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;		
 		
-		Collection<Product> products = new LinkedList<Product>();
+		Collection<Product> products = new LinkedList<>();
 		String selectSQL = "SELECT * FROM " +Constants.PRODUCT_TABLE_NAME;
 		
 		if (order != null && !order.equals(""))

@@ -100,7 +100,7 @@ public class SaveOrder extends HttpServlet {
         try {
 			orderDAO.doSave(order);
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.err.println(e);
 		}
         
         for(Product product : cartItems) {
@@ -112,7 +112,7 @@ public class SaveOrder extends HttpServlet {
         	try {
         		composesDAO.doSave(composes);
     		} catch (SQLException e) {
-    			e.printStackTrace();
+    			System.err.println(e);
     		}
         }
         

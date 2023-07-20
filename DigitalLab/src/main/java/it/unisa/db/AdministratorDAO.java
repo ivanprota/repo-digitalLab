@@ -173,7 +173,7 @@ public class AdministratorDAO
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		
-		Collection<Administrator> admins = new LinkedList<Administrator>();
+		Collection<Administrator> admins = new LinkedList<>();
 		String selectSQL = "SELECT * FROM " +Constants.ADMINISTRATOR_TABLE_NAME;
 		
 		if (order != null && !order.equals(""))

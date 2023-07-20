@@ -143,7 +143,7 @@ public class ComposesDAO
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		
-		Collection<Product> orderProducts = new LinkedList<Product>();
+		Collection<Product> orderProducts = new LinkedList<>();
 		String selectSQL = "SELECT * FROM " +Constants.COMPOSES_TABLE_NAME+ " WHERE composes_order_code = ?";
 		
 		try
@@ -183,7 +183,7 @@ public class ComposesDAO
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		
-		Collection<Composes> composesCollection = new LinkedList<Composes>();
+		Collection<Composes> composesCollection = new LinkedList<>();
 		String selectSQL = "SELECT * FROM " +Constants.COMPOSES_TABLE_NAME;
 		
 		if (order != null && !order.equals(""))

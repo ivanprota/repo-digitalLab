@@ -139,7 +139,7 @@ public class PaymentMethodDAO
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		
-		Collection<PaymentMethod> paymentMethods = new LinkedList<PaymentMethod>();
+		Collection<PaymentMethod> paymentMethods = new LinkedList<>();
 		String selectSQL = "SELECT * FROM " +Constants.PAYMENT_METHOD_TABLE_NAME+ " WHERE payment_method_customer_username = ?";
 		
 		try
@@ -189,7 +189,7 @@ public class PaymentMethodDAO
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		
-		Collection<PaymentMethod> paymentMethods = new LinkedList<PaymentMethod>();
+		Collection<PaymentMethod> paymentMethods = new LinkedList<>();
 		String selectSQL = "SELECT * FROM " +Constants.PAYMENT_METHOD_TABLE_NAME;
 		
 		if (order != null && !order.equals(""))

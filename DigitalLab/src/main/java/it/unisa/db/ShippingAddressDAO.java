@@ -144,7 +144,7 @@ public class ShippingAddressDAO
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		
-		Collection<ShippingAddress> shippingAddresses = new LinkedList<ShippingAddress>();
+		Collection<ShippingAddress> shippingAddresses = new LinkedList<>();
 		String selectSQL = "SELECT * FROM " +Constants.SHIPPING_ADDRESS_TABLE_NAME+ " WHERE shipping_address_customer_username = ?";
 		
 		try
@@ -196,7 +196,7 @@ public class ShippingAddressDAO
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		
-		Collection<ShippingAddress> shippingAddresses = new LinkedList<ShippingAddress>();
+		Collection<ShippingAddress> shippingAddresses = new LinkedList<>();
 		String selectSQL = "SELECT * FROM " +Constants.SHIPPING_ADDRESS_TABLE_NAME;
 		
 		if (order != null && !order.equals(""))

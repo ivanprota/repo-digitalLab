@@ -39,6 +39,8 @@ public class AdminProductControlServlet extends HttpServlet
 		String error = "";
 		String message = "";
 		
+		DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
+		
 		if (action.equals("add"))
 		{
 			String brand = request.getParameter("brand");
@@ -56,7 +58,6 @@ public class AdminProductControlServlet extends HttpServlet
 			product.setQuantity(quantity);
 			product.setDescription(description);
 				
-			DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
 			ProductDAO productDAO = new ProductDAO(ds);
 		
 			try
@@ -82,7 +83,6 @@ public class AdminProductControlServlet extends HttpServlet
 		else if (action.equals("select"))
 		{
 			int code = Integer.parseInt(request.getParameter("code"));
-			DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
 			ProductDAO dao = new ProductDAO(ds);
 			Product product;
 			try
@@ -118,7 +118,6 @@ public class AdminProductControlServlet extends HttpServlet
 			}
 			
 			int code = Integer.parseInt(codeString);
-			DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
 			ProductDAO dao = new ProductDAO(ds);
 			Product product;
 			
@@ -203,7 +202,6 @@ public class AdminProductControlServlet extends HttpServlet
 		else if (action.equals("delete"))
 		{
 			int code = Integer.parseInt(request.getParameter("code"));
-			DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
 			ProductDAO dao = new ProductDAO(ds);
 			try
 			{

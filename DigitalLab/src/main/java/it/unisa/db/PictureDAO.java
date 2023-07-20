@@ -74,7 +74,7 @@ public class PictureDAO
 			} 
 			catch (IOException e) 
 			{
-				System.out.println(e);
+				System.err.println(e);
 			}
 		} 
 		finally 
@@ -86,7 +86,7 @@ public class PictureDAO
 			} 
 			catch (SQLException sqlException) 
 			{
-				System.out.println(sqlException);
+				System.err.println(sqlException);
 			} 
 			finally 
 			{
@@ -210,7 +210,7 @@ public class PictureDAO
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		
-		Collection<Picture> pictures = new LinkedList<Picture>();
+		Collection<Picture> pictures = new LinkedList<>();
 		String selectSQL = "SELECT * FROM " +Constants.PICTURE_TABLE_NAME+ " WHERE picture_product_code = ?";
 		
 		try
@@ -256,7 +256,7 @@ public class PictureDAO
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		
-		Collection<Picture> pictures = new LinkedList<Picture>();
+		Collection<Picture> pictures = new LinkedList<>();
 		String selectSQL = "SELECT * FROM " +Constants.PICTURE_TABLE_NAME;
 		
 		if (order != null && !order.equals(""))

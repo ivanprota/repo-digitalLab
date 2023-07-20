@@ -181,7 +181,7 @@ public class CustomerDAO
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		
-		Collection<Customer> customers = new LinkedList<Customer>();
+		Collection<Customer> customers = new LinkedList<>();
 		String selectSQL = "SELECT * FROM " +Constants.CUSTOMER_TABLE_NAME;
 		
 		if (order != null && !order.equals(""))

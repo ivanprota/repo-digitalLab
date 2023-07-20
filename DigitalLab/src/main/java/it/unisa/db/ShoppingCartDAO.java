@@ -199,7 +199,7 @@ public class ShoppingCartDAO
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		
-		Collection<ShoppingCart> carts = new LinkedList<ShoppingCart>();
+		Collection<ShoppingCart> carts = new LinkedList<>();
 		String selectSQL = "SELECT * FROM " +Constants.SHOPPING_CART_TABLE_NAME;
 		
 		if (order != null && !order.equals(""))

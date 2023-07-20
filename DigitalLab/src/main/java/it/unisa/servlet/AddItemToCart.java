@@ -51,7 +51,6 @@ public class AddItemToCart extends HttpServlet {
             System.err.println(e);
         }
         
-        CustomerDAO customerDAO = new CustomerDAO(dataSource);
         try {
         	shoppingCartDAO.doSizeUpdateByKey(customerUsername);
         	

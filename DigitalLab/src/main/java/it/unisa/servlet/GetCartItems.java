@@ -48,7 +48,7 @@ public class GetCartItems extends HttpServlet {
             // Inoltra la richiesta alla pagina JSP del carrello
             request.getRequestDispatcher(request.getContextPath() + "/css/cart.jsp").forward(request, response);
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.err.println(e);
         }
     }
 

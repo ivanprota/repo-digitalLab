@@ -190,7 +190,7 @@ public class OrderDAO
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		
-		Collection<Order> orders = new LinkedList<Order>();
+		Collection<Order> orders = new LinkedList<>();
 		String selectSQL = "SELECT * FROM " +Constants.ORDER_TABLE_NAME+ " WHERE customer_order_customer_username = ?";
 		
 		try
@@ -251,7 +251,7 @@ public class OrderDAO
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		
-		Collection<Order> orders = new LinkedList<Order>();
+		Collection<Order> orders = new LinkedList<>();
 		String selectSQL = "SELECT * FROM " +Constants.ORDER_TABLE_NAME+ " WHERE (customer_order_payment_date BETWEEN ? AND ?)";
 		
 		try
@@ -313,7 +313,7 @@ public class OrderDAO
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		
-		Collection<Order> orders = new LinkedList<Order>();
+		Collection<Order> orders = new LinkedList<>();
 		String selectSQL = "SELECT * FROM " +Constants.ORDER_TABLE_NAME;
 		
 		if (order != null && !order.equals(""))

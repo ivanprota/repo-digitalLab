@@ -249,7 +249,7 @@ public class ContainsDAO
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		
-		Collection<Contains> containsCollection = new LinkedList<Contains>();
+		Collection<Contains> containsCollection = new LinkedList<>();
 		String selectSQL = "SELECT * FROM " +Constants.CONTAINS_TABLE_NAME+ 
 					" WHERE contains_shopping_cart_customer_username = ?";
 		
@@ -300,7 +300,7 @@ public class ContainsDAO
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		
-		Collection<Contains> containsCollection = new LinkedList<Contains>();
+		Collection<Contains> containsCollection = new LinkedList<>();
 		String selectSQL = "SELECT * FROM " +Constants.CONTAINS_TABLE_NAME;
 		
 		if (order != null && !order.equals(""))

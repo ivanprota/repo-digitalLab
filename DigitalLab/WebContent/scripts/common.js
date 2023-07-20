@@ -206,7 +206,7 @@ function checkEmail(input, errorMessageId, color)
 function checkUsername(input, errorMessageId, color) 
 {
   // Pattern per la validazione dell'username
-  let usernamePattern = /^[a-zA-Z0-9_]+$/;
+  let usernamePattern = /^\w+$/;
 
   // Ottieni il valore dell'input username
   let username = input.value.trim();
