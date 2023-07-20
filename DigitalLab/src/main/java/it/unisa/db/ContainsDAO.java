@@ -159,6 +159,44 @@ public class ContainsDAO
 		return (result != 0);
 	}
 	
+	public synchronized boolean doUpdateQuantity(String username, int code, int quantity) throws SQLException
+	{
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		int result = 0;
+		String updateSQL = "UPDATE " +Constants.CONTAINS_TABLE_NAME+ 
+				" SET contains_product_quantity = ? WHERE "
+				+ "contains_shopping_cart_customer_username = ? AND contains_product_code = ?";
+		
+		try
+		{
+			connection = ds.getConnection();
+			preparedStatement = connection.prepareStatement(updateSQL);
+			preparedStatement.setInt(1, quantity);
+			preparedStatement.setString(2, username);
+			preparedStatement.setInt(3, code);
+			
+			result = preparedStatement.executeUpdate();
+		}
+		finally
+		{
+			try
+			{
+				if (preparedStatement != null)
+					preparedStatement.close();
+			}
+			finally
+			{
+				if (connection != null)
+					connection.close();
+			}				
+		}
+		
+		return (result != 0);
+	}
+	
+	
 	public synchronized Contains doRetrieveByKey(String username, int code) throws SQLException
 	{
 		Connection connection = null;

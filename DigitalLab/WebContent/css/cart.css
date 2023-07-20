@@ -11,6 +11,8 @@
   	margin: 0 auto;
   	padding: 15px;
   	padding-top: 6px;
+  	font-weight: normal;
+  	font-style: italic;
 }
 
 #cartItems {
@@ -51,6 +53,10 @@
   font-size: 14px;
   color: #888;
   margin-bottom: 10px;
+}
+
+.cartItemDetails input#inputQuantityProduct {
+	width: 10%;
 }
 
 /* Riepilogo del totale */

@@ -197,7 +197,6 @@
 
 	<script>
 	  function addToCart(productCode, customerUsername) {
-	    alert(customerUsername);
 	    $.ajax({
 	      url: "<%=request.getContextPath()%>/addItemToCart",
 	      method: 'POST',

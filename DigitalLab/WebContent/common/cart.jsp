@@ -37,6 +37,7 @@
     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/cart.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="<%= request.getContextPath()%>/scripts/common.js"></script>
+    <script src="<%= request.getContextPath()%>/scripts/cart.js"></script>
     <script>
         $(document).ready(function() {
             $("#phoneButton").click(function() {
@@ -109,8 +110,10 @@
 		                            	<%=product.getBrand() + " " + product.getModel()%>
 		                        		</a>
 		                        	</h3>
-		                            <p>Prezzo: <%= formattedPrice %> &euro; Quantità: <%= quantity%></p>
-		                            <!-- Altre informazioni sui prodotti -->
+		                            <p>
+		                            	Prezzo: <%= formattedPrice %> &euro; Quantità: <input type="number" min="1" max="10" id="inputQuantityProduct" value="<%=quantity%>" onchange="setQuantity('<%=product.getCode()%>')">
+		                            </p>
+		                            <a href="<%= request.getContextPath()%>/Cart?action=delete&productCode=<%= product.getCode()%>">Elimina</a>
 		                    </div>
 	                        
 	                    </div>
@@ -134,7 +137,7 @@
 	    	DecimalFormat decimalFormat = new DecimalFormat("#0.00");
 	    	String formattedPrice = decimalFormat.format(total);
 		    %>
-	        <p>Totale: <%= formattedPrice %> &euro;</p>
+	        <p id="totalParagraph">Totale: <%= formattedPrice %> &euro;</p>
 	        
 	        <div id="cartActions">
 	        	<%if(!cartItems.isEmpty()) {%>
