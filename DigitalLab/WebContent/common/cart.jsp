@@ -38,13 +38,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="<%= request.getContextPath()%>/scripts/common.js"></script>
     <script src="<%= request.getContextPath()%>/scripts/cart.js"></script>
-    <script>
-        $(document).ready(function() {
-            $("#phoneButton").click(function() {
-                $("#phoneNavContainer").slideToggle();
-            })
-        })
-    </script>
 </head>
 	<body>
 	

@@ -16,15 +16,7 @@
 		
 		<!-- Effetto di scorrimento per i contatti -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-		<script>
-		$(document).ready(function() {
-		  $("a[href='#footer']").click(function() {
-		    $('html, body').animate({
-		      scrollTop: $("#footer").offset().top
-		    }, 1000); // Tempo di animazione in millisecondi
-		  });
-		});
-		</script>
+		<script src="<%= request.getContextPath()%>/scripts/common.js"></script>
 		
 	</head>
 	

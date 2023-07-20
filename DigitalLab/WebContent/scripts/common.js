@@ -253,3 +253,26 @@ function checkPhone(input, errorMessageId) {
     document.getElementById(errorMessageId).innerHTML = "";
   }
 }
+
+
+
+
+/*
+	Animazione del menu(responsive)
+*/
+$(document).ready(function() {
+	$("#phoneButton").click(function() {
+		$("#phoneNavContainer").slideToggle();
+	})
+})
+
+/*
+	Animazione del tasto "Contatti"
+*/
+$(document).ready(function() {
+	$("a[href='#footer']").click(function() {
+		$('html, body').animate({
+			scrollTop: $("#footer").offset().top
+		}, 1000); // Tempo di animazione in millisecondi
+	});
+});
