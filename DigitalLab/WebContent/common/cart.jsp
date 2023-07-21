@@ -104,7 +104,7 @@
 		                        		</a>
 		                        	</h3>
 		                            <p>
-		                            	Prezzo: <%= formattedPrice %> &euro; Quantità: <input type="number" min="1" max="10" id="inputQuantityProduct" value="<%=quantity%>" onchange="setQuantity('<%=product.getCode()%>')">
+		                            	Prezzo: <%= formattedPrice %> &euro; Quantità: <input type="number" min="1" id="inputQuantityProduct" value="<%=quantity%>" onchange="setQuantity(this, '<%=product.getCode()%>')" onkeypress="return /[1-9]/i.test(event.key)" >
 		                            </p>
 		                            <a href="<%= request.getContextPath()%>/Cart?action=delete&productCode=<%= product.getCode()%>">Elimina</a>
 		                    </div>

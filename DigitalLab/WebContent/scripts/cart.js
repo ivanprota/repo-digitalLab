@@ -1,8 +1,8 @@
-function setQuantity(productCode)
+function setQuantity(element, productCode)
 {
 	$.ajaxSetup({timeout: 10000});
 	
-	let quantity = $("#inputQuantityProduct").val();
+	let quantity = element.value;
 	
 	$.ajax({
 		url: '/DigitalLab/Cart',
