@@ -174,4 +174,8 @@ h1 {
 	div#catalogueFilters {
 		display: none;
 	}
+	
+	div#bodyContainer {
+		display: none;
+	}
 }

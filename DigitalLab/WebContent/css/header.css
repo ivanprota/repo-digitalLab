@@ -14,10 +14,6 @@ header {
 	align-items: center;
 }
 
-
-
-
-
 /* INIZIO LOGO */
 header div#logoContainer {
 	background-color: #fba304;
@@ -35,10 +31,6 @@ header div#logoContainer a img {
 	border: solid thin #fba304;
 }
 /* FINE LOGO */
-
-
-
-
 
 /* INIZIO BARRA DI RICERCA */
 header div#searchContainer {
@@ -77,10 +69,6 @@ header div#searchContainer button#searchButton {
 }
 /* FINE BARRA DI RICERCA */
 
-
-
-
-
 /* INIZIO LINK DI SUPPORTO */
 header div.helpContainer {
 	width: 15%;
@@ -104,10 +92,6 @@ header div#confLinkContainer a {
 	margin-right: 0;
 }
 /* FINE LINK DI SUPPORTO */
-
-
-
-
 
 /* INIZIO AREA UTENTE */
 header div#userArea {
@@ -138,10 +122,6 @@ header div#userArea div#userContainer a img#userImage {
 	border: solid thin #1a1a1a;
 }
 /* FINE AREA UTENTE */
-
-
-
-
 
 /* INIZIO MENU DI NAVIGAZIONE */
 nav {
@@ -183,18 +163,11 @@ nav div#navContainer ul li a:hover {
 }
 /* FINE MENU DI NAVIGAZIONE */
 
-
-
-
-
 /* INIZIO MENU DI NAVIGAZIONE (PHONE VIEW)*/
 nav#phoneNav {
 	display: none;
 }
 /* FINE MENU DI NAVIGAZIONE (PHONE VIEW) */
-
-
-
 
 /* RESPONSIVE */
 @media screen and (max-width: 1700px)
@@ -352,5 +325,15 @@ nav#phoneNav {
 	
 	nav#phoneNav div#phoneNavContainer ul li a:hover {
 		border-color: black;
+	}
+	
+		header div#logoContainer {
+		margin: 1%;
+		padding: 5px;
+	}
+	
+	#searchContainer {
+		margin: 1%;
+		padding: 5px;
 	}
 }

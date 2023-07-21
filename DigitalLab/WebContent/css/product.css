@@ -181,56 +181,47 @@ div.productReviewContainer {
 
 
 /* RESPONSIVE */
-@media screen and (max-width: 700px)
-{
-	/* Contenitore di tutto */
-	#productBodyContainer {
-		text-align: center;
-		min-height: 1200px;
+@media screen and (max-width: 700px) {
+	div#productBodyContainer {
+		padding: 10px;
 	}
 	
-		/* Contenitore di tutto quello che riguarda il prodotto (foto, descrizione, recensioni) + tutto quello che viene sotto */
-		/* tranne i prodotti simili */
-		div#productImagesLeftContainer {
-		    justify-content: center;
-		    align-items: center;
-		    flex-wrap: wrap;
-		}
-		
-			/* Contenitore delle immagini (tutte) + tutto quello che viene sotto */
-			#productListImagesContainer {
-					display: block;
-			}
-				
-				/* Contenitore dei dettagli del prodotto (nome, descrizione, prezzo) + tutto quello che viene sotto */
-				/* tranne le recensioni e i prodotti simili) */
-				#productDetailsContainer {
-					position: relative;
-					top: 450px;
-					right: 140px;
-				}
-					
-					div#productRatingContainer {
-						display: flex;
-						justify-content: center;
-						align-items: center;
-					}
-					
-					/* Contenitore della descrizione del prodotto */
-					#productDescriptionContainer {
-						text-align: justify;
-					}
-					
-					#productPurchaseContainer input {
-						margin-bottom: 10px;
-					}
-					
-					/* Contenitore delle recensioni del prodotto */
-					#productReviews {
-						position: relative;
-						top: 500px;
-						right: 30px;
-						padding: 10px;
-					}
+	/* Contenitore di tutto quello che riguarda il prodotto (foto, descrizione, recensioni) + tutto quello che viene sotto */
+	/* tranne i prodotti simili */
+	div#productImagesLeftContainer {
+		align-items: center;
+		flex-wrap: wrap;
+	}
 	
+	div#productDetailsContainer {
+		margin-left: 0;
+		width: 100%;
+	}
+	
+	div#productHeaderContainer h1 {
+		padding-top: 15px;
+		text-align: center;
+	}
+	
+	div#productHeaderParagraphContainer {
+		align-items: center;
+		justify-content: center;
+		flex-wrap: wrap;
+	}
+	
+	  div#productHeaderParagraphContainer a {
+	    margin-right: 0;
+	    margin-bottom: 10px;
+	  }
+	
+	  #productReviews {
+		width: 100%;
+		margin-left: 0%;
+	    
+	  }
+	
+	  #productPurchaseContainer input {
+	    margin-left: 0;
+	    margin-right: 0;
+	  }
 }
