@@ -89,5 +89,7 @@ $(document).ready(function()
 			method: "POST",
 			data: {"productCode" : extraValue, "customerUsername" : username}
 		})
+		
+		alert("Prodotto aggiunto al carrello con successo!");
 	}
 });

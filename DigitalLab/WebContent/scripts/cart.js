@@ -13,7 +13,7 @@ function setQuantity(element, productCode)
 			"quantity": quantity
 		},
 		success: function(data) {
-			$("#totalParagraph").html(" Totale:"+ data.formattedPrice +"&euro;");
+			$("#totalParagraph").html("Totale: "+ data.formattedPrice +"&euro;");
 		}
 	});
 }
