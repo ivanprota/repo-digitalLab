@@ -258,15 +258,6 @@ function checkPhone(input, errorMessageId) {
 
 
 /*
-	Animazione del menu(responsive)
-*/
-$(document).ready(function() {
-	$("#phoneButton").click(function() {
-		$("#phoneNavContainer").slideToggle();
-	})
-})
-
-/*
 	Animazione del tasto "Contatti"
 */
 $(document).ready(function() {
