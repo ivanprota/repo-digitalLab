@@ -276,11 +276,11 @@
 							<input type="text" name="username" placeholder="Username cliente">
 						</div>
 						<div class="orderData">
-							<label for="startDate">Dal:</label>
+							<label for="startDate">Dal: (yyyy-mm-gg)</label>
 							<input type="date" name="startDate">
 						</div>
 						<div class="orderData">
-							<label for="endDate">Al:</label>
+							<label for="endDate">Al: (yyyy-mm-gg)</label>
 							<input type="date" name="endDate">
 						</div>
 						<div id="searchOrderButtonContainer">

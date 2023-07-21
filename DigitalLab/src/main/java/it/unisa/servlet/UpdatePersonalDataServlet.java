@@ -8,7 +8,10 @@ package it.unisa.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.charset.StandardCharsets;
 import java.sql.SQLException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -49,6 +52,14 @@ public class UpdatePersonalDataServlet extends HttpServlet
 			String surname = request.getParameter("adminSurname");
 			String username = request.getParameter("adminUsername");
 			String password = request.getParameter("adminPassword");
+			
+			String usernameRegex =  "^\\w+$";
+			Pattern pattern = Pattern.compile(usernameRegex);
+			Matcher matcher = pattern.matcher(username);
+			if (!matcher.find())
+			{
+				int numberForError = 10 / 0;
+			}
 			
 			String key = admin.getUsername();
 			
@@ -104,6 +115,38 @@ public class UpdatePersonalDataServlet extends HttpServlet
 			String email = request.getParameter("customerEmail");
 			String username = request.getParameter("customerUsername");
 			String password = request.getParameter("customerPassword");
+			
+			password = toHash(password);
+			
+			Pattern pattern = null;
+			Matcher matcher = null;
+			
+			if (phone != null && !phone.trim().equals(""))
+			{
+				String phoneRegex = "^\\d{10}$";
+				pattern = Pattern.compile(phoneRegex);
+				matcher = pattern.matcher(phone);
+				if (!matcher.find())
+				{
+					int numberForError = 10 / 0;
+				}
+			}
+			
+			String emailRegex = "^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$";
+			pattern = Pattern.compile(emailRegex);
+			matcher = pattern.matcher(email);
+			if (!matcher.find())
+			{
+				int numberForError = 10 / 0;
+			}
+			
+			String usernameRegex =  "^\\w+$";
+			pattern = Pattern.compile(usernameRegex);
+			matcher = pattern.matcher(username);
+			if (!matcher.find())
+			{
+				int numberForError = 10 / 0;
+			}
 			
 			String key = customer.getUsername();
 			
@@ -177,4 +220,24 @@ public class UpdatePersonalDataServlet extends HttpServlet
 		doGet(request, response);
 	}
 
+	private String toHash(String password)
+	{
+		String hashString = null;
+		try
+		{
+			java.security.MessageDigest digest = java.security.MessageDigest.getInstance("SHA-512");
+			byte[] hash = digest.digest(password.getBytes(StandardCharsets.UTF_8));
+			hashString = "";
+			for (int i=0; i<hash.length; i++)
+			{
+				hashString += Integer.toHexString((hash[i] & 0xFF) | 0x100).toLowerCase().substring(1, 3);
+			}
+		}
+		catch (java.security.NoSuchAlgorithmException e)
+		{
+			System.err.println(e);
+		}
+		
+		return hashString;
+	}
 }

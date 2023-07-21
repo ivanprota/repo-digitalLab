@@ -6,6 +6,7 @@
 package it.unisa.servlet;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.sql.SQLException;
 
 import javax.servlet.ServletException;
@@ -32,6 +33,8 @@ public class RegistrationServlet extends HttpServlet
 		String email = request.getParameter("email");
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
+		
+		password = toHash(password);
 		
 		Customer customer = new Customer();
 		customer.setName(name);
@@ -78,4 +81,24 @@ public class RegistrationServlet extends HttpServlet
 		doGet(request, response);
 	}
 
+	private String toHash(String password)
+	{
+		String hashString = null;
+		try
+		{
+			java.security.MessageDigest digest = java.security.MessageDigest.getInstance("SHA-512");
+			byte[] hash = digest.digest(password.getBytes(StandardCharsets.UTF_8));
+			hashString = "";
+			for (int i=0; i<hash.length; i++)
+			{
+				hashString += Integer.toHexString((hash[i] & 0xFF) | 0x100).toLowerCase().substring(1, 3);
+			}
+		}
+		catch (java.security.NoSuchAlgorithmException e)
+		{
+			System.err.println(e);
+		}
+		
+		return hashString;
+	}
 }

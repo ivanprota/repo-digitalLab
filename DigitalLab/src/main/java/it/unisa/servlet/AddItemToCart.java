@@ -4,6 +4,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -38,10 +39,27 @@ public class AddItemToCart extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Recupera l'ID del prodotto selezionato dalla richiesta
-        int productCode = Integer.parseInt(request.getParameter("productCode"));
+    	int productCode = -1;
+    	try
+    	{
+    		productCode = Integer.parseInt(request.getParameter("productCode"));
+    	}
+		catch (NumberFormatException e)
+		{
+			System.err.println(e);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/common/product.jsp");
+			dispatcher.forward(request, response);
+			return;				
+		}
 
         // Recupera l'utente corrente dal sistema di autenticazione
         String customerUsername = request.getParameter("customerUsername");
+        if (customerUsername == null || customerUsername.trim().equals(""))
+        {
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/common/product.jsp");
+			dispatcher.forward(request, response);
+			return;	      	
+        }
 
         // Recupera il carrello dell'utente dal database utilizzando il nome utente
         ShoppingCart shoppingCart = null;

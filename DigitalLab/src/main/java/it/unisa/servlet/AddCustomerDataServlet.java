@@ -47,11 +47,46 @@ public class AddCustomerDataServlet extends HttpServlet
 		if (isShippingAddress != null && isShippingAddress.equals("true"))
 		{
 			ShippingAddress shippingAddress = new ShippingAddress();
-			shippingAddress.setStreet(request.getParameter("street"));
-			shippingAddress.setStreetNumber(Integer.parseInt(request.getParameter("streetNumber")));
-			shippingAddress.setCity(request.getParameter("city"));
-			shippingAddress.setProvince(request.getParameter("province"));
-			shippingAddress.setZip(request.getParameter("zip"));
+			String street = request.getParameter("street");
+			String streetNumber = request.getParameter("streetNumber");
+			String city = request.getParameter("city");
+			String province = request.getParameter("province");
+			String zip = request.getParameter("zip");
+			
+			boolean areGoodValues = true;
+			areGoodValues = checkParameter(street);
+			areGoodValues = checkParameter(streetNumber);
+			areGoodValues = checkParameter(city);
+			areGoodValues = checkParameter(province);
+			areGoodValues = checkParameter(zip);
+			
+			if (areGoodValues == false)
+			{
+				error += "Impossibile salvare i cambiamenti";
+				request.setAttribute("error", error);
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/common/user-area.jsp");
+				dispatcher.forward(request, response);
+				return;					
+			}
+			
+			try
+			{
+				shippingAddress.setStreetNumber(Integer.parseInt(streetNumber));
+			}
+			catch (NumberFormatException e)
+			{
+				System.err.println(e);
+				error += "Impossibile salvare i cambiamenti";
+				request.setAttribute("error", error);
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/common/user-area.jsp");
+				dispatcher.forward(request, response);
+				return;				
+			}
+			
+			shippingAddress.setStreet(street);
+			shippingAddress.setCity(city);
+			shippingAddress.setProvince(province);
+			shippingAddress.setZip(zip);
 			shippingAddress.setCustomer(customer);
 			
 			DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
@@ -92,13 +127,46 @@ public class AddCustomerDataServlet extends HttpServlet
 		else if (isPaymentMethod != null && isPaymentMethod.equals("true"))
 		{
 			PaymentMethod paymentMethod = new PaymentMethod();
-			paymentMethod.setOwner(request.getParameter("owner"));
-			paymentMethod.setPan(request.getParameter("pan"));
-			paymentMethod.setCvv(request.getParameter("cvv"));
+			String owner = request.getParameter("owner");
+			String pan = request.getParameter("pan");
+			String cvv = request.getParameter("cvv");
 			String dateString = request.getParameter("expirationDate");
-			Date date = Date.valueOf(dateString);
-			paymentMethod.setExpirationDate(date);
+			
+			boolean areGoodValues = true;
+			areGoodValues = checkParameter(owner);
+			areGoodValues = checkParameter(pan);
+			areGoodValues = checkParameter(dateString);
+			
+			if (areGoodValues == false)
+			{
+				error += "Impossibile salvare i cambiamenti";
+				request.setAttribute("error", error);
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/common/user-area.jsp");
+				dispatcher.forward(request, response);
+				return;	
+			}
+			
+			paymentMethod.setOwner(owner);
+			paymentMethod.setPan(pan);
+			paymentMethod.setCvv(cvv);
 			paymentMethod.setCustomer(customer);
+			
+			Date date;
+			try
+			{
+				date = Date.valueOf(dateString);
+			}
+			catch (IllegalArgumentException e)
+			{
+				System.err.println(e);
+				error += "Impossibile salvare i cambiamenti";
+				request.setAttribute("error", error);
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/common/user-area.jsp");
+				dispatcher.forward(request, response);
+				return;			
+			}
+			
+			paymentMethod.setExpirationDate(date);
 			
 			DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
 			PaymentMethodDAO dao = new PaymentMethodDAO(ds);
@@ -142,5 +210,11 @@ public class AddCustomerDataServlet extends HttpServlet
 	{
 		doGet(request, response);
 	}
-
+	
+	private boolean checkParameter(String value)
+	{
+		if (value != null && !value.trim().equals(""))
+			return true;
+		else return false;
+	}
 }

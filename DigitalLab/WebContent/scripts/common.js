@@ -256,7 +256,6 @@ function checkPhone(input, errorMessageId) {
 
 
 
-
 /*
 	Animazione del tasto "Contatti"
 */

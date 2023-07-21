@@ -284,7 +284,7 @@
 								<input type="text" name="cvv" placeholder="Cvv" required maxlength="3">
 							</div>
 							<div class="paymentMethodInput">
-								<label for="expirationDate">Data di scadenza:</label>
+								<label for="expirationDate">Data di scadenza: (yyyy-mm-gg)</label>
 								<input type="text" name="expirationDate" placeholder="Data di scadenza" required>
 							</div>
 							<div id="paymentMethodFormButtonContainer">

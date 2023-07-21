@@ -46,10 +46,44 @@ public class AdminProductControlServlet extends HttpServlet
 			String brand = request.getParameter("brand");
 			String model = request.getParameter("model");
 			String category = request.getParameter("category");
-			double price = Double.parseDouble(request.getParameter("price"));
-			int quantity = Integer.parseInt(request.getParameter("quantity"));
+			String priceString = request.getParameter("price");
+			String quantityString = request.getParameter("quantity");
 			String description = request.getParameter("description");
-				
+			
+			boolean areGoodValues = true;
+			areGoodValues = checkParameter(brand);
+			areGoodValues = checkParameter(model);
+			areGoodValues = checkParameter(category);
+			areGoodValues = checkParameter(priceString);
+			areGoodValues = checkParameter(quantityString);
+			areGoodValues = checkParameter(description);
+			
+			if (areGoodValues == false)
+			{
+				error += "Impossibile aggiungere il prodotto";
+				request.setAttribute("error", error);
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/common/user-area.jsp");
+				dispatcher.forward(request, response);
+				return;				
+			}
+			
+			double price;
+			int quantity;
+			try
+			{
+				price = Double.parseDouble(request.getParameter("price"));
+				quantity = Integer.parseInt(request.getParameter("quantity"));
+			}
+			catch (NumberFormatException e)
+			{
+				System.err.println(e);
+				error += "Impossibile aggiungere il prodotto";
+				request.setAttribute("error", error);
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/common/user-area.jsp");
+				dispatcher.forward(request, response);
+				return;
+			}
+			
 			Product product = new Product();
 			product.setBrand(brand);
 			product.setModel(model);
@@ -220,4 +254,11 @@ public class AdminProductControlServlet extends HttpServlet
 		doGet(request, response);
 	}
 
+	
+	private boolean checkParameter(String value)
+	{
+		if (value != null && !value.trim().equals(""))
+			return true;
+		else return false;
+	}
 }
