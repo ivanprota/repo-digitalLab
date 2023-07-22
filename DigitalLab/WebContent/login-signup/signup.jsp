@@ -1,5 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    
+<%
+	String error = (String) request.getAttribute("error");
+	if (error == null)
+		error = "";
+%>
+
 <!DOCTYPE html>
 <html lang="IT">
 
@@ -10,7 +17,7 @@
 		
 		<title>Registrati</title>
 		
-		<link type="text/css" rel="stylesheet" href="../css/login-signup.css">
+		<link type="text/css" rel="stylesheet" href="<%= request.getContextPath()%>/css/login-signup.css">
 		
 		<script type="text/javascript" src="<%= request.getContextPath()%>/scripts/common.js"></script>
 		
@@ -325,6 +332,7 @@
 		    <div class="signin">
 		    	<div class="content">
 		        	<h2>Registrazione</h2>
+		        	<p id="signupErrorMessage"><%= error%></p>
 		        	<div class="form">
 		        		<form action="<%= request.getContextPath()%>/RegistrationServlet" method="POST">
 			          		<div class="inputBox">

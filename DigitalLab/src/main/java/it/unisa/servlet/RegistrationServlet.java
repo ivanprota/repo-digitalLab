@@ -8,7 +8,10 @@ package it.unisa.servlet;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.sql.SQLException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -43,6 +46,36 @@ public class RegistrationServlet extends HttpServlet
 		customer.setUsername(username);
 		customer.setPassword(password);
 		customer.setPhone(null);
+		
+		String error = "";
+		
+		String emailRegex = "^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$";
+		Pattern pattern = Pattern.compile(emailRegex);
+		Matcher matcher = pattern.matcher(email);
+		try
+		{
+			if (!matcher.find())
+			{
+				int numberForError = 10 / 0;
+			}
+			
+			String usernameRegex =  "^\\w+$";
+			pattern = Pattern.compile(usernameRegex);
+			matcher = pattern.matcher(username);
+			if (!matcher.find())
+			{
+				int numberForError = 10 / 0;
+			}
+		}
+		catch (ArithmeticException e)
+		{
+			System.err.println(e);
+			error += "Registrazione fallita";
+			request.setAttribute("error", error);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/login-signup/signup.jsp");
+			dispatcher.forward(request, response);
+			return;
+		}
 		
 		DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
 		CustomerDAO dao = new CustomerDAO(ds);
