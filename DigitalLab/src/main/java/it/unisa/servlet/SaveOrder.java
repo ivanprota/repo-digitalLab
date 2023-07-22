@@ -1,10 +1,7 @@
 package it.unisa.servlet;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -37,10 +34,8 @@ import java.util.Random;
 public class SaveOrder extends HttpServlet {
     private static final long serialVersionUID = 1L;
     
-    private DataSource dataSource;
-    
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	dataSource = (DataSource) getServletContext().getAttribute("DataSource");
+    	DataSource dataSource = (DataSource) getServletContext().getAttribute("DataSource");
     	
     	HttpSession session = request.getSession();
     	@SuppressWarnings("unchecked")
@@ -48,7 +43,13 @@ public class SaveOrder extends HttpServlet {
     	@SuppressWarnings("unchecked")
 		Map<Integer, Integer> map = (Map<Integer, Integer>) session.getAttribute("mapProductsQuantity");
     	
-    	int ShippingAddressID = Integer.parseInt(request.getParameter("ShippingAddress"));
+    	String shippingAddressIDString = request.getParameter("ShippingAddress");
+    	int ShippingAddressID = -1;
+    	if (shippingAddressIDString != null && !shippingAddressIDString.trim().equals(""))
+    	{
+    		ShippingAddressID = Integer.parseInt(shippingAddressIDString);
+    	}
+    	
     	String PaymentMethodPAN = request.getParameter("PaymentMethod");
     	
     	// Salvare nella lista degli ordini
@@ -139,11 +140,9 @@ public class SaveOrder extends HttpServlet {
 		{
 			System.err.println(e);
 		}
-    	
-    	return;
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	
+    	doGet(request, response);
     }
 }

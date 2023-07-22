@@ -43,7 +43,7 @@ public class GetPictureServlet extends HttpServlet
 			Iterator<Product> itProducts = products.iterator();
 			while (itProducts.hasNext())
 			{
-				Product product = (Product) itProducts.next();
+				Product product = itProducts.next();
 				pictures.add(dao.doRetrieveByKey(product.getCode()));
 			}
 		}

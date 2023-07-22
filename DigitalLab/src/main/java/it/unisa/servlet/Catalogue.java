@@ -92,7 +92,7 @@ public class Catalogue extends HttpServlet {
     					Iterator<Product> it = products.iterator();
     					while (it.hasNext())
     					{
-    						Product product = (Product) it.next();
+    						Product product = it.next();
     						String brandModelCategory = ("" + product.getBrand() +" "+ product.getModel() +" "+ product.getCategory()).toLowerCase();
     						
     						if (brandModelCategory.contains(searchInput))
@@ -118,7 +118,7 @@ public class Catalogue extends HttpServlet {
     					Iterator<Product> it = products.iterator();
     					while (it.hasNext())
     					{
-    						Product product = (Product) it.next();
+    						Product product = it.next();
     						String brandModelCategory = ("" + product.getBrand() +" "+ product.getModel() +" "+ product.getCategory()).toLowerCase();
     						if (brandModelCategory.contains(searchInput))
     							productsCollection.add(product);

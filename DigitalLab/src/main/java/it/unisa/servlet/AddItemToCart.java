@@ -22,18 +22,13 @@ import javax.sql.DataSource;
 @WebServlet("/addItemToCart")
 public class AddItemToCart extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private ShoppingCartDAO shoppingCartDAO;
-    @SuppressWarnings("unused")
-	private ContainsDAO containsDAO;
-    @SuppressWarnings("unused")
-	private ProductDAO productDAO;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	
     	DataSource dataSource = (DataSource) getServletContext().getAttribute("DataSource");
-        shoppingCartDAO = new ShoppingCartDAO(dataSource);
-        containsDAO = new ContainsDAO(dataSource);
-        productDAO = new ProductDAO(dataSource);
+        ShoppingCartDAO shoppingCartDAO = new ShoppingCartDAO(dataSource);
+        ContainsDAO containsDAO = new ContainsDAO(dataSource);
+        ProductDAO productDAO = new ProductDAO(dataSource);
     	
         // Recupera l'ID del prodotto selezionato dalla richiesta
     	int productCode = -1;
