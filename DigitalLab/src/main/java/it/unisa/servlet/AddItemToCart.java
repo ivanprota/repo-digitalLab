@@ -27,17 +27,14 @@ public class AddItemToCart extends HttpServlet {
 	private ContainsDAO containsDAO;
     @SuppressWarnings("unused")
 	private ProductDAO productDAO;
-    private DataSource dataSource;
 
-    @Override
-    public void init() throws ServletException {
-        dataSource = (DataSource) getServletContext().getAttribute("DataSource");
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	
+    	DataSource dataSource = (DataSource) getServletContext().getAttribute("DataSource");
         shoppingCartDAO = new ShoppingCartDAO(dataSource);
         containsDAO = new ContainsDAO(dataSource);
         productDAO = new ProductDAO(dataSource);
-    }
-
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	
         // Recupera l'ID del prodotto selezionato dalla richiesta
     	int productCode = -1;
     	try

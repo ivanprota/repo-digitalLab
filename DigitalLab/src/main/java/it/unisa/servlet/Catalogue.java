@@ -87,7 +87,7 @@ public class Catalogue extends HttpServlet {
     				else
     				{
     					String searchInput = search.toLowerCase();
-    					Collection<Product> productsCollection = new LinkedList<Product>();
+    					Collection<Product> productsCollection = new LinkedList<>();
     					products = dao.doRetrieveAll(null);
     					Iterator<Product> it = products.iterator();
     					while (it.hasNext())
@@ -113,7 +113,7 @@ public class Catalogue extends HttpServlet {
     				else
     				{
     					String searchInput = search.toLowerCase();
-    					Collection<Product> productsCollection = new LinkedList<Product>();
+    					Collection<Product> productsCollection = new LinkedList<>();
     					products = dao.doRetrieveByFilter(category);
     					Iterator<Product> it = products.iterator();
     					while (it.hasNext())

@@ -35,7 +35,7 @@ public class GetPictureServlet extends HttpServlet
 		PictureDAO dao = new PictureDAO(ds);
 		ProductDAO productDAO = new ProductDAO(ds);
 		Collection<Product> products = null;
-		Collection<Picture> pictures = new LinkedList<Picture>();
+		Collection<Picture> pictures = new LinkedList<>();
 		try
 		{
 			products = productDAO.doRetrieveAll(null);

@@ -60,7 +60,7 @@ public class AddCustomerDataServlet extends HttpServlet
 			areGoodValues = checkParameter(province);
 			areGoodValues = checkParameter(zip);
 			
-			if (areGoodValues == false)
+			if (!areGoodValues)
 			{
 				error += "Impossibile salvare i cambiamenti";
 				request.setAttribute("error", error);
@@ -108,7 +108,7 @@ public class AddCustomerDataServlet extends HttpServlet
 			
 			Collection<?> shippingAddresses = (Collection<?>) session.getAttribute("shippingAddresses");
 			Iterator<?> it = shippingAddresses.iterator();
-			Collection<ShippingAddress> collection = new LinkedList<ShippingAddress>();
+			Collection<ShippingAddress> collection = new LinkedList<>();
 			while (it.hasNext())
 			{
 				ShippingAddress obj = (ShippingAddress) it.next();
@@ -137,7 +137,7 @@ public class AddCustomerDataServlet extends HttpServlet
 			areGoodValues = checkParameter(pan);
 			areGoodValues = checkParameter(dateString);
 			
-			if (areGoodValues == false)
+			if (!areGoodValues)
 			{
 				error += "Impossibile salvare i cambiamenti";
 				request.setAttribute("error", error);
@@ -186,7 +186,7 @@ public class AddCustomerDataServlet extends HttpServlet
 			
 			Collection<?> paymentMethods = (Collection<?>) session.getAttribute("paymentMethods");
 			Iterator<?> it = paymentMethods.iterator();
-			Collection<PaymentMethod> collection = new LinkedList<PaymentMethod>();
+			Collection<PaymentMethod> collection = new LinkedList<>();
 			while (it.hasNext())
 			{
 				PaymentMethod obj = (PaymentMethod) it.next();
@@ -215,6 +215,7 @@ public class AddCustomerDataServlet extends HttpServlet
 	{
 		if (value != null && !value.trim().equals(""))
 			return true;
-		else return false;
+		
+		return false;
 	}
 }

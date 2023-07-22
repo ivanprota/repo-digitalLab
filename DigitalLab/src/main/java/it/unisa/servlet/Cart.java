@@ -56,7 +56,7 @@ public class Cart extends HttpServlet
 		}
 		else if (action.equals("updateQuantity"))
 		{
-			Collection<Contains> containsCollection = new LinkedList<>();
+			Collection<Contains> containsCollection = null;
 			
 			String quantityString = request.getParameter("quantity");
 			int quantity = -1;

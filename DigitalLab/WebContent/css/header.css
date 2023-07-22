@@ -220,6 +220,8 @@ nav#phoneNav {
 	header div#logoContainer {
 		margin-bottom: auto;
 		width: 35%;
+		margin: 1%;
+		padding: 5px;
 	}
 	
 	header div#searchContainer {
@@ -326,12 +328,7 @@ nav#phoneNav {
 	nav#phoneNav div#phoneNavContainer ul li a:hover {
 		border-color: black;
 	}
-	
-		header div#logoContainer {
-		margin: 1%;
-		padding: 5px;
-	}
-	
+
 	#searchContainer {
 		margin: 1%;
 		padding: 5px;

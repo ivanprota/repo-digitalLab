@@ -314,7 +314,11 @@ public class ProductDAO
 			for (int i=0, pos=1, brandsIndex=0; i<selectSQL.length(); i++)
 			{
 				if (selectSQL.charAt(i) == '?')
-					preparedStatement.setString(pos++, brands[brandsIndex++]);
+				{
+					preparedStatement.setString(pos, brands[brandsIndex]);
+					pos++;
+					brandsIndex++;
+				}
 			}
 			
 			ResultSet rs = preparedStatement.executeQuery();

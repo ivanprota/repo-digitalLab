@@ -61,7 +61,7 @@ public class Configuration extends HttpServlet {
 		}
 	   	
    		PictureDAO pictureDAO = new PictureDAO(ds);
-		Collection<Picture> casePictures = new LinkedList<Picture>();
+		Collection<Picture> casePictures = new LinkedList<>();
 	   	
 	   	for(Product product : caseCollection) {
 	   		try {

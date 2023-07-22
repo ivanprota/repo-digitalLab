@@ -58,7 +58,7 @@ public class AdminProductControlServlet extends HttpServlet
 			areGoodValues = checkParameter(quantityString);
 			areGoodValues = checkParameter(description);
 			
-			if (areGoodValues == false)
+			if (!areGoodValues)
 			{
 				error += "Impossibile aggiungere il prodotto";
 				request.setAttribute("error", error);
@@ -112,7 +112,6 @@ public class AdminProductControlServlet extends HttpServlet
 			request.setAttribute("message", message);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/admin-area.jsp");
 			dispatcher.forward(request, response);
-			return;
 		}
 		else if (action.equals("select"))
 		{
@@ -259,6 +258,7 @@ public class AdminProductControlServlet extends HttpServlet
 	{
 		if (value != null && !value.trim().equals(""))
 			return true;
-		else return false;
+		
+		return false;
 	}
 }

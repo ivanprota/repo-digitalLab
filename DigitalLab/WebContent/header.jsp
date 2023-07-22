@@ -103,7 +103,7 @@
 		<!-- Fine header -->
 
 		<!-- Inizio menu di navigazione -->		
-		<nav>
+		<nav aria-label="Site menu">
 		
 			<div id="navContainer">				
 				<ul>
@@ -125,7 +125,7 @@
 		<!-- Fine menu di navigazione -->
 		
 		<!-- Inizio menu di navigazione (phone view) -->
-		<nav id="phoneNav">
+		<nav id="phoneNav" aria-label="Site-menu">
 			
 			<div id="phoneNavButton">
 				<a id="phoneButton">MENU</a>
