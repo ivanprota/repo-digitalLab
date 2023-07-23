@@ -53,7 +53,7 @@
 						<li><a href="<%= request.getContextPath()%>/Catalogue?filter=price&priceRange1=200&priceRange2=400">200 a 400 EURO</a></li>
 						<li><a href="<%= request.getContextPath()%>/Catalogue?filter=price&priceRange1=400&priceRange2=600">400 a 600 EURO</a></li>
 						<li><a href="<%= request.getContextPath()%>/Catalogue?filter=price&priceRange1=600&priceRange2=800">600 a 800 EURO</a></li>
-						<li><a href="<%= request.getContextPath()%>/Catalogue?filter=price&priceRange1=800+">oltre 800 EURO</a></li>
+						<li><a href="<%= request.getContextPath()%>/Catalogue?filter=price&priceRange1=800">oltre 800 EURO</a></li>
 					</ul>
 					<!-- Min e Max EURO -->
 					<div id="cataloguePriceFilterInputContainer">

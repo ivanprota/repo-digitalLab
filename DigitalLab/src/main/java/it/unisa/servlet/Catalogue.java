@@ -48,7 +48,7 @@ public class Catalogue extends HttpServlet {
 	    		{
 	    			if (priceRange1String.equals("200-"))
 	    				products = dao.doRetrieveByFilter(null, "200");
-	    			else if (priceRange1String.equals("800+"))
+	    			else if (priceRange1String.equals("800"))
 	    				products = dao.doRetrieveByFilter("800", null);
 	    		}
 	    		else if (priceRange1String != null && priceRange2String != null)

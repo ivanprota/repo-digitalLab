@@ -53,6 +53,16 @@ public class UpdatePersonalDataServlet extends HttpServlet
 			String username = request.getParameter("adminUsername");
 			String password = request.getParameter("adminPassword");
 			
+			if (username == null || username.trim().equals(""))
+			{
+				int numberForError = 10 / 0;
+			}
+			
+			if (password == null || password.trim().equals(""))
+			{
+				int numberForError = 10 / 0;
+			}
+			
 			String usernameRegex =  "^\\w+$";
 			Pattern pattern = Pattern.compile(usernameRegex);
 			Matcher matcher = pattern.matcher(username);
@@ -115,6 +125,16 @@ public class UpdatePersonalDataServlet extends HttpServlet
 			String email = request.getParameter("customerEmail");
 			String username = request.getParameter("customerUsername");
 			String password = request.getParameter("customerPassword");
+			
+			if (username == null || username.trim().equals(""))
+			{
+				int numberForError = 10 / 0;
+			}
+			
+			if (password == null || password.trim().equals(""))
+			{
+				int numberForError = 10 / 0;
+			}
 			
 			password = toHash(password);
 			
