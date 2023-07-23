@@ -133,8 +133,8 @@
 			<div id="phoneNavContainer">
 				<ul>
 					<li>
-						<a href="<%= request.getContextPath()%>/UserRedirectServlet" onmouseover="borderItem(this)" onmouseout="deleteBorderItem(this)">Il mio profilo</a>
-						<a href="<%=request.getContextPath()%>/common/cart.jsp" onmouseover="borderItem(this)" onmouseout="deleteBorderItem(this)">Carrello</a>
+						<a href="<%= request.getContextPath()%>/UserRedirectServlet" >Il mio profilo</a>
+						<a href="<%=request.getContextPath()%>/common/cart.jsp" >Carrello</a>
 					</li>
 					<li><a href="<%= request.getContextPath()%>/Catalogue?filter=category&categoryName=Case">CASE</a></li>
 					<li><a href="<%= request.getContextPath()%>/Catalogue?filter=category&categoryName=Schede%20Madri">SCHEDE MADRI</a></li>

@@ -63,13 +63,7 @@
     <script src="<%= request.getContextPath()%>/scripts/common.js"></script>
     <!-- [JQUERY] Comparsa del menu quando lo la dimensione della pagina è abbastanza piccola -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	<script>
-			$(document).ready(function() {
-				$("#phoneButton").click(function() {
-					$("#phoneNavContainer").slideToggle();
-				})
-			})
-	</script>
+
 </head>
 <body>
 
