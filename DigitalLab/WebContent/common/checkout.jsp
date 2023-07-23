@@ -64,7 +64,11 @@
 						%>
 				        <label class="choice">
 				          <input type="radio" name="shippingAddress" value="<%=shippingAddress%>">
-				          <%=shippingAddress%>
+				          <%=shippingAddress.getStreet()%>, 
+				          <%=shippingAddress.getStreetNumber()%><br/>
+				          <%=shippingAddress.getCity()%>, 
+				          <%=shippingAddress.getProvince()%><br/>
+				          <%=shippingAddress.getZip()%>
 				        </label>
 						<%
 					}
@@ -88,7 +92,9 @@
 						%>
 				        <label class="choice">
 				          <input type="radio" name="paymentMethod" value="<%=paymentMethod%>">
-				          <%=paymentMethod%>
+				          <%=paymentMethod.getOwner()%>, 
+				          <%=paymentMethod.getExpirationDate()%><br/>
+				          XXXX-XXXX-XXXX-X<%=paymentMethod.getPan().substring(paymentMethod.getPan().length()-3, paymentMethod.getPan().length())%>
 				        </label>
 						<%
 					}
