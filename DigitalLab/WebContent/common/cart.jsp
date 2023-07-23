@@ -64,7 +64,7 @@
 			        e.printStackTrace();
 			        containsItems = new ArrayList<>();
 			    }
-			
+			    
 			    Collection<Product> cartItems = new ArrayList<>();
 			    ProductDAO productDAO = new ProductDAO(dataSource);
 				

@@ -115,7 +115,11 @@ public class AdminProductControlServlet extends HttpServlet
 		}
 		else if (action.equals("select"))
 		{
-			int code = Integer.parseInt(request.getParameter("code"));
+			String codeString = request.getParameter("code");
+			int code = -1;
+			if (codeString != null && !codeString.trim().equals(""))
+				code = Integer.parseInt(codeString);
+			
 			ProductDAO dao = new ProductDAO(ds);
 			Product product;
 			try

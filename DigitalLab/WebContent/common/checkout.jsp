@@ -1,3 +1,4 @@
+<%@page import="it.unisa.db.ContainsDAO"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 
@@ -6,12 +7,16 @@
 <%@ page import="it.unisa.model.ShippingAddress" %>
 <%@ page import="it.unisa.model.PaymentMethod" %>
 <%@ page import="it.unisa.model.Product" %>
+<%@ page import="it.unisa.model.Customer" %>
+<%@ page import="it.unisa.model.Contains" %>
 
 <%@ page import="it.unisa.db.PictureDAO" %>
+<%@ page import="it.unisa.db.ContainsDAO" %>
 <%@ page import="it.unisa.model.Picture" %>
 <%@ page import="java.util.Map" %>
 <%@ page import="java.text.DecimalFormat" %>
 <%@ page import="javax.sql.DataSource" %>
+<%@ page import="java.sql.SQLException" %>
 
 <% 
 	Collection<?> shippingAddresses = (Collection<?>) request.getAttribute("shippingAddresses");
@@ -23,6 +28,26 @@
 	Collection<Product> cartItems = (Collection<Product>) session.getAttribute("cartItems");
 	@SuppressWarnings("unchecked")
 	Map<Integer, Integer> map = (Map<Integer, Integer>) session.getAttribute("mapProductsQuantity");
+	
+	ContainsDAO containsDAO = new ContainsDAO(dataSource);
+	Collection<Contains> containsCollection = null;
+	Customer customer = (Customer) session.getAttribute("customer");
+	try
+	{
+		containsCollection = containsDAO.doRetrieveAllByKey(customer.getUsername());
+	}
+	catch (SQLException e)
+	{
+		System.err.println(e);
+	}
+	
+	Iterator<Contains> itContains = containsCollection.iterator();
+	while (itContains.hasNext())
+	{
+		Contains contains = (Contains) itContains.next();
+		map.remove(contains.getProduct().getCode());
+		map.put(contains.getProduct().getCode(), contains.getQuantity());
+	}
 %>
 
 <!DOCTYPE html>
