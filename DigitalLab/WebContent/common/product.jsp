@@ -33,8 +33,21 @@
 	}
    	
    	Iterator<Picture> it = pictures.iterator();
-   	Picture picture1 = (Picture) it.next();
-   	Picture picture2 = (Picture) it.next();
+   	Picture picture1 = null;
+   	Picture picture2 = null;
+   	if (pictures.size() != 0)
+   	{
+   		picture1 = (Picture) it.next();
+   		picture2 = (Picture) it.next();
+   	}
+   	else
+   	{
+   		picture1 = new Picture();
+   		picture1.setImageFileName("");
+   		
+   		picture2 = new Picture();
+   		picture2.setImageFileName("");
+   	}
    	
    	Customer customer = (Customer) session.getAttribute("customer");
 %>

@@ -44,15 +44,23 @@ public class GetPictureServlet extends HttpServlet
 			while (itProducts.hasNext())
 			{
 				Product product = itProducts.next();
-				pictures.add(dao.doRetrieveByKey(product.getCode()));
+				try
+				{
+					pictures.add(dao.doRetrieveByKey(product.getCode()));
+				}
+				catch (SQLException e)
+				{
+					Picture picture = new Picture();
+					picture.setImageFileName("");
+					picture.setProduct(product);
+					pictures.add(picture);
+				}
+
 			}
 		}
 		catch (SQLException e)
 		{
 			System.err.println(e);
-			response.sendRedirect(request.getContextPath());
-			request.getSession().invalidate();
-			return;
 		}
 		
 		request.setAttribute("pictures", pictures);
